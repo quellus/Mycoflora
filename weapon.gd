@@ -5,12 +5,13 @@ extends Node2D
 @onready var area = $Area2D
 
 const SWING_SPEED = 0.2
-const ATTACK_SPEED = 0.5
+const ATTACK_SPEED = 0.3
 
 var can_attack = true
-
+	
 func attack():
 	if can_attack:
+		look_at(get_global_mouse_position())
 		visible = true
 		area.process_mode = Node.PROCESS_MODE_INHERIT
 		swing_timer.start(SWING_SPEED)
