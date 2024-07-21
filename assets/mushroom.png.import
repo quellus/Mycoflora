@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5hqngrxih6q5"
-path="res://.godot/imported/grass tiles.png-b1ef73eab198a7a50748da9306a3dac4.ctex"
+uid="uid://clmtlhtqb0u7m"
+path="res://.godot/imported/mushroom.png-1eeaa92746877ee598b2e48ba3d07332.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grass tiles.png"
-dest_files=["res://.godot/imported/grass tiles.png-b1ef73eab198a7a50748da9306a3dac4.ctex"]
+source_file="res://assets/mushroom.png"
+dest_files=["res://.godot/imported/mushroom.png-1eeaa92746877ee598b2e48ba3d07332.ctex"]
 
 [params]
 

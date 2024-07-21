@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://djp54pygs32jy"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_0nxi1"]
+[ext_resource type="Texture2D" uid="uid://clhbix8ugiwvv" path="res://assets/CloakedLittleGuy.png" id="2_5h1bl"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_vxs7l"]
+[ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="4_f6mwu"]
+[ext_resource type="Texture2D" uid="uid://d3v42dmvp8sag" path="res://assets/SwordSlash.png" id="5_p2yah"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2up4"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8dto"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11wr5"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqahi"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wtq5"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sgpq"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcarv"]
+atlas = ExtResource("2_5h1bl")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrjdl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2up4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8dto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11wr5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqahi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wtq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sgpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcarv")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jme7u"]
+size = Vector2(14, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7usc8"]
+size = Vector2(24, 74)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(197, 148)
+motion_mode = 1
+script = ExtResource("1_0nxi1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_nrjdl")
+animation = &"walk"
+frame = 5
+frame_progress = 1.0
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jme7u")
+
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("3_vxs7l")
+
+[node name="Area2D" type="Area2D" parent="Weapon"]
+position = Vector2(18, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon/Area2D"]
+visible = false
+scale = Vector2(0.203125, 0.578125)
+texture = ExtResource("4_f6mwu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Area2D"]
+process_mode = 4
+visible = false
+shape = SubResource("RectangleShape2D_7usc8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/Area2D"]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(6, -9, -2, -15, -10, -19, -13, -14, -12, 0, -13, 14, -10, 22, 1, 24, 7, 16, 9, 3)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Weapon/Area2D"]
+position = Vector2(-1, -1)
+texture = ExtResource("5_p2yah")
+
+[node name="AttackTimer" type="Timer" parent="Weapon"]
+one_shot = true
+
+[node name="SwingTimer" type="Timer" parent="Weapon"]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="Weapon/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Weapon/AttackTimer" to="Weapon" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]

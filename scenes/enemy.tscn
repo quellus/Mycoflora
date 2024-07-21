@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr8cjatjiolay"]
+[gd_scene load_steps=6 format=3 uid="uid://cr8cjatjiolay"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_plyv1"]
-[ext_resource type="Texture2D" uid="uid://clmtlhtqb0u7m" path="res://mushroom.png" id="2_ppyat"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_plyv1"]
+[ext_resource type="Texture2D" uid="uid://clmtlhtqb0u7m" path="res://assets/mushroom.png" id="2_ppyat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bttqu"]
 size = Vector2(12, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8yl8"]
 size = Vector2(14, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_102g7"]
+radius = 162.373
 
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
@@ -26,4 +29,11 @@ position = Vector2(0, 6)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_p8yl8")
 
+[node name="VisionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionRadius"]
+shape = SubResource("CircleShape2D_102g7")
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="VisionRadius" to="." method="_on_vision_radius_body_entered"]
+[connection signal="body_exited" from="VisionRadius" to="." method="_on_vision_radius_body_exited"]

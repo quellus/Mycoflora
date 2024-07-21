@@ -9,6 +9,10 @@ const ATTACK_SPEED = 0.3
 
 var can_attack = true
 	
+func _ready():
+	visible = false
+	area.process_mode = Node.PROCESS_MODE_DISABLED
+	
 func attack():
 	if can_attack:
 		look_at(get_global_mouse_position())

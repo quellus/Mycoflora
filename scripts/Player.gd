@@ -5,8 +5,6 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 100.0
 
-
-
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction:
@@ -29,4 +27,4 @@ func take_damage():
 
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
-		body.take_damage()
+		body.take_damage(global_position)
