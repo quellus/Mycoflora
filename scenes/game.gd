@@ -21,7 +21,12 @@ func load_level(level_name: String, spawn_index: int):
 func _spawn_player(spawn_position: Vector2):
 	if player != null:
 		player.queue_free()
-	player = player_scene.instantiate()
+	player = player_scene.instantiate() as Player
 	add_child(player)
 	player.global_position = spawn_position
+	player.health_changed.connect(_player_health_changed)
+	_player_health_changed(player.health)
 		
+
+func _player_health_changed(health):
+	%HealthBar.value = health

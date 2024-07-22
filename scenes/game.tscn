@@ -3,6 +3,19 @@
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_gog3v"]
 
 [node name="Game" type="Control"]
+y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_gog3v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(116.215, 0)
+offset_left = 59.0
+offset_top = 32.0
+offset_right = 175.215
+offset_bottom = 59.0
+max_value = 10.0
+step = 1.0
