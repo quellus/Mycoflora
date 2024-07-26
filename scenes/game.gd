@@ -1,6 +1,6 @@
 extends Control
 
-var player_scene = preload("res://Scenes/Player.tscn")
+var player_scene = preload("res://Scenes/player.tscn")
 var levels = {
 	"level1": preload("res://scenes/level1.tscn")
 }

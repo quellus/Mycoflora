@@ -95,16 +95,16 @@ shape = SubResource("RectangleShape2D_jme7u")
 script = ExtResource("3_vxs7l")
 
 [node name="HurtBox" type="Area2D" parent="Weapon"]
-position = Vector2(18, 1)
 script = ExtResource("5_c2u06")
 damage = 1
+entity = "Player"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/HurtBox"]
-position = Vector2(0, -2)
+position = Vector2(19, -4)
 polygon = PackedVector2Array(6, -9, -2, -15, -10, -19, -13, -14, -12, 0, -13, 14, -10, 22, 1, 24, 7, 16, 9, 3)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Weapon/HurtBox"]
-position = Vector2(-1, -1)
+position = Vector2(17, -3)
 texture = ExtResource("5_p2yah")
 
 [node name="SwingTimer" type="Timer" parent="Weapon"]
@@ -123,7 +123,6 @@ one_shot = true
 
 [node name="iFrameTimer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="Weapon/HurtBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

@@ -46,10 +46,6 @@ func take_damage(position_from: Vector2):
 	if health <= 0:
 		get_tree().quit()
 
-func _on_area_2d_body_entered(body):
-	if body is Enemy:
-		body.take_damage(global_position)
-
 
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area):
