@@ -6,8 +6,8 @@ var target: Node2D = null
 @onready var sprite = $AnimatedSprite2D
 @export var speed_mod := 1
 const SPEED = 25
-@onready var animation_player = $AnimationPlayer
 
+@onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var animtree: AnimationTree = $AnimationTree
 @onready var state_machine = animtree["parameters/playback"]
 
@@ -28,14 +28,12 @@ func take_damage(position_from: Vector2):
 	velocity = position.direction_to(position_from) * SPEED * -4
 	$KnockbackTimer.start(0.1)
 	sprite.modulate = Color(100,100,100)
+	print_debug("default")
 	state_machine.travel("default")
 	knockback = true
 	if health <= 0:
+		print_debug("death")
 		state_machine.travel("death")
-		var timer = Timer.new()
-		add_child(timer)
-		timer.timeout.connect(_death_timer_timeout)
-		timer.start(1)
 
 
 func _on_vision_radius_body_entered(body):
@@ -57,17 +55,21 @@ func _on_knockback_timer_timeout():
 	sprite.modulate = Color(1,1,1)
 	knockback = false
 
-func _death_timer_timeout():
-	queue_free()
-
 
 func _on_attack_radius_body_entered(body: Node2D) -> void:
 	if body is Player:
 		target = body
+		print_debug("attack")
 		state_machine.travel("attack")
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if body == target:
-		if animation_player.is_playing() and animation_player.current_animation == "attack":
+		if animplayer.current_animation == "attack":
+			print_debug("default")
 			state_machine.travel("default")
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == "death":
+		queue_free()
