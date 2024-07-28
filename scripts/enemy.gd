@@ -12,28 +12,29 @@ const SPEED = 25
 @onready var state_machine = animtree["parameters/playback"]
 
 func _process(delta):
-	if health > 0:
-		if target != null:
-			if !knockback:
-				velocity = position.direction_to(target.global_position) * SPEED * speed_mod
-			elif knockback:
-				velocity.x = move_toward(velocity.x, 0, 20 * delta)
-				velocity.y = move_toward(velocity.y, 0, 20 * delta)
-				if velocity == Vector2.ZERO:
-					knockback = false
-		move_and_slide()
+	if target != null:
+		if !knockback:
+			velocity = position.direction_to(target.global_position) * SPEED * speed_mod
+		elif knockback:
+			velocity.x = move_toward(velocity.x, 0, 20 * delta)
+			velocity.y = move_toward(velocity.y, 0, 20 * delta)
+			if velocity == Vector2.ZERO:
+				knockback = false
+	move_and_slide()
 
 func take_damage(position_from: Vector2):
 	health -= 5
 	velocity = position.direction_to(position_from) * SPEED * -4
-	$KnockbackTimer.start(0.1)
 	sprite.modulate = Color(100,100,100)
-	print_debug("default")
-	state_machine.travel("default")
 	knockback = true
 	if health <= 0:
 		print_debug("death")
 		state_machine.travel("death")
+	else:
+		$KnockbackTimer.start(0.1)
+		print_debug("default")
+		state_machine.travel("default")
+		
 
 
 func _on_vision_radius_body_entered(body):
@@ -57,7 +58,7 @@ func _on_knockback_timer_timeout():
 
 
 func _on_attack_radius_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body is Player and !animplayer.current_animation == "death":
 		target = body
 		print_debug("attack")
 		state_machine.travel("attack")
