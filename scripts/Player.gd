@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @onready var weapon = $Weapon
 @onready var sprite = $AnimatedSprite2D
+@onready var camera = $Camera2D
 
 signal health_changed(health)
 
@@ -13,8 +14,10 @@ const SPEED = 75.0
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
+	var camera_position
 	if !knockback:
 		if direction:
+			camera_position = direction * 10
 			velocity = direction * SPEED
 			if direction.x > 0:
 				sprite.flip_h = false
@@ -24,10 +27,15 @@ func _physics_process(_delta):
 			if !sprite.is_playing():
 				sprite.play("walk")
 		else:
+			camera_position = Vector2.ZERO
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			if !sprite.is_playing():
 				sprite.play("default")
+	else:
+		camera_position = Vector2.ZERO
+	camera.position = camera.position.lerp(camera_position, 0.05)
+	#camera.position = camera_position
 	move_and_slide()
 
 func _input(event):
