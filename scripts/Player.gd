@@ -5,9 +5,9 @@ class_name Player extends CharacterBody2D
 @onready var camera = $Camera2D
 
 signal health_changed(health)
+signal warp(destination: String, spawn_point: int)
 
 var health = 10
-
 var knockback = false
 
 const SPEED = 75.0
@@ -35,7 +35,6 @@ func _physics_process(_delta):
 	else:
 		camera_position = Vector2.ZERO
 	camera.position = camera.position.lerp(camera_position, 0.05)
-	#camera.position = camera_position
 	move_and_slide()
 
 func _input(event):
@@ -67,4 +66,8 @@ func _on_knockback_timer_timeout():
 
 func _on_i_frame_timer_timeout():
 	$HurtDetector/CollisionShape2D.disabled = false
-	
+
+
+func _on_interactable_detector_area_entered(area):
+	if area is WarpPoint:
+		warp.emit(area.destination, area.spawn_point)

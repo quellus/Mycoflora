@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwxxwxyy0bkp5"]
 
-[ext_resource type="Script" path="res://scenes/game.gd" id="1_gog3v"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
 
 [node name="Game" type="Control"]
 y_sort_enabled = true

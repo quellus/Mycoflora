@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djp54pygs32jy"]
+[gd_scene load_steps=17 format=3 uid="uid://djp54pygs32jy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_0nxi1"]
 [ext_resource type="Texture2D" uid="uid://clhbix8ugiwvv" path="res://assets/CloakedLittleGuy.png" id="2_5h1bl"]
@@ -74,6 +74,9 @@ size = Vector2(14, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo0li"]
 size = Vector2(14, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxphb"]
+size = Vector2(18, 12)
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 position = Vector2(197, 148)
@@ -117,6 +120,11 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtDetector"]
 shape = SubResource("RectangleShape2D_vo0li")
 
+[node name="InteractableDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
+shape = SubResource("RectangleShape2D_vxphb")
+
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -125,5 +133,6 @@ one_shot = true
 
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
+[connection signal="area_entered" from="InteractableDetector" to="." method="_on_interactable_detector_area_entered"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
 [connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]

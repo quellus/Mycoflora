@@ -1,14 +1,15 @@
 extends Control
 
-var player_scene = preload("res://Scenes/player.tscn")
-var levels = {
-	"level1": preload("res://scenes/level1.tscn")
+const player_scene = preload("res://Scenes/player.tscn")
+const levels = {
+	"level1": preload("res://scenes/level1.tscn"),
+	"house": preload("res://scenes/house.tscn")
 }
 var level:Level
 var player:Player
 
 func _ready():
-	load_level("level1", 0)
+	load_level("house", 0)
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
@@ -25,8 +26,13 @@ func _spawn_player(spawn_position: Vector2):
 	add_child(player)
 	player.global_position = spawn_position
 	player.health_changed.connect(_player_health_changed)
+	player.warp.connect(_warp, CONNECT_DEFERRED)
 	_player_health_changed(player.health)
 		
 
 func _player_health_changed(health):
 	%HealthBar.value = health
+
+func _warp(destination: String, spawn_point: int):
+	print("warping to " + destination)
+	load_level(destination, spawn_point)
