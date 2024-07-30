@@ -28,7 +28,7 @@ func _spawn_player(spawn_position: Vector2):
 	player.health_changed.connect(_player_health_changed)
 	player.warp.connect(_warp, CONNECT_DEFERRED)
 	_player_health_changed(player.health)
-		
+
 
 func _player_health_changed(health):
 	%HealthBar.value = health
