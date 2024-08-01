@@ -277,6 +277,7 @@ transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransit
 graph_offset = Vector2(-229, -57)
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_plyv1")

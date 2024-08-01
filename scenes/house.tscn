@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://culyou2ebxlk2"]
 
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="1_77kvi"]
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_x8ih6"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_nv4f4"]
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="3_b5yel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fmhkp"]
 
 [node name="House" type="Node2D" node_paths=PackedStringArray("spawn_points")]
-script = ExtResource("1_x8ih6")
+script = ExtResource("1_nv4f4")
 spawn_points = [NodePath("SpawnPoint")]
 
 [node name="TileMap" type="TileMap" parent="."]

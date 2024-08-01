@@ -78,6 +78,7 @@ size = Vector2(14, 8)
 size = Vector2(18, 12)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 y_sort_enabled = true
 position = Vector2(197, 148)
 motion_mode = 1

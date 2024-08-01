@@ -3,7 +3,8 @@ extends Control
 const player_scene = preload("res://Scenes/player.tscn")
 const levels = {
 	"level1": preload("res://scenes/level1.tscn"),
-	"house": preload("res://scenes/house.tscn")
+	"house": preload("res://scenes/house.tscn"),
+	"castle": preload("res://scenes/castle.tscn")
 }
 var level:Level
 var player:Player
