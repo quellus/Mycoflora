@@ -6,7 +6,7 @@ class_name Player extends CharacterBody2D
 
 signal health_changed(health)
 signal warp(destination: String, spawn_point: int)
-
+signal dialog_trigger(Array)
 var health = 10
 var knockback = false
 
@@ -71,3 +71,5 @@ func _on_i_frame_timer_timeout():
 func _on_interactable_detector_area_entered(area):
 	if area is WarpPoint:
 		warp.emit(area.destination, area.spawn_point)
+	elif area is DialogTrigger:
+		dialog_trigger.emit(area.dialogue)

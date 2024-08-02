@@ -24,4 +24,4 @@ func play_next_dialogue():
 
 func play_dialogue(dialogue: DialogResource):
 	print("playing dialogue" + dialogue.dialogue)
-	dialogue_box.play_dialogue(dialogue.dialogue, dialogue.speech_time, dialogue.pause_time)
+	dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.speech_time, dialogue.pause_time)

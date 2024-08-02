@@ -14,7 +14,7 @@ func _ready():
 
 func play_dialogue(name: String, dialogue: String, speech_time: float, pause_time: float):
 	print("Dialog box is playing " + dialogue + " for time " + str(speech_time))
-	label.text = "Name\n"
+	label.text = name + "\n"
 	string = dialogue
 	label.visible = true
 	timer.start(speech_time+pause_time)
@@ -34,4 +34,4 @@ func _on_timer_timeout():
 
 func _on_finished():
 	label.size.y = label.get_content_height()
-	label.set_position(Vector2(size.x-label.size.x-5, size.y-label.size.y-5))
+	label.set_position(Vector2(size.x/2-(label.size.x-6)/2, size.y-label.size.y-6))

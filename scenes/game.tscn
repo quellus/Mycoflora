@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=3 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
+[ext_resource type="PackedScene" uid="uid://bja6vxyfil7he" path="res://scenes/dialog_manager.tscn" id="2_g7mqf"]
 
 [node name="Game" type="Control"]
 y_sort_enabled = true
@@ -19,3 +20,11 @@ offset_right = 175.215
 offset_bottom = 59.0
 max_value = 10.0
 step = 1.0
+
+[node name="DialogManager" parent="CanvasLayer" instance=ExtResource("2_g7mqf")]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
