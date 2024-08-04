@@ -40,16 +40,16 @@ z_index = 1
 position = Vector2(197, 107)
 
 [node name="SpawnPoint" type="Node2D" parent="House"]
-position = Vector2(0, 42)
+position = Vector2(0, 53)
 
 [node name="Sprite2D" type="Sprite2D" parent="House"]
 texture = ExtResource("4_vn1yf")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="House"]
-polygon = PackedVector2Array(24, 39, 8, 39, 8, 32, -8, 32, -8, 39, -24, 39, -24, 29, -24, -3, 24, -3)
+polygon = PackedVector2Array(45, 55, 8, 55, 8, 32, -8, 32, -8, 55, -45, 55, -45, -21, 45, -21)
 
 [node name="HouseWarpPoint" type="Area2D" parent="House"]
-position = Vector2(0, 33)
+position = Vector2(0, 43)
 script = ExtResource("5_qdubl")
 destination = "house"
 

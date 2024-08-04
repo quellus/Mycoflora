@@ -12,9 +12,9 @@ func _ready():
 	_on_finished()
 
 
-func play_dialogue(name: String, dialogue: String, speech_time: float, pause_time: float):
+func play_dialogue(speaker: String, dialogue: String, speech_time: float, pause_time: float):
 	print("Dialog box is playing " + dialogue + " for time " + str(speech_time))
-	label.text = name + "\n"
+	label.text = "[u]" + speaker + "[/u]\n"
 	string = dialogue
 	label.visible = true
 	timer.start(speech_time+pause_time)

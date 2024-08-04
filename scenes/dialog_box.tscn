@@ -25,7 +25,7 @@ theme_override_constants/line_separation = -2
 theme_override_fonts/normal_font = ExtResource("1_olmis")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[color=#fd8d00]Jak[/color]
+text = "[u]Jak[/u]
 Using this dumb label instead"
 scroll_active = false
 shortcut_keys_enabled = false
