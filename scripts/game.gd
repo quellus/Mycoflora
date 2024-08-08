@@ -2,8 +2,7 @@ extends Control
 
 const player_scene = preload("res://Scenes/player.tscn")
 const levels = {
-	"level1": preload("res://scenes/level1.tscn"),
-	"house": preload("res://scenes/house.tscn"),
+	"world": preload("res://scenes/world.tscn"),
 	"castle": preload("res://scenes/castle.tscn"),
 	"forest": preload("res://scenes/forest.tscn")
 }
@@ -11,7 +10,7 @@ var level:Level
 var player:Player
 
 func _ready():
-	load_level("house", 0)
+	load_level("world", 0)
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
