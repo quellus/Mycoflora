@@ -59,7 +59,7 @@ layer_0/tile_data = PackedInt32Array(524300, 327683, 5, 589836, 327683, 5, 58983
 [node name="WarpPoint" type="Area2D" parent="."]
 position = Vector2(249, 240)
 script = ExtResource("3_utl14")
-destination = "level1"
+destination = "world"
 spawn_point = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WarpPoint"]

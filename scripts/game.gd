@@ -4,13 +4,13 @@ const player_scene = preload("res://Scenes/player.tscn")
 const levels = {
 	"world": preload("res://scenes/world.tscn"),
 	"castle": preload("res://scenes/castle.tscn"),
-	"forest": preload("res://scenes/forest.tscn")
 }
 var level:Level
 var player:Player
 
 func _ready():
 	load_level("world", 0)
+
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
@@ -19,6 +19,7 @@ func load_level(level_name: String, spawn_index: int):
 		level = levels[level_name].instantiate()
 		add_child(level)
 		_spawn_player(level.spawn_points[spawn_index].global_position)
+
 
 func _spawn_player(spawn_position: Vector2):
 	if player != null:
@@ -34,6 +35,7 @@ func _spawn_player(spawn_position: Vector2):
 
 func _player_health_changed(health):
 	%HealthBar.value = health
+
 
 func _warp(destination: String, spawn_point: int):
 	print("warping to " + destination)

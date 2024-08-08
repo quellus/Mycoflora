@@ -13,13 +13,17 @@ script = ExtResource("1_gog3v")
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(116.215, 0)
-offset_left = 59.0
-offset_top = 32.0
-offset_right = 175.215
-offset_bottom = 59.0
+modulate = Color(7.567, 0, 0, 1)
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 99.0
+offset_bottom = 15.255
+size_flags_horizontal = 4
+size_flags_vertical = 4
 max_value = 10.0
 step = 1.0
+value = 5.0
+show_percentage = false
 
 [node name="DialogManager" parent="CanvasLayer" instance=ExtResource("2_g7mqf")]
 unique_name_in_owner = true
