@@ -1,7 +1,9 @@
 extends Control
 
-var player_scene = preload("res://scenes/player.tscn")
-var levels = {
+signal exit_game()
+
+const player_scene = preload("res://scenes/player.tscn")
+const levels = {
 	"world": preload("res://scenes/world.tscn"),
 	"castle": preload("res://scenes/castle.tscn"),
 }
@@ -30,11 +32,16 @@ func _spawn_player(spawn_position: Vector2):
 	player.health_changed.connect(_player_health_changed)
 	player.warp.connect(_warp, CONNECT_DEFERRED)
 	player.dialog_trigger.connect(%DialogManager._on_dialogue_trigger)
+	player.player_died.connect(_player_died)
 	_player_health_changed(player.health)
 
 
 func _player_health_changed(health):
 	%HealthBar.value = health
+
+
+func _player_died():
+	exit_game.emit()
 
 
 func _warp(destination: String, spawn_point: int):

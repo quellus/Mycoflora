@@ -1,5 +1,7 @@
 extends Control
 
+signal load_game()
+
 const game_scene = preload("res://scenes/game.tscn")
 
 func _ready() -> void:
@@ -7,4 +9,4 @@ func _ready() -> void:
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_packed(game_scene)
+	load_game.emit()

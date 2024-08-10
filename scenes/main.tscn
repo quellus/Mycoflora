@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b80u8k358oc5c"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_uaw4h"]
+[ext_resource type="PackedScene" uid="uid://butoiakf11xdu" path="res://scenes/main_menu.tscn" id="2_1h3vh"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uaw4h")
+
+[node name="Control" parent="." instance=ExtResource("2_1h3vh")]
+layout_mode = 1
+
+[connection signal="load_game" from="Control" to="." method="_load_game"]

@@ -5,6 +5,7 @@ class_name Player extends CharacterBody2D
 @onready var camera = $Camera2D
 
 signal health_changed(health)
+signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(Array)
 var health = 10
@@ -51,7 +52,7 @@ func take_damage(position_from: Vector2):
 	$HurtDetector/CollisionShape2D.call_deferred("set", "disabled", true)
 	$iFrameTimer.start(1)
 	if health <= 0:
-		get_tree().quit()
+		player_died.emit()
 
 
 func _on_hurt_detector_area_entered(area):
