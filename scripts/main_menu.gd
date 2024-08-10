@@ -4,6 +4,7 @@ signal load_game()
 
 const game_scene = preload("res://scenes/game.tscn")
 
+
 func _ready() -> void:
 	$Label.text = "Version " + ProjectSettings.get_setting("application/config/version")
 

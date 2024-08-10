@@ -9,7 +9,6 @@ const ATTACK_SPEED = 0.3
 var can_attack = true
 	
 func _ready():
-	print_debug("test")
 	visible = false
 	collision_shape.disabled = true
 	

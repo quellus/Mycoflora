@@ -1,13 +1,75 @@
-[gd_scene load_steps=7 format=3 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=18 format=3 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
 [ext_resource type="Texture2D" uid="uid://npu3hbwhc8jn" path="res://assets/Castle.png" id="3_l5fvs"]
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="4_80pl6"]
+[ext_resource type="Script" path="res://scripts/dialog_trigger.gd" id="5_ccwsk"]
 [ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/enemy.tscn" id="5_nukpt"]
+[ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
+[ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opmhg"]
 size = Vector2(12, 2)
+
+[sub_resource type="Resource" id="Resource_ktip5"]
+script = ExtResource("6_oqtww")
+name = "Vaelvia"
+dialogue = "There's something wrong with the forest."
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
+
+[sub_resource type="Resource" id="Resource_htlht"]
+script = ExtResource("6_oqtww")
+name = "Vaelvia"
+dialogue = "Creatures who used to be docile are suddenly turning hostile"
+speech_time = 2.0
+wait_time = 3.0
+pause_time = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qo5p8"]
+size = Vector2(18, 16)
+
+[sub_resource type="Resource" id="Resource_faemg"]
+script = ExtResource("6_oqtww")
+name = "Angry Guy"
+dialogue = "Don't talk to me, I don't have any dialogue yet."
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
+
+[sub_resource type="Resource" id="Resource_2wypq"]
+script = ExtResource("6_oqtww")
+name = "Jay"
+dialogue = "Someone needs to do something about the forest creatures."
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
+
+[sub_resource type="Resource" id="Resource_o43u4"]
+script = ExtResource("6_oqtww")
+name = "Jay"
+dialogue = "One of them bit me yesterday"
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
+
+[sub_resource type="Resource" id="Resource_qq6e0"]
+script = ExtResource("6_oqtww")
+name = "Bob"
+dialogue = "Please get out of my house."
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
+
+[sub_resource type="Resource" id="Resource_2lflu"]
+script = ExtResource("6_oqtww")
+name = "Bob"
+dialogue = "How did you even get in here?"
+speech_time = 3.0
+wait_time = 4.0
+pause_time = 1.0
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 y_sort_enabled = true
@@ -53,35 +115,85 @@ position = Vector2(0, 87)
 [node name="HomeSpawn" type="Node2D" parent="First Town"]
 position = Vector2(552, 409)
 
+[node name="NPCs" type="Node" parent="First Town"]
+
+[node name="Vaelvia" type="Area2D" parent="First Town/NPCs"]
+position = Vector2(551, 135)
+script = ExtResource("5_ccwsk")
+dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_ktip5"), SubResource("Resource_htlht")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Vaelvia"]
+shape = SubResource("RectangleShape2D_qo5p8")
+
+[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Vaelvia"]
+scale = Vector2(0.0907679, 0.0907679)
+texture = ExtResource("7_83bry")
+
+[node name="Angry Guy" type="Area2D" parent="First Town/NPCs"]
+position = Vector2(-152, 369)
+script = ExtResource("5_ccwsk")
+dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_faemg")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Angry Guy"]
+shape = SubResource("RectangleShape2D_qo5p8")
+
+[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Angry Guy"]
+scale = Vector2(0.0907679, 0.0907679)
+texture = ExtResource("7_83bry")
+
+[node name="Jay" type="Area2D" parent="First Town/NPCs"]
+position = Vector2(-8, -47)
+script = ExtResource("5_ccwsk")
+dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_2wypq"), SubResource("Resource_o43u4")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Jay"]
+shape = SubResource("RectangleShape2D_qo5p8")
+
+[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Jay"]
+scale = Vector2(0.0907679, 0.0907679)
+texture = ExtResource("7_83bry")
+
+[node name="Bob" type="Area2D" parent="First Town/NPCs"]
+position = Vector2(-247, -47)
+script = ExtResource("5_ccwsk")
+dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_qq6e0"), SubResource("Resource_2lflu")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Bob"]
+shape = SubResource("RectangleShape2D_qo5p8")
+
+[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Bob"]
+scale = Vector2(0.0907679, 0.0907679)
+texture = ExtResource("7_83bry")
+
 [node name="Forest" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Enemy" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(809, 166)
+position = Vector2(787, 237)
 
 [node name="Enemy2" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(874, 183)
+position = Vector2(852, 254)
 
 [node name="Enemy3" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(835, 218)
+position = Vector2(813, 289)
 
 [node name="Enemy4" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1060, -186)
+position = Vector2(935, -131)
 
 [node name="Enemy5" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1119, -164)
+position = Vector2(994, -109)
 
 [node name="Enemy6" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1068, -125)
+position = Vector2(943, -70)
 
 [node name="Enemy7" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1508, -173)
+position = Vector2(1400, -198)
 
 [node name="Enemy8" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1458, -106)
+position = Vector2(1350, -131)
 
 [node name="Enemy9" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1530, -102)
+position = Vector2(1422, -127)
 
 [node name="Enemy10" parent="Forest" instance=ExtResource("5_nukpt")]
 position = Vector2(1771, -57)
