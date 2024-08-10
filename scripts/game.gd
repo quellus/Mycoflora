@@ -1,12 +1,12 @@
 extends Control
 
-const player_scene = preload("res://Scenes/player.tscn")
-const levels = {
+var player_scene = preload("res://scenes/player.tscn")
+var levels = {
 	"world": preload("res://scenes/world.tscn"),
 	"castle": preload("res://scenes/castle.tscn"),
 }
-var level:Level
-var player:Player
+var level:Level = null
+var player:Player = null
 
 func _ready():
 	load_level("world", 0)
