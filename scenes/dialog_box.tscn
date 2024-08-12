@@ -58,11 +58,10 @@ patch_margin_bottom = 6
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [node name="LetterTimer" type="Timer" parent="."]
 
-[connection signal="finished" from="RichTextLabel" to="." method="_on_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="PauseTimer" type="Timer" parent="."]
+
+[connection signal="finished" from="RichTextLabel" to="." method="_redraw_label"]
 [connection signal="timeout" from="LetterTimer" to="." method="_newletter"]
+[connection signal="timeout" from="PauseTimer" to="." method="_pause_timeout"]

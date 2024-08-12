@@ -16,17 +16,13 @@ size = Vector2(12, 2)
 script = ExtResource("6_oqtww")
 name = "Vaelvia"
 dialogue = "There's something wrong with the forest."
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_htlht"]
 script = ExtResource("6_oqtww")
 name = "Vaelvia"
 dialogue = "Creatures who used to be docile are suddenly turning hostile"
-speech_time = 2.0
-wait_time = 3.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo5p8"]
 size = Vector2(18, 16)
@@ -35,41 +31,31 @@ size = Vector2(18, 16)
 script = ExtResource("6_oqtww")
 name = "Angry Guy"
 dialogue = "Don't talk to me, I don't have any dialogue yet."
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_2wypq"]
 script = ExtResource("6_oqtww")
 name = "Jay"
 dialogue = "Someone needs to do something about the forest creatures."
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_o43u4"]
 script = ExtResource("6_oqtww")
 name = "Jay"
 dialogue = "One of them bit me yesterday"
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_qq6e0"]
 script = ExtResource("6_oqtww")
 name = "Bob"
 dialogue = "Please get out of my house."
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_2lflu"]
 script = ExtResource("6_oqtww")
 name = "Bob"
 dialogue = "How did you even get in here?"
-speech_time = 3.0
-wait_time = 4.0
-pause_time = 1.0
+letter_time = -1.0
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 y_sort_enabled = true

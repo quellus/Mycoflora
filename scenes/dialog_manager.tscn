@@ -15,6 +15,4 @@ script = ExtResource("1_4ftxi")
 [node name="DialogueBox" parent="." instance=ExtResource("2_sr2ug")]
 layout_mode = 1
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="play_next_dialogue"]
+[connection signal="dialog_done" from="DialogueBox" to="." method="_dialog_done"]

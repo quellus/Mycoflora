@@ -1,37 +1,45 @@
 class_name DialogueBox extends Control
 
-@onready var label = $RichTextLabel
-@onready var timer = $Timer
-@onready var lettertimer = $LetterTimer
+signal dialog_done
 
-var lettertime = 0
+@onready var label: RichTextLabel = $RichTextLabel
+@onready var lettertimer: Timer = $LetterTimer
+@onready var pause_timer: Timer = $PauseTimer
+
+var lettertime: float = 0
 var string: String = ""
+var total_length: int = 0
 
 func _ready():
 	label.visible = false
-	_on_finished()
+	_redraw_label()
 
 
-func play_dialogue(speaker: String, dialogue: String, speech_time: float, pause_time: float):
-	print("Dialog box is playing " + dialogue + " for time " + str(speech_time))
+func play_dialogue(speaker: String, dialogue: String, letter_time := 0.1):
 	label.text = "[u]" + speaker + "[/u]\n"
 	string = dialogue
-	label.visible = true
-	timer.start(speech_time+pause_time)
-	lettertime = speech_time/string.length()
+	total_length = dialogue.length()
+	label.visible = letter_time
+	lettertime = letter_time
 	_newletter()
+
 
 func _newletter():
 	if string.length() > 0:
 		label.text = label.text+string[0]
 		string = string.erase(0)
 		lettertimer.start(lettertime)
+	else:
+		lettertimer.stop()
+		pause_timer.start(total_length / 100)
 
-func _on_timer_timeout():
-	print("Dialogue stopped!")
-	label.visible = false
 
-
-func _on_finished():
+func _redraw_label():
 	label.size.y = label.get_content_height()
 	label.set_position(Vector2(size.x/2-(label.size.x-6)/2, size.y-label.size.y-6))
+
+
+func _pause_timeout() -> void:
+	label.visible = false
+	pause_timer.stop()
+	dialog_done.emit()

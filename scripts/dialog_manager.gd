@@ -1,17 +1,24 @@
 class_name DialogueManager extends Control
 
-@onready var timer = $Timer
-
 @onready var dialogue_box = $DialogueBox
 
 var dialogue_queue = []
 
 func _on_dialogue_trigger(dialogues: Array[DialogResource]):
 	print("playing dialogues" + str(dialogues))
+	var play_them = dialogue_queue.size() <= 0
 	for dialogue in dialogues:
 		dialogue_queue.append(dialogue)
-	if timer.is_stopped():
+	if play_them:
 		play_next_dialogue()
+
+
+func play_dialogue(dialogue: DialogResource):
+	print("playing dialogue" + dialogue.dialogue)
+	if dialogue.letter_time > 0:
+		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.letter_time)
+	else:
+		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue)
 
 
 func play_next_dialogue():
@@ -19,9 +26,7 @@ func play_next_dialogue():
 		var dialogue = dialogue_queue.pop_front()
 		if dialogue.dialogue.length() > 0:
 			play_dialogue(dialogue)
-		timer.start(dialogue.wait_time)
 
 
-func play_dialogue(dialogue: DialogResource):
-	print("playing dialogue" + dialogue.dialogue)
-	dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.speech_time, dialogue.pause_time)
+func _dialog_done() -> void:
+	play_next_dialogue()
