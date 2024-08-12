@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=19 format=3 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/enemy.tscn" id="5_nukpt"]
 [ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
+[ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opmhg"]
 size = Vector2(12, 2)
@@ -60,7 +61,7 @@ letter_time = -1.0
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 y_sort_enabled = true
 script = ExtResource("1_m5d1x")
-spawn_points = [NodePath("First Town/HomeSpawn"), NodePath("First Town/Castle/SpawnPoint")]
+spawn_points = [NodePath("SpawnPoint2"), NodePath("First Town/Castle/SpawnPoint")]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -181,26 +182,8 @@ position = Vector2(1350, -131)
 [node name="Enemy9" parent="Forest" instance=ExtResource("5_nukpt")]
 position = Vector2(1422, -127)
 
-[node name="Enemy10" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1771, -57)
+[node name="Boss" parent="Forest" instance=ExtResource("9_w4bq7")]
+position = Vector2(1817, -18)
 
-[node name="Enemy11" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1829, -57)
-
-[node name="Enemy12" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1864, -21)
-
-[node name="Enemy13" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1810, -22)
-
-[node name="Enemy14" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1761, 4)
-
-[node name="Enemy15" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1820, 28)
-
-[node name="Enemy16" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1871, 31)
-
-[node name="Enemy17" parent="Forest" instance=ExtResource("5_nukpt")]
-position = Vector2(1900, -48)
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(1678, 141)
