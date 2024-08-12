@@ -31,7 +31,7 @@ func _newletter():
 		lettertimer.start(lettertime)
 	else:
 		lettertimer.stop()
-		pause_timer.start(total_length / 100)
+		pause_timer.start(float(total_length) / float(100))
 
 
 func _redraw_label():

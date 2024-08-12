@@ -40,7 +40,10 @@ func _physics_process(_delta):
 
 func _input(event):
 	if event.is_action_pressed("attack"):
-		weapon.attack()
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			weapon.attack(true)
+		else:
+			weapon.attack(false)
 
 func take_damage(position_from: Vector2):
 	health -= 1

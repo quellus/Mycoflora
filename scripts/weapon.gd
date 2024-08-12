@@ -12,9 +12,12 @@ func _ready():
 	visible = false
 	collision_shape.disabled = true
 	
-func attack():
+func attack(controller: bool):
 	if can_attack:
-		look_at(get_global_mouse_position())
+		if controller:
+			rotation = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down").angle()
+		if !controller:
+			look_at(get_global_mouse_position())
 		visible = true
 		collision_shape.disabled = false
 		swing_timer.start(SWING_SPEED)
