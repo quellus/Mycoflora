@@ -45,6 +45,7 @@ func _input(event):
 		else:
 			weapon.attack(false)
 
+
 func take_damage(position_from: Vector2):
 	health -= 1
 	health_changed.emit(health)
