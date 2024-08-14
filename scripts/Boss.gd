@@ -19,32 +19,33 @@ func _process(_delta):
 	move_and_slide()
 
 
-func take_damage(position_from: Vector2):
+func take_damage(_position_from: Vector2):
 	health -= 5
 	if health <= 0:
 		$AnimationPlayer2.play("death")
-		#print_debug("death")
-		state_machine.travel("death")
+		animtree.set("parameters/conditions/attacking", false)
+		state_machine.travel("default")
 	else:
-		#print_debug("knockback")
-		#state_machine.travel("knockback")
 		$AnimationPlayer2.play("hurt")
 
 
 func _on_vision_radius_body_entered(body):
 	if body is Player:
-		state_machine.travel("attack")
+		#print(animtree.get("parameters/conditions/attacking"))
+		#state_machine.travel("attack")
+		animtree.set("parameters/conditions/attacking", true)
+		#print(animtree.get("parameters/conditions/attacking"))
 		target = body
 
 
 func _on_vision_radius_body_exited(body):
 	if body == target:
+		animtree.set("parameters/conditions/attacking", false)
 		state_machine.travel("default")
 		target = null
 
 
 func _on_hurt_detector_area_entered(area):
-	print("hurt")
 	if area is HurtBox and !is_ancestor_of(area) and area.entity == "Player":
 		take_damage(area.global_position)
 
@@ -60,3 +61,7 @@ func _on_hurt_detector_area_entered(area):
 	#if body == target and animplayer.current_animation == "attack":
 			#print_debug("default")
 			#state_machine.travel("default")
+
+
+func _on_animation_player_animation_changed(old_name: StringName, new_name: StringName) -> void:
+	print(new_name)
