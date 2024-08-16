@@ -60,7 +60,7 @@ func take_damage(position_from: Vector2):
 
 
 func _on_hurt_detector_area_entered(area):
-	if area is HurtBox and !is_ancestor_of(area):
+	if area is HurtBox and !is_ancestor_of(area) and area.entity != "Player":
 		take_damage(area.global_position)
 
 

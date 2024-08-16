@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwek3c8ak2v5r"]
+
+[ext_resource type="Texture2D" uid="uid://cffya47l0gqu7" path="res://assets/fireball.png" id="1_725db"]
+[ext_resource type="Script" path="res://scripts/fireball.gd" id="1_q1l34"]
+[ext_resource type="Script" path="res://scripts/HurtBox.gd" id="3_8u471"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8fnv"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4gf6"]
+radius = 7.0
+
+[node name="Fireball" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_q1l34")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x8fnv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_725db")
+
+[node name="HurtBox" type="Area2D" parent="."]
+script = ExtResource("3_8u471")
+entity = "Player"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_m4gf6")
