@@ -45,6 +45,5 @@ func _player_died():
 
 
 func _warp(destination: String, spawn_point: int):
-	print("warping to " + destination)
 	load_level(destination, spawn_point)
 

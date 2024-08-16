@@ -26,7 +26,6 @@ func attack(controller: bool):
 			direction = global_position.direction_to(get_global_mouse_position())
 			rotation = direction.angle()
 		if magic_mode:
-			print("spawning fireball")
 			var fireball: Projectile = fireball_scene.instantiate()
 			fireball.movement_direction = direction
 			fireball.movement_speed = 200

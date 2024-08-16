@@ -44,7 +44,8 @@ func _input(event):
 			weapon.attack(true)
 		else:
 			weapon.attack(false)
-
+	if event.is_action_pressed("swap_weapons"):
+		weapon.magic_mode = !weapon.magic_mode
 
 func take_damage(position_from: Vector2):
 	health -= 1

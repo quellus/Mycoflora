@@ -12,3 +12,7 @@ func _ready():
 func _physics_process(delta):
 	velocity = movement_direction * movement_speed
 	move_and_collide(velocity * delta)
+
+
+func _death() -> void:
+	queue_free()

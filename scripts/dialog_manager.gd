@@ -5,7 +5,6 @@ class_name DialogueManager extends Control
 var dialogue_queue = []
 
 func _on_dialogue_trigger(dialogues: Array[DialogResource]):
-	print("playing dialogues" + str(dialogues))
 	var play_them = dialogue_queue.size() <= 0
 	for dialogue in dialogues:
 		dialogue_queue.append(dialogue)
@@ -14,7 +13,6 @@ func _on_dialogue_trigger(dialogues: Array[DialogResource]):
 
 
 func play_dialogue(dialogue: DialogResource):
-	print("playing dialogue" + dialogue.dialogue)
 	if dialogue.letter_time > 0:
 		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.letter_time)
 	else:

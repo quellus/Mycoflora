@@ -31,10 +31,7 @@ func take_damage(_position_from: Vector2):
 
 func _on_vision_radius_body_entered(body):
 	if body is Player:
-		#print(animtree.get("parameters/conditions/attacking"))
-		#state_machine.travel("attack")
 		animtree.set("parameters/conditions/attacking", true)
-		#print(animtree.get("parameters/conditions/attacking"))
 		target = body
 
 
@@ -47,19 +44,18 @@ func _on_vision_radius_body_exited(body):
 
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity == "Player":
+		area.hit()
 		take_damage(area.global_position)
 
 
 #func _on_attack_radius_body_entered(body: Node2D) -> void:
 	#if body is Player and health > 0:
 		#target = body
-		#print_debug("attack")
 		#state_machine.travel("attack")
 
 
 #func _on_hurt_box_body_entered(body: Node2D) -> void:
 	#if body == target and animplayer.current_animation == "attack":
-			#print_debug("default")
 			#state_machine.travel("default")
 
 

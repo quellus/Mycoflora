@@ -28,3 +28,7 @@ entity = "Player"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_m4gf6")
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[connection signal="hit_success" from="HurtBox" to="." method="_death"]
