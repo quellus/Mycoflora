@@ -1,17 +1,19 @@
 extends Node2D
 
 @onready var swing_timer: Timer = $SwingTimer
+@onready var hurt_box: HurtBox = $HurtBox
 @onready var collision_shape = $HurtBox/CollisionPolygon2D
+
+var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
 
 const SWING_SPEED = 0.2
 const ATTACK_SPEED = 0.3
 
 var magic_mode = true
-
 var can_attack = true
 
 func _ready():
-	visible = false
+	hurt_box.visible = false
 	collision_shape.disabled = true
 	
 func attack(controller: bool):
@@ -24,16 +26,20 @@ func attack(controller: bool):
 			direction = global_position.direction_to(get_global_mouse_position())
 			rotation = direction.angle()
 		if magic_mode:
-			var fireball = Projectile.new_projectile(direction, 150, 2)
+			print("spawning fireball")
+			var fireball: Projectile = fireball_scene.instantiate()
+			fireball.movement_direction = direction
+			fireball.movement_speed = 200
+			fireball.damage = 5
+			get_tree().root.add_child(fireball)
 			fireball.global_position = $HurtBox.global_position
-			add_child(fireball)
 		else:
-			visible = true
+			hurt_box.visible = true
 			collision_shape.disabled = false
 		swing_timer.start(SWING_SPEED)
 		can_attack = false
 
 func _on_swing_timer_timeout():
-	visible = false
+	hurt_box.visible = false
 	collision_shape.disabled = true
 	can_attack = true
