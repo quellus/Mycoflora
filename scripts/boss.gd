@@ -59,5 +59,5 @@ func _on_hurt_detector_area_entered(area):
 			#state_machine.travel("default")
 
 
-func _on_animation_player_animation_changed(old_name: StringName, new_name: StringName) -> void:
+func _on_animation_player_animation_changed(_old_name: StringName, new_name: StringName) -> void:
 	print(new_name)
