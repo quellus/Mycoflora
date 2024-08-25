@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5ru4hlaa8lo"]
+
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_52qqf"]
+[ext_resource type="Texture2D" uid="uid://c6gj45uschm5x" path="res://assets/foliage_tiles.png" id="1_fcicx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yja03"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilyss"]
+resource_local_to_scene = true
+atlas = ExtResource("1_fcicx")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Flower" type="Area2D"]
+script = ExtResource("1_52qqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yja03")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ilyss")

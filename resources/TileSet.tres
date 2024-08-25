@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://bt6703lptgjof"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://bt6703lptgjof"]
 
 [ext_resource type="Texture2D" uid="uid://c5hqngrxih6q5" path="res://assets/grass tiles.png" id="1_1qvvl"]
 [ext_resource type="Texture2D" uid="uid://s6mtf2o538v0" path="res://assets/Cliff.png" id="2_maexm"]
 [ext_resource type="Texture2D" uid="uid://d3g3t7pid4276" path="res://assets/hardwoodfloor.png" id="3_odtqm"]
 [ext_resource type="Texture2D" uid="uid://bc6qanu5jyggy" path="res://assets/StoneFloor.png" id="4_apu5n"]
 [ext_resource type="Texture2D" uid="uid://4wxem4fy2d8a" path="res://assets/dirt tiles.png" id="5_ptpby"]
+[ext_resource type="PackedScene" uid="uid://du5ru4hlaa8lo" path="res://scenes/flower.tscn" id="6_jo5r8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7aunb"]
 texture = ExtResource("1_1qvvl")
@@ -1500,6 +1501,9 @@ texture = ExtResource("5_ptpby")
 6:6/0/terrains_peering_bit/top_side = 5
 6:6/0/terrains_peering_bit/top_right_corner = 5
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1pfu7"]
+scenes/1/scene = ExtResource("6_jo5r8")
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -1520,3 +1524,4 @@ sources/1 = SubResource("TileSetAtlasSource_43ofq")
 sources/2 = SubResource("TileSetAtlasSource_ivreh")
 sources/3 = SubResource("TileSetAtlasSource_tx2mb")
 sources/4 = SubResource("TileSetAtlasSource_1vcux")
+sources/5 = SubResource("TileSetScenesCollectionSource_1pfu7")
