@@ -7,11 +7,13 @@ class_name Player extends CharacterBody2D
 signal health_changed(health)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
-signal dialog_trigger(Array)
-var health = 10
-var knockback = false
 
-const SPEED = 75.0
+signal dialog_trigger(Array)
+var health: int = 10
+var knockback: bool = false
+var flowers: int = 10
+
+const SPEED: float = 75.0
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -24,7 +26,6 @@ func _physics_process(_delta):
 				sprite.flip_h = false
 			elif direction.x < 0:
 				sprite.flip_h = true
-				
 			if !sprite.is_playing():
 				sprite.play("walk")
 		else:
@@ -38,6 +39,7 @@ func _physics_process(_delta):
 	camera.position = camera.position.lerp(camera_position, 0.05)
 	move_and_slide()
 
+
 func _input(event):
 	if event.is_action_pressed("attack"):
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
@@ -46,6 +48,11 @@ func _input(event):
 			weapon.attack(false)
 	if event.is_action_pressed("swap_weapons"):
 		weapon.magic_mode = !weapon.magic_mode
+	if event.is_action_pressed("interact"):
+		for area in %InteractableDetector.get_overlapping_areas():
+				if area is Interactable:
+					flowers += 1
+					area.interact()
 
 func take_damage(position_from: Vector2):
 	health -= 1
@@ -79,3 +86,10 @@ func _on_interactable_detector_area_entered(area):
 		warp.emit(area.destination, area.spawn_point)
 	elif area is DialogTrigger:
 		dialog_trigger.emit(area.dialogue)
+	elif area is Interactable:
+		area.highlight(true)
+
+
+func _on_interactable_detector_area_exited(area):
+	if area is Interactable:
+		area.highlight(false)

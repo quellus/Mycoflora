@@ -16,3 +16,12 @@ func _ready():
 		column += 1
 	flower_sprite.texture.region.position.x = flower_index * 16
 	flower_sprite.texture.region.position.y = column * 16
+
+func highlight(value: bool):
+	if value:
+		flower_sprite.modulate = Color(1.5,1.5,1.5)
+	else:
+		flower_sprite.modulate = Color(1,1,1)
+
+func interact():
+	queue_free()
