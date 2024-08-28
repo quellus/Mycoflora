@@ -45,7 +45,7 @@ radius = 28.0
 
 [sub_resource type="Animation" id="Animation_rnjcm"]
 resource_name = "attack"
-length = 0.2
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [4, 4]
+"values": [2, 2]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -180,7 +180,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-4, 0]
+"values": [-2, 0]
 }
 tracks/5/type = "method"
 tracks/5/imported = false
@@ -346,7 +346,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-4, 1]
+"values": [-2, 1]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -418,7 +418,7 @@ states/default/position = Vector2(333, 100)
 states/knockback/node = SubResource("AnimationNodeAnimation_pa4tn")
 states/knockback/position = Vector2(186, 9)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_v1csk"), "default", "attack", SubResource("AnimationNodeStateMachineTransition_52reu"), "attack", "default", SubResource("AnimationNodeStateMachineTransition_6lgcj"), "default", "death", SubResource("AnimationNodeStateMachineTransition_odue2"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_sakf8"), "default", "knockback", SubResource("AnimationNodeStateMachineTransition_cr0id"), "attack", "knockback", SubResource("AnimationNodeStateMachineTransition_rpxip"), "knockback", "default", SubResource("AnimationNodeStateMachineTransition_378vk"), "knockback", "attack", SubResource("AnimationNodeStateMachineTransition_t3bww")]
-graph_offset = Vector2(-261, -115)
+graph_offset = Vector2(-271, -55)
 
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 1

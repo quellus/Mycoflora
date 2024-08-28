@@ -30,14 +30,20 @@ func _spawn_player(spawn_position: Vector2):
 	add_child(player)
 	player.global_position = spawn_position
 	player.health_changed.connect(_player_health_changed)
+	player.flower_count_changed.connect(_flower_count_changed)
 	player.warp.connect(_warp, CONNECT_DEFERRED)
 	player.dialog_trigger.connect(%DialogManager._on_dialogue_trigger)
 	player.player_died.connect(_player_died)
 	_player_health_changed(player.health)
+	_flower_count_changed(player.flowers)
 
 
 func _player_health_changed(health):
 	%HealthBar.value = health
+
+
+func _flower_count_changed(value):
+	%FlowersLabel.text = "Flowers: " + str(value)
 
 
 func _player_died():

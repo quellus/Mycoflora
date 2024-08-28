@@ -7,7 +7,6 @@ const FLOWER_COLUMNS: int = 3
 func _ready():
 	var column = 0
 	var flower_index = randi_range(0, TOTAL_FLOWERS -1)
-	print(flower_index)
 	if flower_index >= 5:
 		flower_index -= 5
 		column += 1

@@ -27,3 +27,11 @@ show_percentage = false
 
 [node name="DialogManager" parent="CanvasLayer" instance=ExtResource("2_g7mqf")]
 unique_name_in_owner = true
+
+[node name="FlowersLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 17.0
+offset_right = 71.0
+offset_bottom = 40.0
+text = "Flowers:"

@@ -5,13 +5,17 @@ class_name Player extends CharacterBody2D
 @onready var camera = $Camera2D
 
 signal health_changed(health)
+signal flower_count_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
 
 signal dialog_trigger(Array)
 var health: int = 10
 var knockback: bool = false
-var flowers: int = 10
+var flowers: int = 10:
+	set(value):
+		flowers = value
+		flower_count_changed.emit(value)
 
 const SPEED: float = 75.0
 

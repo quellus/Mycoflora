@@ -4,7 +4,7 @@ var health = 10
 var target: Node2D = null
 @onready var sprite = $AnimatedSprite2D
 @export var speed_mod := 1
-const SPEED = 25
+const SPEED = 80
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var animtree: AnimationTree = $AnimationTree

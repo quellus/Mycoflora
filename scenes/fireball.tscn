@@ -30,7 +30,7 @@ entity = "Player"
 shape = SubResource("CircleShape2D_m4gf6")
 
 [node name="DeathTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 autostart = true
 
 [connection signal="hit_success" from="HurtBox" to="." method="_death"]

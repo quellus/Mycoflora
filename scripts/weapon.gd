@@ -25,13 +25,14 @@ func attack(controller: bool):
 		if !controller:
 			direction = global_position.direction_to(get_global_mouse_position())
 			rotation = direction.angle()
-		if magic_mode:
+		if magic_mode and $"..".flowers > 0:
 			var fireball: Projectile = fireball_scene.instantiate()
 			fireball.movement_direction = direction
 			fireball.movement_speed = 200
 			fireball.damage = 5
 			get_tree().root.add_child(fireball)
 			fireball.global_position = $HurtBox.global_position
+			$"..".flowers -= 1
 		else:
 			hurt_box.visible = true
 			collision_shape.disabled = false
