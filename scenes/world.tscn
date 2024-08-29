@@ -61,7 +61,7 @@ letter_time = -1.0
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 y_sort_enabled = true
 script = ExtResource("1_m5d1x")
-spawn_points = [NodePath("First Town/HomeSpawn"), NodePath("First Town/Castle/SpawnPoint")]
+spawn_points = [NodePath("SpawnPoint2"), NodePath("First Town/Castle/SpawnPoint")]
 
 [node name="TileMap" type="Node2D" parent="."]
 y_sort_enabled = true

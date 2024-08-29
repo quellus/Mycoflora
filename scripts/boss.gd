@@ -1,9 +1,9 @@
 class_name Boss extends CharacterBody2D
 
-var health = 50
+var health = 60
 var target: Node2D = null
 @export var speed_mod := 1
-const SPEED = 10
+const SPEED = 50
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var animtree: AnimationTree = $AnimationTree
