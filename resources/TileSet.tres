@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://bt6703lptgjof"]
+[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://bt6703lptgjof"]
 
 [ext_resource type="Texture2D" uid="uid://c5hqngrxih6q5" path="res://assets/grass tiles.png" id="1_1qvvl"]
 [ext_resource type="Texture2D" uid="uid://s6mtf2o538v0" path="res://assets/Cliff.png" id="2_maexm"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://4wxem4fy2d8a" path="res://assets/dirt tiles.png" id="5_ptpby"]
 [ext_resource type="PackedScene" uid="uid://du5ru4hlaa8lo" path="res://scenes/flower.tscn" id="6_jo5r8"]
 [ext_resource type="Texture2D" uid="uid://b0lr1sdnfsj80" path="res://assets/Crops.png" id="7_vqh3i"]
+[ext_resource type="Texture2D" uid="uid://djspyvlx14hlg" path="res://assets/Small Pine Tree.png" id="8_5uc17"]
+[ext_resource type="Texture2D" uid="uid://bwk3e6ihwo28a" path="res://assets/Med Pine Tree.png" id="9_r80jd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7aunb"]
 texture = ExtResource("1_1qvvl")
@@ -1545,6 +1547,20 @@ texture = ExtResource("7_vqh3i")
 20:5/0 = 0
 21:5/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_guvk1"]
+texture = ExtResource("8_5uc17")
+texture_region_size = Vector2i(16, 32)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 13)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.84375, -3, 0.09375, -4.1875, 3.71875, -2.9375, 4.84375, -0.0625, 3.65625, 3.625, -0.09375, 4.8125, -3.875, 3.625, -4.71875, 0.1875)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2bc6a"]
+texture = ExtResource("9_r80jd")
+texture_region_size = Vector2i(32, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-1, 21)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.84375, -3, 0.09375, -4.1875, 3.71875, -2.9375, 4.78125, 0.3125, 3.78125, 3.75, -0.09375, 4.8125, -3.46875, 3.4375, -4.71875, 0.1875)
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -1567,3 +1583,5 @@ sources/3 = SubResource("TileSetAtlasSource_tx2mb")
 sources/4 = SubResource("TileSetAtlasSource_1vcux")
 sources/5 = SubResource("TileSetScenesCollectionSource_1pfu7")
 sources/6 = SubResource("TileSetAtlasSource_wr747")
+sources/7 = SubResource("TileSetAtlasSource_guvk1")
+sources/8 = SubResource("TileSetAtlasSource_2bc6a")
