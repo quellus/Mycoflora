@@ -34,6 +34,8 @@ func attack(controller: bool):
 			fireball.global_position = $HurtBox.global_position
 			$"..".flowers -= 1
 		else:
+			print($AudioStreamPlayer2D)
+			$AudioStreamPlayer2D.play(0.1)
 			hurt_box.visible = true
 			collision_shape.disabled = false
 		swing_timer.start(SWING_SPEED)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://djp54pygs32jy"]
+[gd_scene load_steps=18 format=3 uid="uid://djp54pygs32jy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_0nxi1"]
 [ext_resource type="Texture2D" uid="uid://clhbix8ugiwvv" path="res://assets/CloakedLittleGuy.png" id="2_5h1bl"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="3_vxs7l"]
 [ext_resource type="Script" path="res://scripts/HurtBox.gd" id="5_c2u06"]
 [ext_resource type="Texture2D" uid="uid://d3v42dmvp8sag" path="res://assets/SwordSlash.png" id="5_p2yah"]
+[ext_resource type="AudioStream" uid="uid://dpnhvdpq4i7kd" path="res://assets/sounds/422507__nightflame__swinging-staff-whoosh-strong-07.wav" id="6_uctel"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2up4"]
 atlas = ExtResource("2_5h1bl")
@@ -115,6 +116,9 @@ texture = ExtResource("5_p2yah")
 
 [node name="SwingTimer" type="Timer" parent="Weapon"]
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Weapon"]
+stream = ExtResource("6_uctel")
 
 [node name="HurtDetector" type="Area2D" parent="."]
 
