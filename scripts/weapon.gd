@@ -5,6 +5,9 @@ extends Node2D
 @onready var collision_shape = $HurtBox/CollisionPolygon2D
 
 var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
+var fireball_sound: AudioStream = preload("res://assets/sounds/77691__joelaudio__sfx_magic_fireball_001.wav")
+var sword_sound: AudioStream = preload("res://assets/sounds/422507__nightflame__swinging-staff-whoosh-strong-07.wav")
+
 
 const SWING_SPEED = 0.2
 const ATTACK_SPEED = 0.3
@@ -26,6 +29,8 @@ func attack(controller: bool):
 			direction = global_position.direction_to(get_global_mouse_position())
 			rotation = direction.angle()
 		if magic_mode and $"..".flowers > 0:
+			$AudioStreamPlayer2D.stream = fireball_sound
+			$AudioStreamPlayer2D.play(0.3)
 			var fireball: Projectile = fireball_scene.instantiate()
 			fireball.movement_direction = direction
 			fireball.movement_speed = 200
@@ -34,7 +39,7 @@ func attack(controller: bool):
 			fireball.global_position = $HurtBox.global_position
 			$"..".flowers -= 1
 		else:
-			print($AudioStreamPlayer2D)
+			$AudioStreamPlayer2D.stream = sword_sound
 			$AudioStreamPlayer2D.play(0.1)
 			hurt_box.visible = true
 			collision_shape.disabled = false
