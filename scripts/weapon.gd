@@ -19,15 +19,9 @@ func _ready():
 	hurt_box.visible = false
 	collision_shape.disabled = true
 	
-func attack(controller: bool):
+func attack(direction: Vector2):
 	if can_attack:
-		var direction: Vector2
-		if controller:
-			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-			rotation = direction.angle()
-		if !controller:
-			direction = global_position.direction_to(get_global_mouse_position())
-			rotation = direction.angle()
+		rotation = direction.angle()
 		if magic_mode and $"..".flowers > 0:
 			$AudioStreamPlayer2D.stream = fireball_sound
 			$AudioStreamPlayer2D.play(0.3)
