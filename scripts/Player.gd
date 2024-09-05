@@ -25,6 +25,7 @@ func _physics_process(_delta):
 	var camera_position
 	if !knockback:
 		if direction:
+			last_move_direction = direction
 			camera_position = direction * 10
 			velocity = direction * SPEED
 			if direction.x > 0:
