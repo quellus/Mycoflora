@@ -8,8 +8,9 @@ signal health_changed(health)
 signal flower_count_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
-
 signal dialog_trigger(Array)
+
+var last_move_direction: Vector2
 var health: int = 10
 var knockback: bool = false
 var flowers: int = 10:
@@ -24,6 +25,7 @@ func _physics_process(_delta):
 	var camera_position
 	if !knockback:
 		if direction:
+			last_move_direction = direction
 			camera_position = direction * 10
 			velocity = direction * SPEED
 			if direction.x > 0:
@@ -46,10 +48,14 @@ func _physics_process(_delta):
 
 func _input(event):
 	if event.is_action_pressed("attack"):
+		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-			weapon.attack(true)
+			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+			if direction == Vector2.ZERO:
+				direction = last_move_direction
 		else:
-			weapon.attack(false)
+			direction = global_position.direction_to(get_global_mouse_position())
+		weapon.attack(direction)
 	if event.is_action_pressed("swap_weapons"):
 		weapon.magic_mode = !weapon.magic_mode
 	if event.is_action_pressed("interact"):
@@ -57,6 +63,7 @@ func _input(event):
 				if area is Interactable:
 					flowers += 1
 					area.interact()
+
 
 func take_damage(position_from: Vector2):
 	health -= 1
