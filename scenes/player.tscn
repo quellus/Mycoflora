@@ -79,6 +79,7 @@ size = Vector2(14, 8)
 size = Vector2(18, 12)
 
 [node name="Player" type="CharacterBody2D"]
+process_mode = 1
 z_index = 1
 y_sort_enabled = true
 position = Vector2(197, 148)
@@ -119,7 +120,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Weapon"]
 stream = ExtResource("6_uctel")
-volume_db = -37.143
 
 [node name="HurtDetector" type="Area2D" parent="."]
 

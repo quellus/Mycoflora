@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=5 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
 [ext_resource type="PackedScene" uid="uid://bja6vxyfil7he" path="res://scenes/dialog_manager.tscn" id="2_g7mqf"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="3_63sse"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="4_eo46b"]
 
 [node name="Game" type="Control"]
+process_mode = 3
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
@@ -35,3 +38,63 @@ offset_top = 17.0
 offset_right = 71.0
 offset_bottom = 40.0
 text = "Flowers:"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_63sse")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPauseMenu" type="VBoxContainer" parent="CanvasLayer/PauseMenu/CenterContainer" node_paths=PackedStringArray("first_button")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("4_eo46b")
+first_button = NodePath("SettingsButton")
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CanvasLayer/PauseMenu/CenterContainer" node_paths=PackedStringArray("first_button")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_eo46b")
+first_button = NodePath("SettingsBackButton")
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu"]
+layout_mode = 2
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu"]
+custom_minimum_size = Vector2(156.45, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="SettingsBackButton" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back
+"
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/SettingsButton" to="CanvasLayer/PauseMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/SettingsBackButton" to="CanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]

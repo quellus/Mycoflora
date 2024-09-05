@@ -12,7 +12,8 @@ var player:Player = null
 
 func _ready():
 	load_level("world", 0)
-
+	AudioServer.set_bus_volume_db(0, linear_to_db(0.5))
+	
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
@@ -52,3 +53,7 @@ func _player_died():
 
 func _warp(destination: String, spawn_point: int):
 	load_level(destination, spawn_point)
+
+
+func _volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(0, linear_to_db(value))
