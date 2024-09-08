@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=24 format=4 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/enemy.tscn" id="5_nukpt"]
 [ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="8_6c1nf"]
+[ext_resource type="Texture2D" uid="uid://dfodo0oopr6m0" path="res://assets/Scythe.png" id="9_a27l6"]
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opmhg"]
@@ -30,8 +32,20 @@ size = Vector2(18, 16)
 
 [sub_resource type="Resource" id="Resource_faemg"]
 script = ExtResource("6_oqtww")
-name = "Angry Guy"
-dialogue = "Don't talk to me, I don't have any dialogue yet."
+name = "The Old Angy Guy The Real"
+dialogue = "Someone needs to do something."
+letter_time = -1.0
+
+[sub_resource type="Resource" id="Resource_dacx0"]
+script = ExtResource("6_oqtww")
+name = "The Old Angy Guy The Real"
+dialogue = "You're the strongest person in the village."
+letter_time = -1.0
+
+[sub_resource type="Resource" id="Resource_ju5a5"]
+script = ExtResource("6_oqtww")
+name = "The Old Angy Guy The Real"
+dialogue = "Go into the forest and see if you can find any clues."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_2wypq"]
@@ -57,6 +71,9 @@ script = ExtResource("6_oqtww")
 name = "Bob"
 dialogue = "How did you even get in here?"
 letter_time = -1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bxto"]
+size = Vector2(6, 30)
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
 process_mode = 1
@@ -133,15 +150,15 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Angry Guy" type="Area2D" parent="First Town/NPCs"]
+[node name="Angy Guy" type="Area2D" parent="First Town/NPCs"]
 position = Vector2(-136, 338)
 script = ExtResource("5_ccwsk")
-dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_faemg")])
+dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_faemg"), SubResource("Resource_dacx0"), SubResource("Resource_ju5a5")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Angry Guy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Angy Guy"]
 shape = SubResource("RectangleShape2D_qo5p8")
 
-[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Angry Guy"]
+[node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Angy Guy"]
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
@@ -168,6 +185,20 @@ shape = SubResource("RectangleShape2D_qo5p8")
 [node name="Sprite2D" type="Sprite2D" parent="First Town/NPCs/Bob"]
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
+
+[node name="Scythe" type="Area2D" parent="First Town" node_paths=PackedStringArray("sprite")]
+z_index = 1
+position = Vector2(537, 427)
+script = ExtResource("8_6c1nf")
+type = 1
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="First Town/Scythe"]
+texture = ExtResource("9_a27l6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/Scythe"]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_7bxto")
 
 [node name="Forest" type="Node2D" parent="."]
 y_sort_enabled = true

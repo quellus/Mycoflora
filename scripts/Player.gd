@@ -10,6 +10,8 @@ signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(Array)
 
+var learned_magic: bool = false
+var has_weapon: bool = false
 var last_move_direction: Vector2
 var health: int = 10
 var knockback: bool = false
@@ -55,13 +57,17 @@ func _input(event):
 				direction = last_move_direction
 		else:
 			direction = global_position.direction_to(get_global_mouse_position())
-		weapon.attack(direction)
-	if event.is_action_pressed("swap_weapons"):
+		if has_weapon or learned_magic:
+			weapon.attack(direction)
+	if event.is_action_pressed("swap_weapons") and learned_magic:
 		weapon.magic_mode = !weapon.magic_mode
 	if event.is_action_pressed("interact"):
 		for area in %InteractableDetector.get_overlapping_areas():
 				if area is Interactable:
-					flowers += 1
+					if area.type == Interactable.Type.FLOWER:
+						flowers += 1
+					if area.type == Interactable.Type.WEAPON:
+						has_weapon = true
 					area.interact()
 
 

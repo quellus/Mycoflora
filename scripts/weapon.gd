@@ -12,7 +12,7 @@ var sword_sound: AudioStream = preload("res://assets/sounds/422507__nightflame__
 const SWING_SPEED = 0.2
 const ATTACK_SPEED = 0.3
 
-var magic_mode = true
+var magic_mode = false
 var can_attack = true
 
 func _ready():
