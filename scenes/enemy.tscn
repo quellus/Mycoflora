@@ -445,6 +445,7 @@ entity = "Enemy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_p8yl8")
+debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 
 [node name="VisionRadius" type="Area2D" parent="."]
 

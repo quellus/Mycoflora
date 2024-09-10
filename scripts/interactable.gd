@@ -1,8 +1,11 @@
 class_name Interactable extends Area2D
 
+signal interacted
+
 enum Type {
 	FLOWER,
-	WEAPON
+	WEAPON,
+	ARTEFACT
 }
 
 @export var type: Type
@@ -15,4 +18,4 @@ func highlight(value: bool):
 		sprite.modulate = Color(1,1,1)
 
 func interact():
-	queue_free()
+	interacted.emit()

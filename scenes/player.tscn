@@ -73,7 +73,7 @@ animations = [{
 size = Vector2(14, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo0li"]
-size = Vector2(14, 8)
+size = Vector2(16, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxphb"]
 size = Vector2(18, 12)
@@ -125,6 +125,7 @@ stream = ExtResource("6_uctel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtDetector"]
 shape = SubResource("RectangleShape2D_vo0li")
+debug_color = Color(0, 0.64217, 0.322278, 0.42)
 
 [node name="InteractableDetector" type="Area2D" parent="."]
 unique_name_in_owner = true

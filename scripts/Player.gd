@@ -64,10 +64,13 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 		for area in %InteractableDetector.get_overlapping_areas():
 				if area is Interactable:
-					if area.type == Interactable.Type.FLOWER:
-						flowers += 1
-					if area.type == Interactable.Type.WEAPON:
-						has_weapon = true
+					match area.type:
+						Interactable.Type.FLOWER:
+							flowers += 1
+						Interactable.Type.WEAPON:
+							has_weapon = true
+						Interactable.Type.ARTEFACT:
+							learned_magic = true
 					area.interact()
 
 

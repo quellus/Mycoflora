@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=25 format=4 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="8_6c1nf"]
+[ext_resource type="Script" path="res://scenes/scythe.gd" id="8_75g8n"]
 [ext_resource type="Texture2D" uid="uid://dfodo0oopr6m0" path="res://assets/Scythe.png" id="9_a27l6"]
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
@@ -186,17 +187,20 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Scythe" type="Area2D" parent="First Town" node_paths=PackedStringArray("sprite")]
+[node name="Node2D" type="Node2D" parent="First Town"]
+position = Vector2(535.36, 429.131)
+script = ExtResource("8_75g8n")
+
+[node name="Scythe" type="Area2D" parent="First Town/Node2D" node_paths=PackedStringArray("sprite")]
 z_index = 1
-position = Vector2(537, 427)
 script = ExtResource("8_6c1nf")
 type = 1
 sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="First Town/Scythe"]
+[node name="Sprite2D" type="Sprite2D" parent="First Town/Node2D/Scythe"]
 texture = ExtResource("9_a27l6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/Scythe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/Node2D/Scythe"]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_7bxto")
 
@@ -235,3 +239,5 @@ position = Vector2(1817, -18)
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(1678, 141)
+
+[connection signal="interacted" from="First Town/Node2D/Scythe" to="First Town/Node2D" method="_on_interactable_interacted"]
