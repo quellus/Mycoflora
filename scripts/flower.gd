@@ -1,8 +1,7 @@
-class_name Flower extends Node2D
+class_name Flower extends Interactable
 
 const TOTAL_FLOWERS: int = 15
 const FLOWER_COLUMNS: int = 3
-@onready var sprite = $Area2D/Sprite2D
 
 func _ready():
 	var column = 0
@@ -17,5 +16,5 @@ func _ready():
 	sprite.texture.region.position.y = column * 16
 
 
-func _on_interactable_interacted() -> void:
+func interact():
 	queue_free()

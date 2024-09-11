@@ -1,15 +1,14 @@
-[gd_scene load_steps=25 format=4 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=24 format=4 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
 [ext_resource type="Texture2D" uid="uid://npu3hbwhc8jn" path="res://assets/Castle.png" id="3_l5fvs"]
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="4_80pl6"]
-[ext_resource type="Script" path="res://scripts/dialog_trigger.gd" id="5_ccwsk"]
+[ext_resource type="Script" path="res://scripts/dialog_interactable.gd" id="5_mmkfd"]
 [ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/enemy.tscn" id="5_nukpt"]
 [ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="8_6c1nf"]
-[ext_resource type="Script" path="res://scenes/scythe.gd" id="8_75g8n"]
+[ext_resource type="Script" path="res://scripts/scythe.gd" id="8_75g8n"]
 [ext_resource type="Texture2D" uid="uid://dfodo0oopr6m0" path="res://assets/Scythe.png" id="9_a27l6"]
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
@@ -34,19 +33,19 @@ size = Vector2(18, 16)
 [sub_resource type="Resource" id="Resource_faemg"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "Someone needs to do something."
+dialogue = "You're the only person in the village strong enough to venture into the forest right now."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_dacx0"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "You're the strongest person in the village."
+dialogue = "It's dangerous to go alone, take this."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_ju5a5"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "Go into the forest and see if you can find any clues."
+dialogue = "Please go investigate what is happening."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_2wypq"]
@@ -58,7 +57,7 @@ letter_time = -1.0
 [sub_resource type="Resource" id="Resource_o43u4"]
 script = ExtResource("6_oqtww")
 name = "Jay"
-dialogue = "One of them bit me yesterday"
+dialogue = "I was attacked on my way to Velaria and had to turn back."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_qq6e0"]
@@ -139,10 +138,11 @@ position = Vector2(521, 402)
 
 [node name="NPCs" type="Node" parent="First Town"]
 
-[node name="Vaelvia" type="Area2D" parent="First Town/NPCs"]
+[node name="Vaelvia" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(408, 387)
-script = ExtResource("5_ccwsk")
+script = ExtResource("5_mmkfd")
 dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_ktip5"), SubResource("Resource_htlht")])
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Vaelvia"]
 shape = SubResource("RectangleShape2D_qo5p8")
@@ -151,10 +151,11 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Angy Guy" type="Area2D" parent="First Town/NPCs"]
+[node name="Angy Guy" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-136, 338)
-script = ExtResource("5_ccwsk")
+script = ExtResource("5_mmkfd")
 dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_faemg"), SubResource("Resource_dacx0"), SubResource("Resource_ju5a5")])
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Angy Guy"]
 shape = SubResource("RectangleShape2D_qo5p8")
@@ -163,10 +164,11 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Jay" type="Area2D" parent="First Town/NPCs"]
+[node name="Jay" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(297, 374)
-script = ExtResource("5_ccwsk")
+script = ExtResource("5_mmkfd")
 dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_2wypq"), SubResource("Resource_o43u4")])
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Jay"]
 shape = SubResource("RectangleShape2D_qo5p8")
@@ -175,10 +177,11 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Bob" type="Area2D" parent="First Town/NPCs"]
+[node name="Bob" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-247, 321)
-script = ExtResource("5_ccwsk")
+script = ExtResource("5_mmkfd")
 dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_qq6e0"), SubResource("Resource_2lflu")])
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Bob"]
 shape = SubResource("RectangleShape2D_qo5p8")
@@ -187,20 +190,16 @@ shape = SubResource("RectangleShape2D_qo5p8")
 scale = Vector2(0.0907679, 0.0907679)
 texture = ExtResource("7_83bry")
 
-[node name="Node2D" type="Node2D" parent="First Town"]
+[node name="Area2D" type="Area2D" parent="First Town" node_paths=PackedStringArray("sprite")]
+z_index = 1
 position = Vector2(535.36, 429.131)
 script = ExtResource("8_75g8n")
-
-[node name="Scythe" type="Area2D" parent="First Town/Node2D" node_paths=PackedStringArray("sprite")]
-z_index = 1
-script = ExtResource("8_6c1nf")
-type = 1
 sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="First Town/Node2D/Scythe"]
+[node name="Sprite2D" type="Sprite2D" parent="First Town/Area2D"]
 texture = ExtResource("9_a27l6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/Node2D/Scythe"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/Area2D"]
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_7bxto")
 
@@ -239,5 +238,3 @@ position = Vector2(1817, -18)
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(1678, 141)
-
-[connection signal="interacted" from="First Town/Node2D/Scythe" to="First Town/Node2D" method="_on_interactable_interacted"]

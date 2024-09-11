@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://du5ru4hlaa8lo"]
+[gd_scene load_steps=5 format=3 uid="uid://du5ru4hlaa8lo"]
 
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_52qqf"]
 [ext_resource type="Script" path="res://scripts/flower.gd" id="1_epnsx"]
 [ext_resource type="Texture2D" uid="uid://c6gj45uschm5x" path="res://assets/foliage_tiles.png" id="1_fcicx"]
 
@@ -12,17 +11,12 @@ resource_local_to_scene = true
 atlas = ExtResource("1_fcicx")
 region = Rect2(0, 0, 16, 16)
 
-[node name="Flower" type="Node2D"]
+[node name="Flower" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_epnsx")
-
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-script = ExtResource("1_52qqf")
 sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yja03")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_ilyss")
-
-[connection signal="interacted" from="Area2D" to="." method="_on_interactable_interacted"]

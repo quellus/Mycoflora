@@ -2,13 +2,6 @@ class_name Interactable extends Area2D
 
 signal interacted
 
-enum Type {
-	FLOWER,
-	WEAPON,
-	ARTEFACT
-}
-
-@export var type: Type
 @export var sprite: Sprite2D
 
 func highlight(value: bool):

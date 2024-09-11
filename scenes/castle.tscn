@@ -1,10 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://br3xyusj5yaij"]
+[gd_scene load_steps=13 format=3 uid="uid://br3xyusj5yaij"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_go4sf"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_u4g36"]
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="3_utl14"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="4_ywny7"]
-[ext_resource type="Script" path="res://scripts/dialog_trigger.gd" id="5_pgmkh"]
+[ext_resource type="Script" path="res://scripts/dialog_interactable.gd" id="5_ix03y"]
 [ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_fkr28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0g7e"]
@@ -15,35 +15,21 @@ size = Vector2(12, 12)
 
 [sub_resource type="Resource" id="Resource_khksb"]
 script = ExtResource("6_fkr28")
-name = "Duke McDukerson"
-dialogue = "Hey you!"
-speech_time = 1.0
-wait_time = 1.5
-pause_time = 2.0
+name = "Princess McBeauty"
+dialogue = "Look, I have no idea who you are. If what you're claiming is true, I should send troops to investigate and protect your town."
+letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_37fmt"]
 script = ExtResource("6_fkr28")
-name = "Duke McDukerson"
-dialogue = "You're finally awake!"
-speech_time = 1.5
-wait_time = 2.0
-pause_time = 2.5
+name = "Princess McBeauty"
+dialogue = "Thank you for bringing this to my attention, but I would be putting my city in danger by thinning my army."
+letter_time = -1.0
 
-[sub_resource type="Resource" id="Resource_yeg6m"]
+[sub_resource type="Resource" id="Resource_jlxyg"]
 script = ExtResource("6_fkr28")
-name = "Duke McDukerson"
-dialogue = "You were trying to cross the border."
-speech_time = 2.0
-wait_time = 3.0
-pause_time = 3.0
-
-[sub_resource type="Resource" id="Resource_g0pph"]
-script = ExtResource("6_fkr28")
-name = "Duke McDukerson"
-dialogue = "Right?"
-speech_time = 1.0
-wait_time = 2.0
-pause_time = 2.0
+name = "Princess McBeauty"
+dialogue = "I will help if you bring me evidence that the forest is attacking."
+letter_time = -1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycx4e"]
 
@@ -69,19 +55,20 @@ shape = SubResource("RectangleShape2D_n0g7e")
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(249, 222)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Princess" type="StaticBody2D" parent="."]
 position = Vector2(248, 125)
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Princess"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("4_ywny7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Princess"]
 shape = SubResource("RectangleShape2D_vkay1")
 
-[node name="DialogTrigger" type="Area2D" parent="StaticBody2D"]
-script = ExtResource("5_pgmkh")
-dialogue = Array[ExtResource("6_fkr28")]([SubResource("Resource_khksb"), SubResource("Resource_37fmt"), SubResource("Resource_yeg6m"), SubResource("Resource_g0pph")])
+[node name="DialogTrigger" type="Area2D" parent="Princess" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_ix03y")
+dialogue = Array[ExtResource("6_fkr28")]([SubResource("Resource_khksb"), SubResource("Resource_37fmt"), SubResource("Resource_jlxyg")])
+sprite = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/DialogTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Princess/DialogTrigger"]
 shape = SubResource("RectangleShape2D_ycx4e")

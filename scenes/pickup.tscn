@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://v3rdeti7iwcx"]
 
-[ext_resource type="Script" path="res://scenes/pickup.gd" id="1_do72n"]
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="2_2pp06"]
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_do72n"]
+[ext_resource type="Script" path="res://scripts/artefact.gd" id="2_788eq"]
 [ext_resource type="Texture2D" uid="uid://bcti3rha4k558" path="res://assets/Gem.png" id="3_8obmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvbk4"]
@@ -10,13 +10,12 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hedb2"]
 size = Vector2(14, 14)
 
-[node name="Pickup" type="Area2D"]
+[node name="Pickup" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_do72n")
 
 [node name="Interactable" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-script = ExtResource("2_2pp06")
-type = 2
+script = ExtResource("2_788eq")
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
