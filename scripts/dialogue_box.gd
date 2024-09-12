@@ -15,7 +15,7 @@ func _ready():
 	_redraw_label()
 
 
-func play_dialogue(speaker: String, dialogue: String, letter_time := 0.1):
+func play_dialogue(speaker: String, dialogue: String, letter_time := 0.05):
 	label.text = "[u]" + speaker + "[/u]\n"
 	string = dialogue
 	total_length = dialogue.length()
@@ -31,13 +31,16 @@ func _newletter():
 		lettertimer.start(lettertime)
 	else:
 		lettertimer.stop()
-		pause_timer.start(float(total_length) / float(100))
+		#pause_timer.start(float(total_length) / float(100))
+		dialog_done.emit()
 
 
 func _redraw_label():
 	label.size.y = label.get_content_height()
 	label.set_position(Vector2(size.x/2-(label.size.x-6)/2, size.y-label.size.y-6))
 
+func dialog_complete():
+	label.visible = false
 
 func _pause_timeout() -> void:
 	label.visible = false

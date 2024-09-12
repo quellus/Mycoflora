@@ -57,3 +57,7 @@ func _warp(destination: String, spawn_point: int):
 
 func _volume_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+
+func _dialog_complete():
+	if player:
+		player.in_dialog = false

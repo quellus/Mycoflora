@@ -94,6 +94,7 @@ size_flags_horizontal = 4
 text = "Back
 "
 
+[connection signal="dialog_complete" from="CanvasLayer/DialogManager" to="." method="_dialog_complete"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/SettingsButton" to="CanvasLayer/PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]

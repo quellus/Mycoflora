@@ -10,6 +10,7 @@ signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(Array)
 
+var in_dialog: bool = false
 var learned_magic: bool = false
 var has_weapon: bool = false
 var last_move_direction: Vector2
@@ -26,7 +27,7 @@ func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var camera_position
 	if !knockback:
-		if direction:
+		if direction and !in_dialog:
 			last_move_direction = direction
 			camera_position = direction * 10
 			velocity = direction * SPEED
@@ -47,7 +48,6 @@ func _physics_process(_delta):
 	camera.position = camera.position.lerp(camera_position, 0.05)
 	move_and_slide()
 
-
 func _input(event):
 	if event.is_action_pressed("attack"):
 		var direction: Vector2
@@ -61,7 +61,7 @@ func _input(event):
 			weapon.attack(direction)
 	if event.is_action_pressed("swap_weapons") and learned_magic:
 		weapon.magic_mode = !weapon.magic_mode
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") and !in_dialog:
 		for area in %InteractableDetector.get_overlapping_areas():
 				if area is Interactable:
 					if area is Flower:
@@ -71,6 +71,7 @@ func _input(event):
 					elif area is Artefact:
 						learned_magic = true
 					elif area is DialogInteractable:
+						in_dialog = true
 						dialog_trigger.emit(area.dialogue)
 					area.interact()
 
@@ -106,6 +107,7 @@ func _on_i_frame_timer_timeout():
 
 func _on_interactable_detector_area_entered(area):
 	if area is DialogTrigger:
+		in_dialog = true
 		dialog_trigger.emit(area.dialogue)
 	elif area is Interactable:
 		area.highlight(true)
