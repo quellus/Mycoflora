@@ -75,8 +75,8 @@ size = Vector2(14, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo0li"]
 size = Vector2(16, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxphb"]
-size = Vector2(18, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsrgv"]
+radius = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
@@ -131,7 +131,8 @@ debug_color = Color(0, 0.64217, 0.322278, 0.42)
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableDetector"]
-shape = SubResource("RectangleShape2D_vxphb")
+rotation = 1.5708
+shape = SubResource("CircleShape2D_tsrgv")
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.2

@@ -91,6 +91,8 @@ func take_damage(position_from: Vector2):
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity != "Player":
 		take_damage(area.global_position)
+	elif area is WarpPoint:
+		warp.emit(area.destination, area.spawn_point)
 
 
 func _on_knockback_timer_timeout():
@@ -103,9 +105,7 @@ func _on_i_frame_timer_timeout():
 
 
 func _on_interactable_detector_area_entered(area):
-	if area is WarpPoint:
-		warp.emit(area.destination, area.spawn_point)
-	elif area is DialogTrigger:
+	if area is DialogTrigger:
 		dialog_trigger.emit(area.dialogue)
 	elif area is Interactable:
 		area.highlight(true)
