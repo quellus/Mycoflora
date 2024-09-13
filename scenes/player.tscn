@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djp54pygs32jy"]
+[gd_scene load_steps=21 format=3 uid="uid://djp54pygs32jy"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_0nxi1"]
 [ext_resource type="Texture2D" uid="uid://clhbix8ugiwvv" path="res://assets/CloakedLittleGuy.png" id="2_5h1bl"]
@@ -78,6 +78,44 @@ size = Vector2(16, 10)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tsrgv"]
 radius = 18.0
 
+[sub_resource type="Animation" id="Animation_4d8up"]
+resource_name = "camera_shake"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraShake:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.12, 0.23, 0.31, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 2), Vector2(2, 0), Vector2(-2, 0), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfweq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraShake:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wjh5b"]
+_data = {
+"RESET": SubResource("Animation_wfweq"),
+"camera_shake": SubResource("Animation_4d8up")
+}
+
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
 z_index = 1
@@ -85,8 +123,6 @@ y_sort_enabled = true
 position = Vector2(197, 148)
 motion_mode = 1
 script = ExtResource("1_0nxi1")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -139,6 +175,16 @@ wait_time = 0.2
 one_shot = true
 
 [node name="iFrameTimer" type="Timer" parent="."]
+
+[node name="CameraShake" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="CameraShake"]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wjh5b")
+}
 
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
