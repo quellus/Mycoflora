@@ -116,7 +116,7 @@ _data = {
 "camera_shake": SubResource("Animation_4d8up")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["save"]]
 process_mode = 1
 z_index = 1
 y_sort_enabled = true

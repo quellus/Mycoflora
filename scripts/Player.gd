@@ -10,6 +10,12 @@ signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(Array)
 
+var save_data = {
+	"learned_magic": false,
+	"has_weapon": false,
+	"flowers": 10
+}
+
 var in_dialog: bool = false
 var learned_magic: bool = false
 var has_weapon: bool = false
