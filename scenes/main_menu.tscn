@@ -63,7 +63,8 @@ text = "Attribution"
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 10
-text = "SFX_MAGIC_FIREBALL_001.wav by JoelAudio -- https://freesound.org/s/77691/ -- License: Attribution 4.0"
+text = "SFX_MAGIC_FIREBALL_001.wav by JoelAudio -- https://freesound.org/s/77691/ -- License: Attribution 4.0
+8-bit Hurt1.aif by timgormly -- https://freesound.org/s/170148/ -- License: Attribution 3.0"
 fit_content = true
 
 [node name="AttrBackButton" type="Button" parent="Menus/AttributionMenu"]

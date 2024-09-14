@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 @onready var weapon = $Weapon
 @onready var sprite = $AnimatedSprite2D
 @onready var camera = %Camera2D
+@onready var audio_stream_player = $AudioStreamPlayer
 
 signal health_changed(health)
 signal flower_count_changed(value: int)
@@ -95,6 +96,7 @@ func _input(event):
 func take_damage(position_from: Vector2):
 	$AnimationPlayer.play("camera_shake")
 	health -= 1
+	audio_stream_player.play()
 	health_changed.emit(health)
 	velocity = position.direction_to(position_from) * SPEED * -2
 	knockback = true
