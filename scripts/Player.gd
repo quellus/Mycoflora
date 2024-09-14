@@ -11,14 +11,28 @@ signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(Array)
 
 var in_dialog: bool = false
-var learned_magic: bool = false
-var has_weapon: bool = false
 var last_move_direction: Vector2
 var health: int = 10
 var knockback: bool = false
+
+var learned_magic: bool:
+	get():
+		return SaveLoad.data["players"]["player1"]["learned_magic"]
+	set(value):
+		learned_magic = value
+		SaveLoad.data["players"]["player1"]["learned_magic"] = value
+var has_weapon: bool:
+	get():
+		return SaveLoad.data["players"]["player1"]["has_weapon"]
+	set(value):
+		has_weapon = value
+		SaveLoad.data["players"]["player1"]["has_weapon"] = value
 var flowers: int = 10:
+	get():
+		return SaveLoad.data["players"]["player1"]["flowers"]
 	set(value):
 		flowers = value
+		SaveLoad.data["players"]["player1"]["flowers"] = value
 		flower_count_changed.emit(value)
 
 const SPEED: float = 75.0
