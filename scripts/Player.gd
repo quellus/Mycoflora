@@ -87,6 +87,8 @@ func _input(event):
 					elif area is DialogInteractable:
 						in_dialog = true
 						dialog_trigger.emit(area.dialogue)
+						if area.dialogue[0].name == "The Old Angy Guy The Real":
+							has_weapon = true
 					area.interact()
 
 
