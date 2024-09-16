@@ -27,8 +27,8 @@ func play_dialogue(speaker: String, dialogue: String, letter_time := 0.05):
 
 func _newletter():
 	if string.length() > 0:
-		audio_stream.pitch_scale = 2 + randf_range(-0.05, 0.05)
 		audio_stream.play()
+		audio_stream.pitch_scale = 2 + randf_range(-0.05, 0.05)
 		label.text = label.text+string[0]
 		string = string.erase(0)
 		lettertimer.start(lettertime)
