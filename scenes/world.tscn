@@ -57,7 +57,7 @@ letter_time = -1.0
 [sub_resource type="Resource" id="Resource_o43u4"]
 script = ExtResource("6_oqtww")
 name = "Jay"
-dialogue = "I was attacked on my way to Velaria and had to turn back."
+dialogue = "I was attacked on my way to Tirothell and had to turn back."
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_qq6e0"]
