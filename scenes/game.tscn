@@ -37,7 +37,7 @@ offset_left = 6.0
 offset_top = 17.0
 offset_right = 71.0
 offset_bottom = 40.0
-text = "Flowers:"
+text = "Florids:"
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3

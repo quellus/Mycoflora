@@ -44,7 +44,7 @@ func _player_health_changed(health):
 
 
 func _flower_count_changed(value):
-	%FlowersLabel.text = "Flowers: " + str(value)
+	%FlowersLabel.text = "Florids: " + str(value)
 
 
 func _player_died():
