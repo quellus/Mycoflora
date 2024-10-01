@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_0kms4"]
+agent_radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opmhg"]
 size = Vector2(12, 2)
