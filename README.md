@@ -1,7 +1,9 @@
-# Cloudedge (Placeholder name)
+# Micoflora
 
-The plan for this project is to make a large open world ARPG full of side quests, unique encounters, and a main storyline.
+This game is a small open world ARPG with a flower-based magic system. The world is littered with flowers that can be spent to cast spells in combat.
 
-The game centers around a flower-based magic system where flowers collected throughout exploration are used as as ammo for spells or can be condsumed to tune spells to your playstyle.
+This world doesn't draw a distinction between flowers and mushrooms they are the same magical material called Micoflora.
 
-The goal right now is to develop the beggining of the main story where the main character is forced to fight via melee combat, begins to uncover the main conflict of the story, and learns how to cast spells for the first time.
+## Goal
+
+The main goal is to create a small world with a main quest and some side quests and side content to explore, then expand from there.
