@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://clmtlhtqb0u7m" path="res://assets/mushroom.png" id="2_ppyat"]
 [ext_resource type="Script" path="res://scripts/HurtBox.gd" id="3_hpu1v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bttqu"]
-size = Vector2(12, 6)
+[sub_resource type="CircleShape2D" id="CircleShape2D_g68ee"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o6qme"]
 atlas = ExtResource("2_ppyat")
@@ -442,8 +442,12 @@ y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_plyv1")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 6.0
+debug_enabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_bttqu")
+shape = SubResource("CircleShape2D_g68ee")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(100, 100, 100, 1)
