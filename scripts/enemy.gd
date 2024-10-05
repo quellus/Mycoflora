@@ -1,18 +1,24 @@
 class_name Enemy extends CharacterBody2D
 
+@onready var nav_agent = $NavigationAgent2D
+
 var health = 10
-var target: Node2D = null
+var target: Player = null
 @onready var sprite = $AnimatedSprite2D
 @export var speed_mod := 1
-const SPEED = 80
+const SPEED = 70
 
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var animtree: AnimationTree = $AnimationTree
 @onready var state_machine = animtree["parameters/playback"]
 
-func _process(_delta):
+func _physics_process(_delta):
 	if target != null:
-		velocity = position.direction_to(target.global_position) * SPEED * speed_mod
+		var next_pos: Vector2 = nav_agent.get_next_path_position()
+		if (target.global_position.distance_to(nav_agent.target_position) >= 50 or nav_agent.is_navigation_finished()):
+			nav_agent.target_position = target.global_position
+			next_pos = nav_agent.get_next_path_position()
+		velocity = global_position.direction_to(next_pos) * SPEED * speed_mod
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
@@ -29,6 +35,7 @@ func take_damage(position_from: Vector2):
 func _on_vision_radius_body_entered(body):
 	if body is Player:
 		target = body
+		nav_agent.target_position = body.global_position
 
 
 func _on_vision_radius_body_exited(body):
