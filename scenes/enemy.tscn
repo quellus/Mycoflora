@@ -41,7 +41,7 @@ size = Vector2(14, 8)
 radius = 120.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xorjn"]
-radius = 28.0
+radius = 34.0
 
 [sub_resource type="Animation" id="Animation_p0sro"]
 length = 0.001
@@ -60,7 +60,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_rnjcm"]
 resource_name = "attack"
-length = 0.1
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -487,8 +487,13 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_xqv63")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="VisionRadius" to="." method="_on_vision_radius_body_entered"]
 [connection signal="body_exited" from="VisionRadius" to="." method="_on_vision_radius_body_exited"]
 [connection signal="body_entered" from="AttackRadius" to="." method="_on_attack_radius_body_entered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="_on_attack_radius_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_attack_timer_timeout"]
