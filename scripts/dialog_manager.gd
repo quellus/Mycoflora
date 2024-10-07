@@ -25,9 +25,9 @@ func _on_dialogue_trigger(dialogues: Array[DialogResource]):
 
 func play_dialogue(dialogue: DialogResource):
 	if dialogue.letter_time > 0:
-		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.letter_time)
+		dialogue_box.play_dialogue(dialogue.name, tr(dialogue.dialogue), dialogue.letter_time)
 	else:
-		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue)
+		dialogue_box.play_dialogue(dialogue.name, tr(dialogue.dialogue))
 
 
 func play_next_dialogue():

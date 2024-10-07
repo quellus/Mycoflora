@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://6tok2snmwf4v"
+
+[deps]
+
+files=["res://translations/Vaelvia.en.translation"]
+
+source_file="res://translations/Vaelvia.csv"
+dest_files=["res://translations/Vaelvia.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

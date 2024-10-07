@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://hybuvhtqkda4"
+
+[deps]
+
+files=["res://translations/AngyGuy.en.translation"]
+
+source_file="res://translations/AngyGuy.csv"
+dest_files=["res://translations/AngyGuy.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

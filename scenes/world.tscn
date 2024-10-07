@@ -21,13 +21,13 @@ size = Vector2(12, 2)
 [sub_resource type="Resource" id="Resource_ktip5"]
 script = ExtResource("6_oqtww")
 name = "Vaelvia"
-dialogue = "There's something wrong with the forest."
+dialogue = "VAELVIA_GREET1"
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_htlht"]
 script = ExtResource("6_oqtww")
 name = "Vaelvia"
-dialogue = "Creatures who used to be docile are suddenly turning hostile"
+dialogue = "VAELVIA_GREET2"
 letter_time = -1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo5p8"]
@@ -36,19 +36,19 @@ size = Vector2(18, 16)
 [sub_resource type="Resource" id="Resource_faemg"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "You're the only person in the village strong enough to venture into the forest right now."
+dialogue = "ANGYGUY_GREET1"
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_dacx0"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "It's dangerous to go alone, take this."
+dialogue = "ANGYGUY_GREET2"
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_ju5a5"]
 script = ExtResource("6_oqtww")
 name = "The Old Angy Guy The Real"
-dialogue = "Please go investigate what is happening."
+dialogue = "ANGYGUY_GREET3"
 letter_time = -1.0
 
 [sub_resource type="Resource" id="Resource_2wypq"]

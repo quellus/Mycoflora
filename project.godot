@@ -118,6 +118,10 @@ start={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/test.en.translation", "res://translations/test2.en.translation", "res://translations/AngyGuy.en.translation", "res://translations/Vaelvia.en.translation")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
