@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=13 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
-[ext_resource type="PackedScene" uid="uid://bja6vxyfil7he" path="res://scenes/dialog_manager.tscn" id="2_g7mqf"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="2_w2tk2"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_63sse"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="3_nbsgn"]
+[ext_resource type="Resource" uid="uid://dbtosnvl542x3" path="res://test_dialog_tree.tres" id="3_om8q7"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="4_eo46b"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="4_y3owe"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="5_vw25s"]
+
+[sub_resource type="Theme" id="Theme_jjprt"]
+Button/font_sizes/font_size = 10
+Label/font_sizes/font_size = 10
+Label/fonts/font = null
+RichTextLabel/font_sizes/bold_font_size = 10
+RichTextLabel/font_sizes/bold_italics_font_size = 10
+RichTextLabel/font_sizes/italics_font_size = 10
+RichTextLabel/font_sizes/mono_font_size = 10
+RichTextLabel/font_sizes/normal_font_size = 10
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_s7t2j"]
+script = ExtResource("3_nbsgn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_afi01"]
+script = ExtResource("4_y3owe")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_iwc1u"]
+script = ExtResource("5_vw25s")
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -13,6 +36,18 @@ anchors_preset = 0
 script = ExtResource("1_gog3v")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueBox" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 58.0
+offset_top = 170.0
+offset_right = 309.0
+offset_bottom = 238.0
+theme = SubResource("Theme_jjprt")
+script = ExtResource("2_w2tk2")
+data = ExtResource("3_om8q7")
+hide_portrait = true
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_s7t2j"), SubResource("RichTextEffect_afi01"), SubResource("RichTextEffect_iwc1u")])
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -27,9 +62,6 @@ max_value = 10.0
 step = 1.0
 value = 5.0
 show_percentage = false
-
-[node name="DialogManager" parent="CanvasLayer" instance=ExtResource("2_g7mqf")]
-unique_name_in_owner = true
 
 [node name="FlowersLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -94,7 +126,7 @@ size_flags_horizontal = 4
 text = "Back
 "
 
-[connection signal="dialog_complete" from="CanvasLayer/DialogManager" to="." method="_dialog_complete"]
+[connection signal="dialogue_ended" from="CanvasLayer/DialogueBox" to="." method="_dialog_complete"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/SettingsButton" to="CanvasLayer/PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]
