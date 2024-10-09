@@ -120,7 +120,7 @@ start={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/test.en.translation", "res://translations/test2.en.translation", "res://translations/AngyGuy.en.translation", "res://translations/Vaelvia.en.translation")
+locale/translations=PackedStringArray("res://translations/AngyGuy.en.translation", "res://translations/Vaelvia.en.translation", "res://translations/PrincessMcBeauty.en.translation")
 
 [rendering]
 

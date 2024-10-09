@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterDialogs" load_steps=2 format=3 uid="uid://xeb4b681xdge"]
+
+[ext_resource type="Script" path="res://scripts/character_dialogs.gd" id="1_pp8bo"]
+
+[resource]
+script = ExtResource("1_pp8bo")
+character_name = "Vaelvia"
+dialogs = {}

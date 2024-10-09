@@ -9,7 +9,7 @@ signal health_changed(health)
 signal flower_count_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
-signal dialog_trigger(Array)
+signal dialog_trigger(String)
 
 var in_dialog: bool = false
 var last_move_direction: Vector2
@@ -87,8 +87,8 @@ func _input(event):
 						learned_magic = true
 					elif area is DialogInteractable:
 						in_dialog = true
-						dialog_trigger.emit(area.dialogue)
-						if area.dialogue[0].name == "The Old Angy Guy The Real":
+						dialog_trigger.emit(area.char_name)
+						if area.char_name == "The Old Angy Guy The Real":
 							has_weapon = true
 					area.interact()
 

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterDialogs" load_steps=2 format=3 uid="uid://dtaicqp4w51v4"]
+
+[ext_resource type="Script" path="res://scripts/character_dialogs.gd" id="1_hy8iu"]
+
+[resource]
+script = ExtResource("1_hy8iu")
+character_name = ""
+dialogs = {}

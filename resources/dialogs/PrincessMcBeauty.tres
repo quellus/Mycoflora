@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterDialogs" load_steps=2 format=3 uid="uid://c4nmhxhd2f6ed"]
+
+[ext_resource type="Script" path="res://scripts/character_dialogs.gd" id="1_a53ga"]
+
+[resource]
+script = ExtResource("1_a53ga")
+character_name = "Princess McBeauty"
+dialogs = {}

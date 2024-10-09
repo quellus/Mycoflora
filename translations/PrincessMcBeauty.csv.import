@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cbcfuvpvjiw7c"
+
+[deps]
+
+files=["res://translations/PrincessMcBeauty.en.translation"]
+
+source_file="res://translations/PrincessMcBeauty.csv"
+dest_files=["res://translations/PrincessMcBeauty.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="character_dialogs" load_steps=6 format=3 uid="uid://cpuwwgqbiy4ue"]
+
+[ext_resource type="Script" path="res://scripts/character_dialogs.gd" id="1_2aedf"]
+[ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="1_yqg68"]
+
+[sub_resource type="Resource" id="Resource_pd0i3"]
+script = ExtResource("1_yqg68")
+name = "The Old Angy Guy The Real"
+dialogue = "ANGYGUY_GREET1"
+letter_time = -1.0
+
+[sub_resource type="Resource" id="Resource_k7q6o"]
+script = ExtResource("1_yqg68")
+name = "The Old Angy Guy The Real"
+dialogue = "ANGYGUY_GREET2"
+letter_time = -1.0
+
+[sub_resource type="Resource" id="Resource_0wdrk"]
+script = ExtResource("1_yqg68")
+name = "The Old Angy Guy The Real"
+dialogue = "ANGYGUY_GREET3"
+letter_time = -1.0
+
+[resource]
+script = ExtResource("1_2aedf")
+character_name = "The Angy Guy The Real"
+dialogs = {
+"ANGYGUY_GREET": [SubResource("Resource_pd0i3"), SubResource("Resource_k7q6o"), SubResource("Resource_0wdrk")]
+}
