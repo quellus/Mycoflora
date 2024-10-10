@@ -9,8 +9,8 @@ starts = {
 }
 nodes = {
 "0_1": {
-"link": &"1_1",
-"offset": Vector2(-589, -302),
+"link": &"5_1",
+"offset": Vector2(-1000, -140),
 "start_id": "START"
 },
 "1_1": {
@@ -95,8 +95,21 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": "The Old Angy Guy The Real"
+},
+"5_1": {
+"false": &"1_1",
+"offset": Vector2(-780, -180),
+"operator": 0,
+"true": &"1_4",
+"value1": "{{KILLED_BOSS}}",
+"value2": "true"
 }
 }
-variables = {}
-strays = Array[String](["1_5", "1_6", "1_4"])
+variables = {
+"KILLED_BOSS": {
+"type": 1,
+"value": false
+}
+}
+strays = Array[String]([])
 characters = ""
