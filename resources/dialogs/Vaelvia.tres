@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://lobadbie4yle"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_ku2wx"]
+
+[resource]
+script = ExtResource("1_ku2wx")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"1_1",
+"offset": Vector2(-480, -260),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "There's something wrong with the forest.",
+"offset": Vector2(-240, -280),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Vaelvia"
+},
+"1_2": {
+"dialogue": "Creatures who used to be docile are suddenly attacking",
+"offset": Vector2(140, -280),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Vaelvia"
+}
+}
+variables = {}
+strays = Array[String]([])
+characters = ""

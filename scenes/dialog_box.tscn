@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b33lb28ov3r3j"]
+[gd_scene load_steps=5 format=3 uid="uid://c6pp4cld05vor"]
 
 [ext_resource type="FontFile" uid="uid://crlyl1ywu4aom" path="res://assets/m5x7.ttf" id="1_olmis"]
 [ext_resource type="Texture2D" uid="uid://0rkhpmk6rap2" path="res://assets/dialogueninepatch.png" id="2_7n7lv"]
 [ext_resource type="AudioStream" uid="uid://bhu3yl0bvasaa" path="res://assets/sounds/wah.wav" id="4_djqr1"]
 
 [sub_resource type="GDScript" id="GDScript_n2ctm"]
-script/source = "class_name DialogueBox extends Control
+script/source = "lass_name DialogueBox extends Control
 
 signal dialog_done
 

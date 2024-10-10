@@ -1,13 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=18 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
+[ext_resource type="Script" path="res://scripts/dialog_manager.gd" id="2_a04k1"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="2_w2tk2"]
+[ext_resource type="Resource" uid="uid://lobadbie4yle" path="res://resources/dialogs/Vaelvia.tres" id="3_1f4ra"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_63sse"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="3_nbsgn"]
-[ext_resource type="Resource" uid="uid://dbtosnvl542x3" path="res://test_dialog_tree.tres" id="3_om8q7"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="4_eo46b"]
+[ext_resource type="Resource" uid="uid://7ose65f355br" path="res://resources/dialogs/Bob.tres" id="4_npn1t"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="4_y3owe"]
+[ext_resource type="Resource" uid="uid://bxbcmfi4bjep" path="res://resources/dialogs/AngyGuy.tres" id="5_d0kfo"]
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="5_vw25s"]
+[ext_resource type="Resource" uid="uid://ihlb2vrj43ej" path="res://resources/dialogs/Jay.tres" id="6_ythxk"]
+[ext_resource type="Resource" uid="uid://c05l4ruwxisur" path="res://resources/dialogs/PrincessMcBeauty.tres" id="7_q5gsj"]
 
 [sub_resource type="Theme" id="Theme_jjprt"]
 Button/font_sizes/font_size = 10
@@ -37,15 +42,31 @@ script = ExtResource("1_gog3v")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="DialogueBox" type="Panel" parent="CanvasLayer"]
+[node name="DialogueManager" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_a04k1")
+dialogue_trees = {
+"Bob": ExtResource("4_npn1t"),
+"Jay": ExtResource("6_ythxk"),
+"Princess McBeauty": ExtResource("7_q5gsj"),
+"The Old Angy Guy The Real": ExtResource("5_d0kfo"),
+"Vaelvia": ExtResource("3_1f4ra")
+}
+
+[node name="DialogueBox" type="Panel" parent="CanvasLayer/DialogueManager"]
+unique_name_in_owner = true
+visible = false
 offset_left = 58.0
 offset_top = 170.0
 offset_right = 309.0
 offset_bottom = 238.0
 theme = SubResource("Theme_jjprt")
 script = ExtResource("2_w2tk2")
-data = ExtResource("3_om8q7")
+data = ExtResource("3_1f4ra")
 hide_portrait = true
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_s7t2j"), SubResource("RichTextEffect_afi01"), SubResource("RichTextEffect_iwc1u")])
 
@@ -126,7 +147,7 @@ size_flags_horizontal = 4
 text = "Back
 "
 
-[connection signal="dialogue_ended" from="CanvasLayer/DialogueBox" to="." method="_dialog_complete"]
+[connection signal="dialogue_ended" from="CanvasLayer/DialogueManager/DialogueBox" to="." method="_dialog_complete"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/SettingsButton" to="CanvasLayer/PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]
