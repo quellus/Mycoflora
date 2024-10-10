@@ -20,10 +20,15 @@ nodes = {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": ""
+"text": "yes"
+},
+1: {
+"condition": {},
+"link": &"1_2",
+"text": "no"
 }
 },
-"size": Vector2(300, 240),
+"size": Vector2(300, 256),
 "speaker": "The Old Angy Guy The Real"
 },
 "1_2": {
@@ -54,7 +59,7 @@ nodes = {
 },
 "1_4": {
 "dialogue": "Oh you found an artefact?",
-"offset": Vector2(-360, 60),
+"offset": Vector2(-340, 60),
 "options": {
 0: {
 "condition": {},
@@ -93,5 +98,5 @@ nodes = {
 }
 }
 variables = {}
-strays = Array[String](["1_4", "1_5", "1_6"])
+strays = Array[String](["1_5", "1_6", "1_4"])
 characters = ""

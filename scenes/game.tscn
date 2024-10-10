@@ -48,6 +48,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_force_pass_scroll_events = false
 script = ExtResource("2_a04k1")
 dialogue_trees = {
 "Bob": ExtResource("4_npn1t"),
@@ -59,9 +60,9 @@ dialogue_trees = {
 
 [node name="DialogueBox" type="Panel" parent="CanvasLayer/DialogueManager"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 0
 offset_left = 58.0
-offset_top = 170.0
+offset_top = 183.0
 offset_right = 309.0
 offset_bottom = 238.0
 theme = SubResource("Theme_jjprt")
@@ -69,6 +70,8 @@ script = ExtResource("2_w2tk2")
 data = ExtResource("3_1f4ra")
 hide_portrait = true
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_s7t2j"), SubResource("RichTextEffect_afi01"), SubResource("RichTextEffect_iwc1u")])
+max_options_count = 2
+options_vertical = true
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true

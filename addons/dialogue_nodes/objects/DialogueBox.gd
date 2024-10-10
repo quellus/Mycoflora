@@ -100,6 +100,7 @@ signal dialogue_ended
 		options_vertical = value
 		if options_container:
 			options_container.vertical = options_vertical
+			
 ## Position of options along the dialogue box.
 @export_enum('Top', 'Left', 'Right', 'Bottom') var options_position := 3 :
 	set(value):
@@ -109,21 +110,25 @@ signal dialogue_ended
 		if not _sub_container: return
 		
 		options_container.get_parent().remove_child(options_container)
-		match value:
-			0:
-				# top
-				_sub_container.add_child(options_container)
-				_sub_container.move_child(options_container, 0)
-			3:
-				# bottom
-				_sub_container.add_child(options_container)
-			1:
-				# left
-				_main_container.add_child(options_container)
-				_main_container.move_child(options_container, 0)
-			2:
-				# right
-				_main_container.add_child(options_container)
+		#match value:
+			#0:
+				## top
+				#_sub_container.add_child(options_container)
+				#_sub_container.move_child(options_container, 0)
+			#3:
+				## bottom
+				#_sub_container.add_child(options_container)
+			#1:
+				## left
+				#_main_container.add_child(options_container)
+				#_main_container.move_child(options_container, 0)
+			#2:
+				## right
+				#_main_container.add_child(options_container)
+		if options_vertical:
+			_h_options_container.add_child(options_container)
+		else:
+			_sub_container.add_child(options_container)
 
 @export_group('Misc')
 ## Hide dialogue box at the end of a dialogue
@@ -148,6 +153,7 @@ var options_container : BoxContainer
 var _dialogue_parser : DialogueParser
 var _main_container : BoxContainer
 var _sub_container : BoxContainer
+var _h_options_container : BoxContainer
 var _wait_effect : RichTextWait
 
 
@@ -175,15 +181,26 @@ func _enter_tree():
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 	portrait.texture = sample_portrait
 	portrait.visible = not hide_portrait
+		
+	_h_options_container = BoxContainer.new()
+	_main_container.add_child(_h_options_container)
+	_h_options_container.vertical = false
+	_h_options_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
 	_sub_container = BoxContainer.new()
-	_main_container.add_child(_sub_container)
+	if options_vertical:
+		_h_options_container.add_child(_sub_container)
+	else:
+		_main_container.add_child(_sub_container)
 	_sub_container.vertical = true
 	_sub_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
 	
 	speaker_label = Label.new()
 	_sub_container.add_child(speaker_label)
 	speaker_label.text = 'Speaker'
+	
+	
 	
 	dialogue_label = RichTextLabel.new()
 	_sub_container.add_child(dialogue_label)
@@ -193,7 +210,10 @@ func _enter_tree():
 	dialogue_label.custom_effects = custom_effects
 	
 	options_container = BoxContainer.new()
-	_sub_container.add_child(options_container)
+	if options_vertical:
+		_h_options_container.add_child(options_container)
+	else:
+		_sub_container.add_child(options_container)
 	options_container.alignment = BoxContainer.ALIGNMENT_END
 	max_options_count = max_options_count
 	options_alignment = options_alignment
