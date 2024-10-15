@@ -20,15 +20,10 @@ nodes = {
 0: {
 "condition": {},
 "link": &"1_2",
-"text": "yes"
-},
-1: {
-"condition": {},
-"link": &"1_2",
-"text": "no"
+"text": ""
 }
 },
-"size": Vector2(300, 256),
+"size": Vector2(300, 240),
 "speaker": "The Old Angy Guy The Real"
 },
 "1_2": {

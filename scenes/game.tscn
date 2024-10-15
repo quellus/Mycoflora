@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=19 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
 [ext_resource type="Script" path="res://scripts/dialog_manager.gd" id="2_a04k1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="5_vw25s"]
 [ext_resource type="Resource" uid="uid://ihlb2vrj43ej" path="res://resources/dialogs/Jay.tres" id="6_ythxk"]
 [ext_resource type="Resource" uid="uid://c05l4ruwxisur" path="res://resources/dialogs/PrincessMcBeauty.tres" id="7_q5gsj"]
+[ext_resource type="AudioStream" uid="uid://bhu3yl0bvasaa" path="res://assets/sounds/wah.wav" id="12_q2kph"]
 
 [sub_resource type="Theme" id="Theme_jjprt"]
 Button/font_sizes/font_size = 10
@@ -60,6 +61,7 @@ dialogue_trees = {
 
 [node name="DialogueBox" type="Panel" parent="CanvasLayer/DialogueManager"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 58.0
 offset_top = 183.0
@@ -72,6 +74,11 @@ hide_portrait = true
 custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_s7t2j"), SubResource("RichTextEffect_afi01"), SubResource("RichTextEffect_iwc1u")])
 max_options_count = 2
 options_vertical = true
+
+[node name="DialogueAudioPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DialogueManager"]
+unique_name_in_owner = true
+stream = ExtResource("12_q2kph")
+pitch_scale = 2.0
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
