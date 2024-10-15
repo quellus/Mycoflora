@@ -64,7 +64,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") and !in_dialog:
 		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
