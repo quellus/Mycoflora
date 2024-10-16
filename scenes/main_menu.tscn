@@ -15,11 +15,12 @@ script = ExtResource("1_kmllh")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 39.0
 grow_horizontal = 2
 
 [node name="Label2" type="Label" parent="CenterContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 27
 text = "Mycoflora"
 
 [node name="Menus" type="CenterContainer" parent="."]
