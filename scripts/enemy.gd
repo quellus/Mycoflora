@@ -14,11 +14,13 @@ const SPEED = 70
 @onready var state_machine = animtree["parameters/playback"]
 
 func _physics_process(_delta):
+	var next_pos: Vector2 = nav_agent.get_next_path_position()
 	if target != null:
-		var next_pos: Vector2 = nav_agent.get_next_path_position()
 		if (target.global_position.distance_to(nav_agent.target_position) >= 30 or nav_agent.is_navigation_finished()):
 			nav_agent.target_position = target.global_position
 			next_pos = nav_agent.get_next_path_position()
+		velocity = global_position.direction_to(next_pos) * SPEED * speed_mod
+	elif !nav_agent.is_navigation_finished():
 		velocity = global_position.direction_to(next_pos) * SPEED * speed_mod
 	else:
 		velocity = Vector2.ZERO
