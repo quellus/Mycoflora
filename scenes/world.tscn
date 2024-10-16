@@ -78,11 +78,12 @@ letter_time = -1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bxto"]
 size = Vector2(6, 30)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points", "nav_region")]
 process_mode = 1
 y_sort_enabled = true
 script = ExtResource("1_m5d1x")
 spawn_points = [NodePath("First Town/HomeSpawn"), NodePath("First Town/Castle/SpawnPoint")]
+nav_region = NodePath("NavigationRegion2D")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true

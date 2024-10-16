@@ -3,7 +3,7 @@ extends Node
 var data = {
 	"players": {
 		"player1": {
-			"learned_magic": false,
+			"killed_boss": false,
 			"has_weapon": false,
 			"flowers": 10
 		}

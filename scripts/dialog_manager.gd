@@ -1,45 +1,47 @@
 class_name DialogueManager extends Control
 
-signal dialog_complete
+@export var dialogue_trees: Dictionary = {}
 
-@onready var dialogue_box = $DialogueBox
+@onready var dialogue_box: DialogueBox = %DialogueBox
+@onready var nine_patch: NinePatchRect = %NinePatchRect
+@onready var audio_player: AudioStreamPlayer = %DialogueAudioPlayer
 
-var waiting_for_input: bool = false
-var dialogue_queue = []
+var current_dialogue: String = ""
+var silent_characters: String = ",.?/ -_!@#$%^&*()~`"
 
-func _input(event: InputEvent) -> void:
-	if waiting_for_input and event.is_action_pressed("interact"):
-		print("play next dialog")
-		waiting_for_input = false
-		play_next_dialogue()
+func _ready() -> void:
+	dialogue_box.visible = false
+	nine_patch.visible = false
+	dialogue_box.custom_effects[0].char_displayed.connect(_on_char_displayed)
+	dialogue_box.dialogue_processed.connect(_on_dialogue_processed)
 
-
-func _on_dialogue_trigger(dialogues: Array[DialogResource]):
-	print("dialog trigger")
-	var play_them = dialogue_queue.size() <= 0
-	for dialogue in dialogues:
-		dialogue_queue.append(dialogue)
-	if play_them:
-		play_next_dialogue()
-
-
-func play_dialogue(dialogue: DialogResource):
-	if dialogue.letter_time > 0:
-		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue, dialogue.letter_time)
+func start(char_name: String):
+	if char_name in dialogue_trees:
+		var tree = dialogue_trees[char_name]
+		_update_dialog_variables(tree)
+		dialogue_box.data = tree
+		dialogue_box.start("START")
 	else:
-		dialogue_box.play_dialogue(dialogue.name, dialogue.dialogue)
+		printerr("Dialogue requested but ", char_name, " not found in dialogue trees")
+
+func _update_dialog_variables(data: DialogueData):
+	if "KILLED_BOSS" in data.variables:
+		data.variables["KILLED_BOSS"]["value"] = SaveLoad.data["players"]["player1"]["killed_boss"]
+
+func _on_char_displayed(char_index: int):
+	if char_index % 2 == 0:
+		if !current_dialogue[char_index] in silent_characters:
+			audio_player.pitch_scale = 2 + randf_range(-0.1, 0.1)
+			print(current_dialogue[char_index])
+			audio_player.play()
+
+func _on_dialogue_processed(_speaker : Variant, dialogue : String, _options : Array[String]):
+	current_dialogue = dialogue
 
 
-func play_next_dialogue():
-	if(dialogue_queue.size() > 0):
-		var dialogue = dialogue_queue.pop_front()
-		if dialogue.dialogue.length() > 0:
-			play_dialogue(dialogue)
-	else:
-		dialogue_box.dialog_complete()
-		waiting_for_input = false
-		dialog_complete.emit()
+func _on_dialogue_box_dialogue_started(_id: String) -> void:
+	nine_patch.visible = true
 
 
-func _dialog_done() -> void:
-	waiting_for_input = true
+func _on_dialogue_box_dialogue_ended() -> void:
+	nine_patch.visible = false

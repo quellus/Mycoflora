@@ -1,9 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=21 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
-[ext_resource type="PackedScene" uid="uid://bja6vxyfil7he" path="res://scenes/dialog_manager.tscn" id="2_g7mqf"]
+[ext_resource type="Script" path="res://scripts/dialog_manager.gd" id="2_a04k1"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueBox.gd" id="2_w2tk2"]
+[ext_resource type="Resource" uid="uid://lobadbie4yle" path="res://resources/dialogs/Vaelvia.tres" id="3_1f4ra"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="3_63sse"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeWait.gd" id="3_nbsgn"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="4_eo46b"]
+[ext_resource type="Resource" uid="uid://7ose65f355br" path="res://resources/dialogs/Bob.tres" id="4_npn1t"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeGhost.gd" id="4_y3owe"]
+[ext_resource type="Resource" uid="uid://bxbcmfi4bjep" path="res://resources/dialogs/AngyGuy.tres" id="5_d0kfo"]
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/bbcodeMatrix.gd" id="5_vw25s"]
+[ext_resource type="Resource" uid="uid://ihlb2vrj43ej" path="res://resources/dialogs/Jay.tres" id="6_ythxk"]
+[ext_resource type="Resource" uid="uid://c05l4ruwxisur" path="res://resources/dialogs/PrincessMcBeauty.tres" id="7_q5gsj"]
+[ext_resource type="Texture2D" uid="uid://0rkhpmk6rap2" path="res://assets/dialogueninepatch.png" id="8_sj0ku"]
+[ext_resource type="AudioStream" uid="uid://bhu3yl0bvasaa" path="res://assets/sounds/wah.wav" id="12_q2kph"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2klbr"]
+
+[sub_resource type="Theme" id="Theme_jjprt"]
+default_font_size = 16
+Panel/styles/panel = SubResource("StyleBoxEmpty_2klbr")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_s7t2j"]
+script = ExtResource("3_nbsgn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_afi01"]
+script = ExtResource("4_y3owe")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_iwc1u"]
+script = ExtResource("5_vw25s")
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -13,6 +40,58 @@ anchors_preset = 0
 script = ExtResource("1_gog3v")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueManager" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_force_pass_scroll_events = false
+script = ExtResource("2_a04k1")
+dialogue_trees = {
+"Bob": ExtResource("4_npn1t"),
+"Jay": ExtResource("6_ythxk"),
+"Princess McBeauty": ExtResource("7_q5gsj"),
+"The Old Angy Guy The Real": ExtResource("5_d0kfo"),
+"Vaelvia": ExtResource("3_1f4ra")
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/DialogueManager"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 54.0
+offset_top = 183.0
+offset_right = 316.0
+offset_bottom = 239.0
+texture = ExtResource("8_sj0ku")
+region_rect = Rect2(0, 0, 18, 18)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="DialogueBox" type="Panel" parent="CanvasLayer/DialogueManager"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 58.0
+offset_top = 183.0
+offset_right = 309.0
+offset_bottom = 238.0
+theme = SubResource("Theme_jjprt")
+script = ExtResource("2_w2tk2")
+data = ExtResource("3_1f4ra")
+hide_portrait = true
+custom_effects = Array[RichTextEffect]([SubResource("RichTextEffect_s7t2j"), SubResource("RichTextEffect_afi01"), SubResource("RichTextEffect_iwc1u")])
+max_options_count = 2
+options_vertical = true
+
+[node name="DialogueAudioPlayer" type="AudioStreamPlayer" parent="CanvasLayer/DialogueManager"]
+unique_name_in_owner = true
+stream = ExtResource("12_q2kph")
+pitch_scale = 2.0
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -27,9 +106,6 @@ max_value = 10.0
 step = 1.0
 value = 5.0
 show_percentage = false
-
-[node name="DialogManager" parent="CanvasLayer" instance=ExtResource("2_g7mqf")]
-unique_name_in_owner = true
 
 [node name="FlowersLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -94,7 +170,9 @@ size_flags_horizontal = 4
 text = "Back
 "
 
-[connection signal="dialog_complete" from="CanvasLayer/DialogManager" to="." method="_dialog_complete"]
+[connection signal="dialogue_ended" from="CanvasLayer/DialogueManager/DialogueBox" to="." method="_dialog_complete"]
+[connection signal="dialogue_ended" from="CanvasLayer/DialogueManager/DialogueBox" to="CanvasLayer/DialogueManager" method="_on_dialogue_box_dialogue_ended"]
+[connection signal="dialogue_started" from="CanvasLayer/DialogueManager/DialogueBox" to="CanvasLayer/DialogueManager" method="_on_dialogue_box_dialogue_started"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/SettingsButton" to="CanvasLayer/PauseMenu" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]

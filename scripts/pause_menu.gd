@@ -27,6 +27,7 @@ func _input(event: InputEvent) -> void:
 
 func hide_menus() -> void:
 	get_tree().paused = false
+	visible = false
 	for menu in menus.values():
 		menu.visible = false
 	current_menu = ""
@@ -34,6 +35,7 @@ func hide_menus() -> void:
 
 func show_menu(menu_name: String) -> void:
 	get_tree().paused = true
+	visible = true
 	for menu in menus.values():
 		menu.visible = false
 	menus[menu_name].visible = true

@@ -33,7 +33,7 @@ func _spawn_player(spawn_position: Vector2):
 	player.health_changed.connect(_player_health_changed)
 	player.flower_count_changed.connect(_flower_count_changed)
 	player.warp.connect(_warp, CONNECT_DEFERRED)
-	player.dialog_trigger.connect(%DialogManager._on_dialogue_trigger)
+	player.dialog_trigger.connect(_on_dialogue_trigger)
 	player.player_died.connect(_player_died)
 	_player_health_changed(player.health)
 	_flower_count_changed(player.flowers)
@@ -61,3 +61,7 @@ func _volume_slider_value_changed(value: float) -> void:
 func _dialog_complete():
 	if player:
 		player.in_dialog = false
+
+func _on_dialogue_trigger(char_name: String):
+	%DialogueManager.start(char_name)
+	

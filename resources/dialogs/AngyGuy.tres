@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://bxbcmfi4bjep"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_54llv"]
+
+[resource]
+script = ExtResource("1_54llv")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"5_1",
+"offset": Vector2(-1000, -140),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "You're the only person strong enough to venture into the forest.",
+"offset": Vector2(-360, -300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"1_2": {
+"dialogue": "It's dangerous to go alone, take this.",
+"offset": Vector2(0, -300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"1_3": {
+"dialogue": "Please go investigate what is happening.",
+"offset": Vector2(360, -300),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"1_4": {
+"dialogue": "Oh you found an artefact?",
+"offset": Vector2(-340, 60),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"1_5": {
+"dialogue": "Travel to Velaria and present it to Princess McBeauty.",
+"offset": Vector2(0, 60),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"1_6": {
+"dialogue": "She may know what to do with it.",
+"offset": Vector2(360, 60),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "The Old Angy Guy The Real"
+},
+"5_1": {
+"false": &"1_1",
+"offset": Vector2(-780, -180),
+"operator": 0,
+"true": &"1_4",
+"value1": "{{KILLED_BOSS}}",
+"value2": "true"
+}
+}
+variables = {
+"KILLED_BOSS": {
+"type": 1,
+"value": false
+}
+}
+strays = Array[String]([])
+characters = ""

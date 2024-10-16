@@ -9,19 +9,19 @@ signal health_changed(health)
 signal flower_count_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
-signal dialog_trigger(Array)
+signal dialog_trigger(String)
 
 var in_dialog: bool = false
 var last_move_direction: Vector2
 var health: int = 10
 var knockback: bool = false
 
-var learned_magic: bool:
+var killed_boss: bool:
 	get():
-		return SaveLoad.data["players"]["player1"]["learned_magic"]
+		return SaveLoad.data["players"]["player1"]["killed_boss"]
 	set(value):
-		learned_magic = value
-		SaveLoad.data["players"]["player1"]["learned_magic"] = value
+		killed_boss = value
+		SaveLoad.data["players"]["player1"]["killed_boss"] = value
 var has_weapon: bool:
 	get():
 		return SaveLoad.data["players"]["player1"]["has_weapon"]
@@ -64,7 +64,7 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("attack") and !in_dialog:
 		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
@@ -72,9 +72,9 @@ func _input(event):
 				direction = last_move_direction
 		else:
 			direction = global_position.direction_to(get_global_mouse_position())
-		if has_weapon or learned_magic:
+		if has_weapon or killed_boss:
 			weapon.attack(direction)
-	if event.is_action_pressed("swap_weapons") and learned_magic:
+	if event.is_action_pressed("swap_weapons") and killed_boss:
 		weapon.magic_mode = !weapon.magic_mode
 	if event.is_action_pressed("interact") and !in_dialog:
 		for area in %InteractableDetector.get_overlapping_areas():
@@ -84,10 +84,10 @@ func _input(event):
 					elif area is Scythe:
 						has_weapon = true
 					elif area is Artefact:
-						learned_magic = true
+						killed_boss = true
 					elif area is DialogInteractable:
 						in_dialog = true
-						dialog_trigger.emit(area.dialogue)
+						dialog_trigger.emit(area.dialogue[0].name)
 						if area.dialogue[0].name == "The Old Angy Guy The Real":
 							has_weapon = true
 					area.interact()

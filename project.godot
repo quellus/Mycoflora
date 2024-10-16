@@ -28,9 +28,17 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg")
+
 [global_group]
 
 save=""
+
+[gui]
+
+theme/custom_font="res://assets/m5x7.ttf"
 
 [input]
 

@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="DialogueData" load_steps=2 format=3 uid="uid://c05l4ruwxisur"]
+
+[ext_resource type="Script" path="res://addons/dialogue_nodes/objects/DialogueData.gd" id="1_l67pn"]
+
+[resource]
+script = ExtResource("1_l67pn")
+starts = {
+"START": &"0_1"
+}
+nodes = {
+"0_1": {
+"link": &"5_1",
+"offset": Vector2(-1220, -200),
+"start_id": "START"
+},
+"1_1": {
+"dialogue": "Look, I have no idea who you are. ",
+"offset": Vector2(-580, -300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_2",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"1_2": {
+"dialogue": "Sending troops would put the kingdom in danger.",
+"offset": Vector2(-220, -300),
+"options": {
+0: {
+"condition": {},
+"link": &"1_3",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"1_3": {
+"dialogue": "I will help if you bring me evidence that the forest is attacking.",
+"offset": Vector2(140, -300),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"1_4": {
+"dialogue": "Oh that's an interesting artefact!",
+"offset": Vector2(-580, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_5",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"1_5": {
+"dialogue": "Sounds like a lot of strange happenings in the forest.",
+"offset": Vector2(-220, 0),
+"options": {
+0: {
+"condition": {},
+"link": &"1_6",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"1_6": {
+"dialogue": "This isn't a good time to thin my army, but I'll send some troops to help.",
+"offset": Vector2(140, 0),
+"options": {
+0: {
+"condition": {},
+"link": "END",
+"text": ""
+}
+},
+"size": Vector2(300, 240),
+"speaker": "Princess McBeauty"
+},
+"5_1": {
+"false": &"1_1",
+"offset": Vector2(-960, -240),
+"operator": 0,
+"true": &"1_4",
+"value1": "{{KILLED_BOSS}}",
+"value2": "true"
+}
+}
+variables = {
+"KILLED_BOSS": {
+"type": 1,
+"value": false
+}
+}
+strays = Array[String]([])
+characters = ""
