@@ -1,3 +1,3 @@
 class_name DialogInteractable extends Interactable
 
-@export var dialogue: Array[DialogResource]
+@export var char_name: String

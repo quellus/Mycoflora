@@ -1,35 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://br3xyusj5yaij"]
+[gd_scene load_steps=9 format=3 uid="uid://br3xyusj5yaij"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_go4sf"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_u4g36"]
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="3_utl14"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="4_ywny7"]
 [ext_resource type="Script" path="res://scripts/dialog_interactable.gd" id="5_ix03y"]
-[ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_fkr28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0g7e"]
 size = Vector2(20, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkay1"]
 size = Vector2(12, 12)
-
-[sub_resource type="Resource" id="Resource_khksb"]
-script = ExtResource("6_fkr28")
-name = "Princess McBeauty"
-dialogue = "Look, I have no idea who you are."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_37fmt"]
-script = ExtResource("6_fkr28")
-name = "Princess McBeauty"
-dialogue = "Sending troops would put the kingdom in danger."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_jlxyg"]
-script = ExtResource("6_fkr28")
-name = "Princess McBeauty"
-dialogue = "I will help if you bring me evidence that the forest is attacking."
-letter_time = -1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ycx4e"]
 
@@ -67,7 +48,7 @@ shape = SubResource("RectangleShape2D_vkay1")
 
 [node name="DialogTrigger" type="Area2D" parent="Princess" node_paths=PackedStringArray("sprite")]
 script = ExtResource("5_ix03y")
-dialogue = Array[ExtResource("6_fkr28")]([SubResource("Resource_khksb"), SubResource("Resource_37fmt"), SubResource("Resource_jlxyg")])
+char_name = "Princess McBeauty"
 sprite = NodePath("../Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Princess/DialogTrigger"]

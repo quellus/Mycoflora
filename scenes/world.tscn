@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=15 format=4 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
@@ -6,74 +6,19 @@
 [ext_resource type="Script" path="res://scripts/warp_point.gd" id="4_80pl6"]
 [ext_resource type="Script" path="res://scripts/dialog_interactable.gd" id="5_mmkfd"]
 [ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/enemy.tscn" id="5_nukpt"]
-[ext_resource type="Script" path="res://scripts/dialog_resource.gd" id="6_oqtww"]
 [ext_resource type="Texture2D" uid="uid://c3j7qokb34kkt" path="res://icon.svg" id="7_83bry"]
 [ext_resource type="Script" path="res://scripts/scythe.gd" id="8_75g8n"]
 [ext_resource type="Texture2D" uid="uid://dfodo0oopr6m0" path="res://assets/Scythe.png" id="9_a27l6"]
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_0kms4"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_frc3o"]
 agent_radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opmhg"]
 size = Vector2(12, 2)
 
-[sub_resource type="Resource" id="Resource_ktip5"]
-script = ExtResource("6_oqtww")
-name = "Vaelvia"
-dialogue = "There's something wrong with the forest."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_htlht"]
-script = ExtResource("6_oqtww")
-name = "Vaelvia"
-dialogue = "Creatures who used to be docile are suddenly turning hostile"
-letter_time = -1.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qo5p8"]
 size = Vector2(18, 16)
-
-[sub_resource type="Resource" id="Resource_faemg"]
-script = ExtResource("6_oqtww")
-name = "The Old Angy Guy The Real"
-dialogue = "You're the only person in the village strong enough to venture into the forest right now."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_dacx0"]
-script = ExtResource("6_oqtww")
-name = "The Old Angy Guy The Real"
-dialogue = "It's dangerous to go alone, take this."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_ju5a5"]
-script = ExtResource("6_oqtww")
-name = "The Old Angy Guy The Real"
-dialogue = "Please go investigate what is happening."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_2wypq"]
-script = ExtResource("6_oqtww")
-name = "Jay"
-dialogue = "Someone needs to do something about the forest creatures."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_o43u4"]
-script = ExtResource("6_oqtww")
-name = "Jay"
-dialogue = "I was attacked on my way to Tirothell and had to turn back."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_qq6e0"]
-script = ExtResource("6_oqtww")
-name = "Bob"
-dialogue = "Please get out of my house."
-letter_time = -1.0
-
-[sub_resource type="Resource" id="Resource_2lflu"]
-script = ExtResource("6_oqtww")
-name = "Bob"
-dialogue = "How did you even get in here?"
-letter_time = -1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bxto"]
 size = Vector2(6, 30)
@@ -87,7 +32,7 @@ nav_region = NodePath("NavigationRegion2D")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 y_sort_enabled = true
-navigation_polygon = SubResource("NavigationPolygon_0kms4")
+navigation_polygon = SubResource("NavigationPolygon_frc3o")
 
 [node name="TileMap" type="Node2D" parent="NavigationRegion2D"]
 y_sort_enabled = true
@@ -154,7 +99,7 @@ position = Vector2(-246, 320)
 [node name="Vaelvia" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(408, 387)
 script = ExtResource("5_mmkfd")
-dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_ktip5"), SubResource("Resource_htlht")])
+char_name = "Vaelvia"
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Vaelvia"]
@@ -167,7 +112,7 @@ texture = ExtResource("7_83bry")
 [node name="Angy Guy" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-136, 338)
 script = ExtResource("5_mmkfd")
-dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_faemg"), SubResource("Resource_dacx0"), SubResource("Resource_ju5a5")])
+char_name = "The Old Angy Guy The Real"
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Angy Guy"]
@@ -180,7 +125,7 @@ texture = ExtResource("7_83bry")
 [node name="Jay" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(297, 374)
 script = ExtResource("5_mmkfd")
-dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_2wypq"), SubResource("Resource_o43u4")])
+char_name = "Jay"
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Jay"]
@@ -193,7 +138,7 @@ texture = ExtResource("7_83bry")
 [node name="Bob" type="Area2D" parent="First Town/NPCs" node_paths=PackedStringArray("sprite")]
 position = Vector2(-23, 356)
 script = ExtResource("5_mmkfd")
-dialogue = Array[ExtResource("6_oqtww")]([SubResource("Resource_qq6e0"), SubResource("Resource_2lflu")])
+char_name = "Bob"
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="First Town/NPCs/Bob"]

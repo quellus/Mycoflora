@@ -95,8 +95,8 @@ func _input(event):
 						killed_boss = true
 					elif area is DialogInteractable:
 						in_dialog = true
-						dialog_trigger.emit(area.dialogue[0].name)
-						if area.dialogue[0].name == "The Old Angy Guy The Real":
+						dialog_trigger.emit(area.char_name)
+						if area.char_name == "The Old Angy Guy The Real":
 							has_weapon = true
 					area.interact()
 
@@ -133,10 +133,7 @@ func _on_i_frame_timer_timeout():
 
 
 func _on_interactable_detector_area_entered(area):
-	if area is DialogTrigger:
-		in_dialog = true
-		dialog_trigger.emit(area.dialogue)
-	elif area is Interactable:
+	if area is Interactable:
 		area.highlight(true)
 
 
