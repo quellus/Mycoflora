@@ -75,6 +75,7 @@ axis_stretch_vertical = 1
 
 [node name="DialogueBox" type="Panel" parent="CanvasLayer/DialogueManager"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 58.0
 offset_top = 183.0
