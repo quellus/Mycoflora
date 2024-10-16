@@ -36,6 +36,10 @@ enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg")
 
 save=""
 
+[gui]
+
+theme/custom_font="res://assets/m5x7.ttf"
+
 [input]
 
 ui_accept={
