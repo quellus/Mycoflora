@@ -37,6 +37,7 @@ var flowers: int = 10:
 		flower_count_changed.emit(value)
 
 const SPEED: float = 75.0
+var speed_modifier: float = 1
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -45,7 +46,7 @@ func _physics_process(_delta):
 		if direction and !in_dialog:
 			last_move_direction = direction
 			camera_position = direction * 10
-			velocity = direction * SPEED
+			velocity = direction * SPEED * speed_modifier
 			if direction.x > 0:
 				sprite.flip_h = false
 			elif direction.x < 0:
@@ -64,6 +65,13 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func _input(event):
+	if event.is_action_pressed("sprint"):
+		if OS.has_feature("editor"):
+			if speed_modifier > 1:
+				speed_modifier = 1
+			else:
+				speed_modifier = 5
+		
 	if event.is_action_pressed("attack") and !in_dialog:
 		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
