@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c565c6moubufi"]
+
+[ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/Enemies/enemy.tscn" id="1_nqnjr"]
+[ext_resource type="Texture2D" uid="uid://dgwfbi47alo6j" path="res://assets/Froggy.png" id="2_bq0g4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q68sq"]
+atlas = ExtResource("2_bq0g4")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oclj0"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q68sq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_nqnjr")]
+hop = true
+
+[node name="AnimatedSprite2D" parent="." index="9"]
+sprite_frames = SubResource("SpriteFrames_oclj0")

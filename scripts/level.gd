@@ -5,5 +5,6 @@ class_name Level extends Node2D
 var spawn := Vector2(0, 0)
 
 func _ready():
-	if nav_region:
-		nav_region.bake_navigation_polygon()
+	if OS.has_feature("editor"):
+		if nav_region:
+			nav_region.bake_navigation_polygon()

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://b321js612x5ci"]
+
+[ext_resource type="PackedScene" uid="uid://cr8cjatjiolay" path="res://scenes/Enemies/enemy.tscn" id="1_pm5rr"]
+[ext_resource type="Texture2D" uid="uid://clmtlhtqb0u7m" path="res://assets/mushroom.png" id="2_1wnc1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff3gl"]
+atlas = ExtResource("2_1wnc1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bjnm"]
+atlas = ExtResource("2_1wnc1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4k4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff3gl")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bjnm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MushroomEnemy" instance=ExtResource("1_pm5rr")]
+
+[node name="AnimatedSprite2D" parent="." index="9"]
+sprite_frames = SubResource("SpriteFrames_k4k4m")
+animation = &"death"

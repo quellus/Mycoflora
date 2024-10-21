@@ -32,7 +32,6 @@ func _on_char_displayed(char_index: int):
 	if char_index % 2 == 0:
 		if !current_dialogue[char_index] in silent_characters:
 			audio_player.pitch_scale = 2 + randf_range(-0.1, 0.1)
-			print(current_dialogue[char_index])
 			audio_player.play()
 
 func _on_dialogue_processed(_speaker : Variant, dialogue : String, _options : Array[String]):
