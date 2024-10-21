@@ -212,6 +212,54 @@ position = Vector2(813, 289)
 [node name="Enemy4" parent="Forest" instance=ExtResource("5_nukpt")]
 position = Vector2(935, -131)
 
+[node name="Enemy20" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(616, -224)
+
+[node name="Enemy21" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(656, -148)
+
+[node name="Enemy22" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(686, -219)
+
+[node name="Enemy23" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(583, -179)
+
+[node name="Enemy24" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-102, -189)
+
+[node name="Enemy25" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-57, -204)
+
+[node name="Enemy26" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-75, -139)
+
+[node name="Enemy27" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-145, -245)
+
+[node name="Enemy28" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-100, 648)
+
+[node name="Enemy29" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(-24, 688)
+
+[node name="Enemy30" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(465, 654)
+
+[node name="Enemy31" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(3086, 566)
+
+[node name="Enemy32" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(3111, 645)
+
+[node name="Enemy33" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(3151, 590)
+
+[node name="Enemy34" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(3228, 494)
+
+[node name="Enemy35" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(2037, 612)
+
 [node name="Enemy5" parent="Forest" instance=ExtResource("5_nukpt")]
 position = Vector2(994, -109)
 
@@ -226,6 +274,36 @@ position = Vector2(1350, -131)
 
 [node name="Enemy9" parent="Forest" instance=ExtResource("5_nukpt")]
 position = Vector2(1422, -127)
+
+[node name="Enemy10" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(1354, 215)
+
+[node name="Enemy11" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(1308, 288)
+
+[node name="Enemy12" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(1405, 317)
+
+[node name="Enemy13" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(1441, 241)
+
+[node name="Enemy14" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(887, 630)
+
+[node name="Enemy15" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(844, 612)
+
+[node name="Enemy16" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(927, 604)
+
+[node name="Enemy17" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(2047, 342)
+
+[node name="Enemy18" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(2087, 303)
+
+[node name="Enemy19" parent="Forest" instance=ExtResource("5_nukpt")]
+position = Vector2(2082, 383)
 
 [node name="Boss" parent="Forest" instance=ExtResource("9_w4bq7")]
 position = Vector2(1817, -18)
