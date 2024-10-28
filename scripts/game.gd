@@ -14,6 +14,8 @@ func _ready():
 	load_level("world", 0)
 	AudioServer.set_bus_volume_db(0, linear_to_db(0.5))
 	
+	%SwordLevel.text = "Sword level: 0"
+	
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
@@ -35,6 +37,7 @@ func _spawn_player(spawn_position: Vector2):
 	player.warp.connect(_warp, CONNECT_DEFERRED)
 	player.dialog_trigger.connect(_on_dialogue_trigger)
 	player.player_died.connect(_player_died)
+	player.sword_level_changed.connect(_sword_level_changed)
 	_player_health_changed(player.health)
 	_flower_count_changed(player.flowers)
 
@@ -46,6 +49,9 @@ func _player_health_changed(health):
 func _flower_count_changed(value):
 	%FlowersLabel.text = "Florids: " + str(value)
 
+
+func _sword_level_changed(value: int):
+	%SwordLevel.text = "Sword level: " + str(value)
 
 func _player_died():
 	exit_game.emit()

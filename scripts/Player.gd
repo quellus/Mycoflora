@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 
 signal health_changed(health)
 signal flower_count_changed(value: int)
+signal sword_level_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(String)
@@ -35,6 +36,11 @@ var flowers: int = 10:
 		flowers = value
 		SaveLoad.data["players"]["player1"]["flowers"] = value
 		flower_count_changed.emit(value)
+
+var sword_level: int = 0:
+	set(value):
+		sword_level = value
+		sword_level_changed.emit(value)
 
 const SPEED: float = 75.0
 var speed_modifier: float = 1
@@ -98,6 +104,12 @@ func _input(event):
 						dialog_trigger.emit(area.char_name)
 						if area.char_name == "The Old Angy Guy The Real":
 							has_weapon = true
+					elif area is TreasureChest:
+						if area.type == Interactable.ItemTypes.SWORD:
+							sword_level += 1
+						elif area.type == Interactable.ItemTypes.ARMOUR:
+							#Implement health upgrades
+							pass
 					area.interact()
 
 

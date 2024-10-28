@@ -141,7 +141,6 @@ script = ExtResource("3_vxs7l")
 
 [node name="HurtBox" type="Area2D" parent="Weapon"]
 script = ExtResource("5_c2u06")
-damage = 1
 entity = "Player"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Weapon/HurtBox"]
@@ -190,6 +189,7 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vyip1")
 
+[connection signal="sword_level_changed" from="." to="Weapon" method="_on_player_sword_level_changed"]
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
 [connection signal="area_entered" from="InteractableDetector" to="." method="_on_interactable_detector_area_entered"]

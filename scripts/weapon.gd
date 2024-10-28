@@ -19,7 +19,7 @@ const MAGIC_BASE_MOVEMENT_SPEED: float = 200
 
 var magic_damage_multiplier: float = 1
 var magic_speed_multiplier: float = 1
-#var magic_size:int = 1
+#var magic_size: int = 1
 
 var magic_mode = false
 var can_attack = true
@@ -54,3 +54,7 @@ func _on_swing_timer_timeout():
 	hurt_box.visible = false
 	collision_shape.disabled = true
 	can_attack = true
+
+
+func _on_player_sword_level_changed(value: int) -> void:
+	sword_damage_multiplier = (value * 0.5) + 1

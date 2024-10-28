@@ -116,6 +116,14 @@ offset_right = 71.0
 offset_bottom = 40.0
 text = "Florids:"
 
+[node name="SwordLevel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 34.0
+offset_right = 48.0
+offset_bottom = 47.0
+text = "Sword level"
+
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
