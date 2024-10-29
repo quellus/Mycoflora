@@ -9,6 +9,8 @@ const levels = {
 }
 var level:Level = null
 var player:Player = null
+var enemies_targeting_player: int = 0
+@onready var player_heal_timer: Timer = %PlayerHealTimer
 
 func _ready():
 	load_level("world", 0)
@@ -23,6 +25,12 @@ func load_level(level_name: String, spawn_index: int):
 			level.queue_free()
 		level = levels[level_name].instantiate()
 		add_child(level)
+		var enemies = get_tree().get_nodes_in_group("enemy")
+		for enemy: Enemy in enemies:
+			enemy.target_state_changed.connect(_on_enemy_target_state_changed)
+		var bosses = get_tree().get_nodes_in_group("boss")
+		for boss: Boss in bosses:
+			boss.target_state_changed.connect(_on_enemy_target_state_changed)
 		_spawn_player(level.spawn_points[spawn_index].global_position)
 
 
@@ -70,4 +78,17 @@ func _dialog_complete():
 
 func _on_dialogue_trigger(char_name: String):
 	%DialogueManager.start(char_name)
-	
+
+func _on_enemy_target_state_changed(state: bool):
+	if state:
+		enemies_targeting_player += 1
+		player_heal_timer.stop()
+	else:
+		enemies_targeting_player -= 1
+		if enemies_targeting_player <= 0:
+			player_heal_timer.start(5)
+
+
+func _on_player_heal_timer_timeout() -> void:
+	if enemies_targeting_player <= 0:
+		player.heal()

@@ -195,7 +195,7 @@ _data = {
 "hurt": SubResource("Animation_b08h4")
 }
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" groups=["boss"]]
 z_index = 1
 motion_mode = 1
 script = ExtResource("1_tg7ce")

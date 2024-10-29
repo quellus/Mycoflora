@@ -179,6 +179,11 @@ size_flags_horizontal = 4
 text = "Back
 "
 
+[node name="PlayerHealTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
 [connection signal="dialogue_ended" from="CanvasLayer/DialogueManager/DialogueBox" to="." method="_dialog_complete"]
 [connection signal="dialogue_ended" from="CanvasLayer/DialogueManager/DialogueBox" to="CanvasLayer/DialogueManager" method="_on_dialogue_box_dialogue_ended"]
 [connection signal="dialogue_started" from="CanvasLayer/DialogueManager/DialogueBox" to="CanvasLayer/DialogueManager" method="_on_dialogue_box_dialogue_started"]
@@ -186,3 +191,4 @@ text = "Back
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MainPauseMenu/QuitButton" to="CanvasLayer/PauseMenu" method="_on_quit_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/HSlider" to="." method="_volume_slider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/SettingsMenu/SettingsBackButton" to="CanvasLayer/PauseMenu" method="_on_settings_back_button_pressed"]
+[connection signal="timeout" from="PlayerHealTimer" to="." method="_on_player_heal_timer_timeout"]

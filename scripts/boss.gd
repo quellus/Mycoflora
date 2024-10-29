@@ -1,7 +1,17 @@
 class_name Boss extends CharacterBody2D
 
+signal target_state_changed(bool)
+
 var health = 60
-var target: Node2D = null
+var target: Player = null:
+	set(value):
+		if value != target:
+			target = value
+			if target == null:
+				target_state_changed.emit(false)
+			else:
+				target_state_changed.emit(true)
+
 @export var speed_mod := 1
 const SPEED = 50
 
@@ -10,6 +20,9 @@ const SPEED = 50
 @onready var state_machine = animtree["parameters/playback"]
 
 var pickup_scene = preload("res://scenes/pickup.tscn")
+
+func _ready() -> void:
+	add_to_group("boss")
 
 func _process(_delta):
 	if target != null:

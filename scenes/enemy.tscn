@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cr8cjatjiolay"]
+[gd_scene load_steps=32 format=3 uid="uid://cr8cjatjiolay"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_plyv1"]
 [ext_resource type="Texture2D" uid="uid://clmtlhtqb0u7m" path="res://assets/mushroom.png" id="2_ppyat"]
@@ -34,8 +34,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8yl8"]
-size = Vector2(14, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ykd3"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ie4tl"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_102g7"]
 radius = 120.0
@@ -436,7 +439,7 @@ states/knockback/position = Vector2(186, 9)
 transitions = ["Start", "default", SubResource("AnimationNodeStateMachineTransition_v1csk"), "default", "attack", SubResource("AnimationNodeStateMachineTransition_52reu"), "attack", "default", SubResource("AnimationNodeStateMachineTransition_6lgcj"), "default", "death", SubResource("AnimationNodeStateMachineTransition_odue2"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_sakf8"), "default", "knockback", SubResource("AnimationNodeStateMachineTransition_cr0id"), "attack", "knockback", SubResource("AnimationNodeStateMachineTransition_rpxip"), "knockback", "default", SubResource("AnimationNodeStateMachineTransition_378vk"), "knockback", "attack", SubResource("AnimationNodeStateMachineTransition_t3bww")]
 graph_offset = Vector2(-271, -55)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 y_sort_enabled = true
 motion_mode = 1
@@ -457,7 +460,7 @@ offset = Vector2(0, -5.665)
 [node name="HurtDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtDetector"]
-shape = SubResource("RectangleShape2D_p8yl8")
+shape = SubResource("CircleShape2D_2ykd3")
 
 [node name="HurtBox" type="Area2D" parent="."]
 script = ExtResource("3_hpu1v")
@@ -465,7 +468,7 @@ damage = 1
 entity = "Enemy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("RectangleShape2D_p8yl8")
+shape = SubResource("CircleShape2D_ie4tl")
 debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 
 [node name="VisionRadius" type="Area2D" parent="."]

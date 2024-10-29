@@ -70,11 +70,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jme7u"]
-size = Vector2(14, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_y1671"]
+radius = 7.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo0li"]
-size = Vector2(16, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m50ck"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tsrgv"]
 radius = 18.0
@@ -134,7 +134,7 @@ frame_progress = 1.0
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jme7u")
+shape = SubResource("CircleShape2D_y1671")
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource("3_vxs7l")
@@ -160,7 +160,7 @@ stream = ExtResource("6_uctel")
 [node name="HurtDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtDetector"]
-shape = SubResource("RectangleShape2D_vo0li")
+shape = SubResource("CircleShape2D_m50ck")
 debug_color = Color(0, 0.64217, 0.322278, 0.42)
 
 [node name="InteractableDetector" type="Area2D" parent="."]

@@ -14,6 +14,7 @@ signal dialog_trigger(String)
 
 var in_dialog: bool = false
 var last_move_direction: Vector2
+var max_health: int = 10
 var health: int = 10
 var knockback: bool = false
 
@@ -126,6 +127,11 @@ func take_damage(position_from: Vector2):
 	$iFrameTimer.start(1)
 	if health <= 0:
 		player_died.emit()
+
+
+func heal():
+	health = max_health
+	health_changed.emit(health)
 
 
 func _on_hurt_detector_area_entered(area):
