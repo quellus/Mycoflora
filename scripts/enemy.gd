@@ -4,7 +4,7 @@ signal target_state_changed(bool)
 
 @onready var nav_agent = $NavigationAgent2D
 
-var health = 10
+var health = 2
 var target: Player = null:
 	set(value):
 		if value != target:
@@ -40,8 +40,8 @@ func _physics_process(_delta):
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func take_damage(position_from: Vector2):
-	health -= 5
+func take_damage(position_from: Vector2, damage: int):
+	health -= damage
 	velocity = position.direction_to(position_from) * SPEED * -4
 	if health <= 0:
 		target = null
@@ -64,7 +64,7 @@ func _on_vision_radius_body_exited(body):
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity == "Player":
 		area.hit()
-		take_damage(area.global_position)
+		take_damage(area.global_position, area.damage)
 
 
 func _on_attack_radius_body_entered(body: Node2D) -> void:
