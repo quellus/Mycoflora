@@ -336,6 +336,7 @@ texture = ExtResource("11_viw4q")
 z_index = 1
 position = Vector2(-123, -169)
 script = ExtResource("11_4uaoe")
+type = 1
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest2"]
@@ -349,6 +350,7 @@ texture = ExtResource("11_viw4q")
 z_index = 1
 position = Vector2(891, 605)
 script = ExtResource("11_4uaoe")
+type = 1
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest3"]
@@ -388,6 +390,7 @@ texture = ExtResource("11_viw4q")
 z_index = 1
 position = Vector2(1865, -3)
 script = ExtResource("11_4uaoe")
+type = 1
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest6"]

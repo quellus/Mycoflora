@@ -7,7 +7,7 @@ signal interacted
 
 enum ItemTypes {
 	SWORD,
-	ARMOUR
+	HEALTH
 }
 
 #var flowers

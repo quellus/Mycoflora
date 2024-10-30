@@ -11,6 +11,7 @@ var level:Level = null
 var player:Player = null
 var enemies_targeting_player: int = 0
 @onready var player_heal_timer: Timer = %PlayerHealTimer
+@onready var health_bar: HealthBar = %HealthBar
 
 func _ready():
 	load_level("world", 0)
@@ -46,12 +47,13 @@ func _spawn_player(spawn_position: Vector2):
 	player.dialog_trigger.connect(_on_dialogue_trigger)
 	player.player_died.connect(_player_died)
 	player.sword_level_changed.connect(_sword_level_changed)
-	_player_health_changed(player.health)
+	_player_health_changed(player.max_health, player.health)
 	_flower_count_changed(player.flowers)
 
 
-func _player_health_changed(health):
-	%HealthBar.value = health
+func _player_health_changed(max_health, health):
+	health_bar.max_value = max_health
+	health_bar.value = health
 
 
 func _flower_count_changed(value):

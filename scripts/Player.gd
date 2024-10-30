@@ -5,7 +5,7 @@ class_name Player extends CharacterBody2D
 @onready var camera = %Camera2D
 @onready var audio_stream_player = $AudioStreamPlayer
 
-signal health_changed(health)
+signal health_changed(max_health: int, health: int)
 signal flower_count_changed(value: int)
 signal sword_level_changed(value: int)
 signal player_died()
@@ -14,8 +14,8 @@ signal dialog_trigger(String)
 
 var in_dialog: bool = false
 var last_move_direction: Vector2
-var max_health: int = 10
-var health: int = 10
+var max_health: int = 5
+var health: int = 5
 var knockback: bool = false
 
 var killed_boss: bool:
@@ -108,9 +108,10 @@ func _input(event):
 					elif area is TreasureChest:
 						if area.type == Interactable.ItemTypes.SWORD:
 							sword_level += 1
-						elif area.type == Interactable.ItemTypes.ARMOUR:
-							#Implement health upgrades
-							pass
+						elif area.type == Interactable.ItemTypes.HEALTH:
+							max_health += 1
+							heal()
+							health_changed.emit(max_health, health)
 					area.interact()
 
 
@@ -118,7 +119,7 @@ func take_damage(position_from: Vector2):
 	$AnimationPlayer.play("camera_shake")
 	health -= 1
 	audio_stream_player.play()
-	health_changed.emit(health)
+	health_changed.emit(max_health, health)
 	velocity = position.direction_to(position_from) * SPEED * -2
 	knockback = true
 	$KnockbackTimer.start(0.1)
@@ -131,7 +132,7 @@ func take_damage(position_from: Vector2):
 
 func heal():
 	health = max_health
-	health_changed.emit(health)
+	health_changed.emit(max_health, health)
 
 
 func _on_hurt_detector_area_entered(area):
