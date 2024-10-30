@@ -10,6 +10,7 @@ const levels = {
 var level:Level = null
 var player:Player = null
 var enemies_targeting_player: int = 0
+const PLAYER_HEAL_TIMEOUT: int = 3
 @onready var player_heal_timer: Timer = %PlayerHealTimer
 @onready var health_bar: HealthBar = %HealthBar
 
@@ -88,7 +89,7 @@ func _on_enemy_target_state_changed(state: bool):
 	else:
 		enemies_targeting_player -= 1
 		if enemies_targeting_player <= 0:
-			player_heal_timer.start(5)
+			player_heal_timer.start(PLAYER_HEAL_TIMEOUT)
 
 
 func _on_player_heal_timer_timeout() -> void:

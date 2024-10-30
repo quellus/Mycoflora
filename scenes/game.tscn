@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=26 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
 [ext_resource type="Script" path="res://scripts/dialog_manager.gd" id="2_a04k1"]
@@ -34,6 +34,15 @@ script = ExtResource("4_y3owe")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_iwc1u"]
 script = ExtResource("5_vw25s")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkflk"]
+atlas = ExtResource("16_mkfs0")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_3eb8y"]
+frames = 2
+frame_0/texture = SubResource("AtlasTexture_hkflk")
+frame_1/texture = SubResource("AtlasTexture_hkflk")
+frame_1/duration = 1.0
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -107,6 +116,10 @@ offset_right = 283.0
 offset_bottom = 19.0
 script = ExtResource("14_wi75v")
 
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(12, 13)
+texture = ExtResource("16_mkfs0")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HealthBar"]
 layout_mode = 1
 anchors_preset = 15
@@ -117,8 +130,9 @@ grow_vertical = 2
 theme_override_constants/separation = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = ExtResource("15_85ovw")
+texture = SubResource("AnimatedTexture_3eb8y")
 stretch_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]

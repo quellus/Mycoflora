@@ -44,6 +44,7 @@ func take_damage(position_from: Vector2):
 	health -= 5
 	velocity = position.direction_to(position_from) * SPEED * -4
 	if health <= 0:
+		target = null
 		state_machine.travel("death")
 	else:
 		state_machine.travel("knockback")
