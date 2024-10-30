@@ -79,7 +79,7 @@ func _input(event):
 			else:
 				speed_modifier = 5
 		
-	if event.is_action_pressed("attack") and !in_dialog:
+	if (event.is_action_pressed("attack") or event.is_action_pressed("cast_spell")) and !in_dialog:
 		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
@@ -87,10 +87,10 @@ func _input(event):
 				direction = last_move_direction
 		else:
 			direction = global_position.direction_to(get_global_mouse_position())
-		if has_weapon or killed_boss:
+		if has_weapon and event.is_action_pressed("attack"):
 			weapon.attack(direction)
-	if event.is_action_pressed("swap_weapons") and killed_boss:
-		weapon.magic_mode = !weapon.magic_mode
+		elif killed_boss and event.is_action_pressed("cast_spell"):
+			weapon.cast_spell(direction)
 	if event.is_action_pressed("interact") and !in_dialog:
 		for area in %InteractableDetector.get_overlapping_areas():
 				if area is Interactable:

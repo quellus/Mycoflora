@@ -21,7 +21,6 @@ var magic_damage_multiplier: float = 1
 var magic_speed_multiplier: float = 1
 #var magic_size: int = 1
 
-var magic_mode = false
 var can_attack = true
 
 func _ready():
@@ -31,7 +30,18 @@ func _ready():
 func attack(direction: Vector2):
 	if can_attack:
 		rotation = direction.angle()
-		if magic_mode and $"..".flowers > 0:
+		$AudioStreamPlayer2D.stream = sword_sound
+		$AudioStreamPlayer2D.play(0.1)
+		hurt_box.damage = SWORD_BASE_DAMAGE * sword_damage_multiplier
+		hurt_box.visible = true
+		collision_shape.disabled = false
+		swing_timer.start(SWING_SPEED)
+		can_attack = false
+
+func cast_spell(direction: Vector2):
+	if can_attack:
+		rotation = direction.angle()
+		if $"..".flowers > 0:
 			$AudioStreamPlayer2D.stream = fireball_sound
 			$AudioStreamPlayer2D.play(0.3)
 			var fireball: Projectile = fireball_scene.instantiate()
@@ -41,12 +51,6 @@ func attack(direction: Vector2):
 			get_tree().root.add_child(fireball)
 			fireball.global_position = $HurtBox.global_position
 			$"..".flowers -= 1
-		else:
-			$AudioStreamPlayer2D.stream = sword_sound
-			$AudioStreamPlayer2D.play(0.1)
-			hurt_box.damage = SWORD_BASE_DAMAGE * sword_damage_multiplier
-			hurt_box.visible = true
-			collision_shape.disabled = false
 		swing_timer.start(SWING_SPEED)
 		can_attack = false
 
