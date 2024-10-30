@@ -4,15 +4,23 @@ extends Node2D
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var collision_shape = $HurtBox/CollisionPolygon2D
 
-var fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
-var fireball_sound: AudioStream = preload("res://assets/sounds/77691__joelaudio__sfx_magic_fireball_001.wav")
-var sword_sound: AudioStream = preload("res://assets/sounds/422507__nightflame__swinging-staff-whoosh-strong-07.wav")
+const fireball_scene: PackedScene = preload("res://scenes/fireball.tscn")
+const fireball_sound: AudioStream = preload("res://assets/sounds/77691__joelaudio__sfx_magic_fireball_001.wav")
+const sword_sound: AudioStream = preload("res://assets/sounds/422507__nightflame__swinging-staff-whoosh-strong-07.wav")
 
+const SWING_SPEED: float  = 0.2
+const ATTACK_SPEED: float = 0.3
+const SWORD_BASE_DAMAGE: float = 1
 
-const SWING_SPEED = 0.2
-const ATTACK_SPEED = 0.3
+var sword_damage_multiplier: float = 1
 
-var magic_mode = false
+const MAGIC_BASE_DAMAGE: float = 1
+const MAGIC_BASE_MOVEMENT_SPEED: float = 200
+
+var magic_damage_multiplier: float = 1
+var magic_speed_multiplier: float = 1
+#var magic_size: int = 1
+
 var can_attack = true
 
 func _ready():
@@ -22,21 +30,27 @@ func _ready():
 func attack(direction: Vector2):
 	if can_attack:
 		rotation = direction.angle()
-		if magic_mode and $"..".flowers > 0:
+		$AudioStreamPlayer2D.stream = sword_sound
+		$AudioStreamPlayer2D.play(0.1)
+		hurt_box.damage = SWORD_BASE_DAMAGE * sword_damage_multiplier
+		hurt_box.visible = true
+		collision_shape.disabled = false
+		swing_timer.start(SWING_SPEED)
+		can_attack = false
+
+func cast_spell(direction: Vector2):
+	if can_attack:
+		rotation = direction.angle()
+		if $"..".flowers > 0:
 			$AudioStreamPlayer2D.stream = fireball_sound
 			$AudioStreamPlayer2D.play(0.3)
 			var fireball: Projectile = fireball_scene.instantiate()
 			fireball.movement_direction = direction
-			fireball.movement_speed = 200
-			fireball.damage = 5
+			fireball.movement_speed = MAGIC_BASE_MOVEMENT_SPEED * magic_speed_multiplier
+			fireball.damage = MAGIC_BASE_DAMAGE * magic_damage_multiplier
 			get_tree().root.add_child(fireball)
 			fireball.global_position = $HurtBox.global_position
 			$"..".flowers -= 1
-		else:
-			$AudioStreamPlayer2D.stream = sword_sound
-			$AudioStreamPlayer2D.play(0.1)
-			hurt_box.visible = true
-			collision_shape.disabled = false
 		swing_timer.start(SWING_SPEED)
 		can_attack = false
 
@@ -44,3 +58,7 @@ func _on_swing_timer_timeout():
 	hurt_box.visible = false
 	collision_shape.disabled = true
 	can_attack = true
+
+
+func _on_player_sword_level_changed(value: int) -> void:
+	sword_damage_multiplier = (value * 0.5) + 1

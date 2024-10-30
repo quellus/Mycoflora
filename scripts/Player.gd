@@ -5,15 +5,17 @@ class_name Player extends CharacterBody2D
 @onready var camera = %Camera2D
 @onready var audio_stream_player = $AudioStreamPlayer
 
-signal health_changed(health)
+signal health_changed(max_health: int, health: int)
 signal flower_count_changed(value: int)
+signal sword_level_changed(value: int)
 signal player_died()
 signal warp(destination: String, spawn_point: int)
 signal dialog_trigger(String)
 
 var in_dialog: bool = false
 var last_move_direction: Vector2
-var health: int = 10
+var max_health: int = 5
+var health: int = 5
 var knockback: bool = false
 
 var killed_boss: bool:
@@ -35,6 +37,11 @@ var flowers: int = 10:
 		flowers = value
 		SaveLoad.data["players"]["player1"]["flowers"] = value
 		flower_count_changed.emit(value)
+
+var sword_level: int = 0:
+	set(value):
+		sword_level = value
+		sword_level_changed.emit(value)
 
 const SPEED: float = 75.0
 var speed_modifier: float = 1
@@ -72,7 +79,7 @@ func _input(event):
 			else:
 				speed_modifier = 5
 		
-	if event.is_action_pressed("attack") and !in_dialog:
+	if (event.is_action_pressed("attack") or event.is_action_pressed("cast_spell")) and !in_dialog:
 		var direction: Vector2
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
@@ -80,10 +87,10 @@ func _input(event):
 				direction = last_move_direction
 		else:
 			direction = global_position.direction_to(get_global_mouse_position())
-		if has_weapon or killed_boss:
+		if has_weapon and event.is_action_pressed("attack"):
 			weapon.attack(direction)
-	if event.is_action_pressed("swap_weapons") and killed_boss:
-		weapon.magic_mode = !weapon.magic_mode
+		elif killed_boss and event.is_action_pressed("cast_spell"):
+			weapon.cast_spell(direction)
 	if event.is_action_pressed("interact") and !in_dialog:
 		for area in %InteractableDetector.get_overlapping_areas():
 				if area is Interactable:
@@ -98,14 +105,21 @@ func _input(event):
 						dialog_trigger.emit(area.char_name)
 						if area.char_name == "The Old Angy Guy The Real":
 							has_weapon = true
+					elif area is TreasureChest:
+						if area.type == Interactable.ItemTypes.SWORD:
+							sword_level += 1
+						elif area.type == Interactable.ItemTypes.HEALTH:
+							max_health += 1
+							heal()
+							health_changed.emit(max_health, health)
 					area.interact()
 
 
-func take_damage(position_from: Vector2):
+func take_damage(position_from: Vector2, damage: int):
 	$AnimationPlayer.play("camera_shake")
-	health -= 1
+	health -= damage
 	audio_stream_player.play()
-	health_changed.emit(health)
+	health_changed.emit(max_health, health)
 	velocity = position.direction_to(position_from) * SPEED * -2
 	knockback = true
 	$KnockbackTimer.start(0.1)
@@ -116,9 +130,14 @@ func take_damage(position_from: Vector2):
 		player_died.emit()
 
 
+func heal():
+	health = max_health
+	health_changed.emit(max_health, health)
+
+
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity != "Player":
-		take_damage(area.global_position)
+		take_damage(area.global_position, area.damage)
 	elif area is WarpPoint:
 		warp.emit(area.destination, area.spawn_point)
 

@@ -1,9 +1,19 @@
 class_name Enemy extends CharacterBody2D
 
+signal target_state_changed(bool)
+
 @onready var nav_agent = $NavigationAgent2D
 
 var health = 10
-var target: Player = null
+var target: Player = null:
+	set(value):
+		if value != target:
+			target = value
+			if target == null:
+				target_state_changed.emit(false)
+			else:
+				target_state_changed.emit(true)
+
 var is_in_range: bool = false
 @onready var sprite = $AnimatedSprite2D
 @export var speed_mod := 1
@@ -12,6 +22,10 @@ const SPEED = 70
 @onready var animplayer: AnimationPlayer = $AnimationPlayer
 @onready var animtree: AnimationTree = $AnimationTree
 @onready var state_machine = animtree["parameters/playback"]
+
+func _ready() -> void:
+	add_to_group("enemy")
+
 
 func _physics_process(_delta):
 	var next_pos: Vector2 = nav_agent.get_next_path_position()
@@ -30,6 +44,7 @@ func take_damage(position_from: Vector2):
 	health -= 5
 	velocity = position.direction_to(position_from) * SPEED * -4
 	if health <= 0:
+		target = null
 		state_machine.travel("death")
 	else:
 		state_machine.travel("knockback")
