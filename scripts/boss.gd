@@ -2,7 +2,7 @@ class_name Boss extends CharacterBody2D
 
 signal target_state_changed(bool)
 
-var health = 60
+var health = 12
 var target: Player = null:
 	set(value):
 		if value != target:
@@ -33,8 +33,8 @@ func _process(_delta):
 	move_and_slide()
 
 
-func take_damage(_position_from: Vector2):
-	health -= 5
+func take_damage(_position_from: Vector2, damage: int):
+	health -= damage
 	if health <= 0:
 		if $AnimationPlayer2.current_animation != "death":
 			$AnimationPlayer2.play("death")
@@ -69,7 +69,7 @@ func _on_vision_radius_body_exited(body):
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity == "Player":
 		area.hit()
-		take_damage(area.global_position)
+		take_damage(area.global_position, area.damage)
 
 
 func _on_animation_player_animation_changed(_old_name: StringName, new_name: StringName) -> void:

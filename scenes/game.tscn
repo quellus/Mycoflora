@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dwxxwxyy0bkp5"]
+[gd_scene load_steps=30 format=3 uid="uid://dwxxwxyy0bkp5"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_gog3v"]
 [ext_resource type="Script" path="res://scripts/dialog_manager.gd" id="2_a04k1"]
@@ -16,8 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://0rkhpmk6rap2" path="res://assets/dialogueninepatch.png" id="8_sj0ku"]
 [ext_resource type="AudioStream" uid="uid://bhu3yl0bvasaa" path="res://assets/sounds/wah.wav" id="12_q2kph"]
 [ext_resource type="Script" path="res://health_bar.gd" id="14_wi75v"]
-[ext_resource type="Texture2D" uid="uid://b6g1l16x1xuj6" path="res://assets/Heart.png" id="15_85ovw"]
-[ext_resource type="Texture2D" uid="uid://cbh4gb6iyj8c" path="res://assets/HeartEmpty.png" id="16_mkfs0"]
+[ext_resource type="Texture2D" uid="uid://c13pxiw11ijw" path="res://assets/HeartSpriteSheet.png" id="15_dsx8t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2klbr"]
 
@@ -34,6 +33,66 @@ script = ExtResource("4_y3owe")
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_iwc1u"]
 script = ExtResource("5_vw25s")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwtqm"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yponu"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ufe"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy3ep"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sm6h"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io2mn"]
+atlas = ExtResource("15_dsx8t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1flg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwtqm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yponu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ufe")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy3ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sm6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io2mn")
+}],
+"loop": false,
+"name": &"full",
+"speed": 6.0
+}]
 
 [node name="Game" type="Control"]
 process_mode = 3
@@ -107,40 +166,107 @@ offset_right = 283.0
 offset_bottom = 19.0
 script = ExtResource("14_wi75v")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HealthBar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("15_85ovw")
-stretch_mode = 2
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(25, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+animation = &"empty"
+autoplay = "default"
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_85ovw")
-stretch_mode = 2
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(42, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_85ovw")
-stretch_mode = 2
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(59, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("15_85ovw")
-stretch_mode = 2
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(76, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
 
-[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/HealthBar/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("16_mkfs0")
-stretch_mode = 2
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(93, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(110, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(127, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(144, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(161, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(178, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(195, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(212, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(229, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(246, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(263, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(280, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(297, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(314, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+autoplay = "default"
+
+[node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="CanvasLayer/HealthBar"]
+position = Vector2(331, 8)
+sprite_frames = SubResource("SpriteFrames_m1flg")
+animation = &"full"
+autoplay = "default"
 
 [node name="FlowersLabel" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
