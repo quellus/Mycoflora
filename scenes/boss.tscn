@@ -218,6 +218,8 @@ shape = SubResource("CircleShape2D_vi0eh")
 [node name="HurtBox" type="Area2D" parent="Weapon"]
 position = Vector2(0, 44)
 script = ExtResource("3_rdh6f")
+damage = 1.0
+entity = "Enemy"
 
 [node name="Sprite2D" type="Sprite2D" parent="Weapon/HurtBox"]
 scale = Vector2(0.2, 0.2)

@@ -3,6 +3,8 @@ class_name HealthBar extends Control
 const HEART_TEXTURE = preload("res://assets/Heart.png")
 const HEART_EMPTY_TEXTURE = preload("res://assets/HeartEmpty.png")
 
+var hearts: Array[TextureRect] = []
+
 var value: int = 10:
 	set(val):
 		if value != val:
@@ -16,10 +18,24 @@ var max_value: int = 10:
 			update_visual()
 
 func _ready() -> void:
-	update_visual()
+	initialize_hearts()
 
 
 func update_visual():
+	if hearts.size() > max_value:
+		initialize_hearts()
+		return
+	elif hearts.size() < max_value:
+		for i in range(max_value - hearts.size()):
+			create_heart(i - 1 + max_value)
+	for i in range(hearts.size()):
+		if i >= value:
+			hearts[i].texture = HEART_EMPTY_TEXTURE
+		else:
+			hearts[i].texture = HEART_TEXTURE
+
+
+func initialize_hearts():
 	for child in $HBoxContainer.get_children():
 		child.queue_free()
 	for i in range(max_value):
@@ -34,4 +50,5 @@ func create_heart(index: int):
 		texture_rect.texture = HEART_EMPTY_TEXTURE
 	else:
 		texture_rect.texture = HEART_TEXTURE
+	hearts.append(texture_rect)
 	$HBoxContainer.add_child(texture_rect)

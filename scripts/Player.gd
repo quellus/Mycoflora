@@ -115,9 +115,9 @@ func _input(event):
 					area.interact()
 
 
-func take_damage(position_from: Vector2):
+func take_damage(position_from: Vector2, damage: int):
 	$AnimationPlayer.play("camera_shake")
-	health -= 1
+	health -= damage
 	audio_stream_player.play()
 	health_changed.emit(max_health, health)
 	velocity = position.direction_to(position_from) * SPEED * -2
@@ -137,7 +137,7 @@ func heal():
 
 func _on_hurt_detector_area_entered(area):
 	if area is HurtBox and !is_ancestor_of(area) and area.entity != "Player":
-		take_damage(area.global_position)
+		take_damage(area.global_position, area.damage)
 	elif area is WarpPoint:
 		warp.emit(area.destination, area.spawn_point)
 
