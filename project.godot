@@ -37,6 +37,7 @@ enabled=PackedStringArray("res://addons/dialogue_nodes/plugin.cfg")
 save=""
 enemy=""
 boss=""
+player=""
 
 [gui]
 
