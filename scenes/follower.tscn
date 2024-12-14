@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://tyw0styb4sxb"]
+
+[ext_resource type="Script" path="res://follower.gd" id="1_s18p3"]
+[ext_resource type="Texture2D" uid="uid://jl05eiyags0e" path="res://assets/Doggo-walking.png" id="2_jtk34"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_byjcb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccx3y"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy01r"]
+atlas = ExtResource("2_jtk34")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ru5"]
+atlas = ExtResource("2_jtk34")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr0ug"]
+atlas = ExtResource("2_jtk34")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dod75"]
+atlas = ExtResource("2_jtk34")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7cya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy01r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ru5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr0ug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dod75")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxlw4"]
+
+[node name="Follower" type="CharacterBody2D"]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_s18p3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ccx3y")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 6.0
+target_desired_distance = 6.0
+
+[node name="Doggo-walking" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -4)
+scale = Vector2(0.362595, 0.362595)
+sprite_frames = SubResource("SpriteFrames_g7cya")
+animation = &"walk"
+autoplay = "default"
+
+[node name="WanderTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_byjcb")
+sprite = NodePath("../Doggo-walking")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bxlw4")
+
+[connection signal="timeout" from="WanderTimer" to="." method="_toggle_wander"]
+[connection signal="interacted" from="Area2D" to="." method="_on_interactable_interacted"]

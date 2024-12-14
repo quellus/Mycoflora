@@ -46,6 +46,9 @@ var sword_level: int = 0:
 const SPEED: float = 75.0
 var speed_modifier: float = 1
 
+func _ready() -> void:
+	add_to_group("player")
+
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	var camera_position

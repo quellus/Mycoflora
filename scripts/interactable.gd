@@ -2,7 +2,7 @@ class_name Interactable extends Area2D
 
 signal interacted
 
-@export var sprite: Sprite2D 
+@export var sprite: Node2D
 @export var resource: Resource
 
 enum ItemTypes {
