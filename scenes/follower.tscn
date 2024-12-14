@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://tyw0styb4sxb"]
+[gd_scene load_steps=11 format=3 uid="uid://tyw0styb4sxb"]
 
 [ext_resource type="Script" path="res://follower.gd" id="1_s18p3"]
 [ext_resource type="Texture2D" uid="uid://jl05eiyags0e" path="res://assets/Doggo-walking.png" id="2_jtk34"]
+[ext_resource type="Script" path="res://scripts/interactable.gd" id="3_byjcb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccx3y"]
 radius = 7.0
@@ -47,6 +48,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bxlw4"]
+
 [node name="Follower" type="CharacterBody2D"]
 collision_layer = 0
 motion_mode = 1
@@ -69,4 +72,12 @@ autoplay = "default"
 [node name="WanderTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_byjcb")
+sprite = NodePath("../Doggo-walking")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bxlw4")
+
 [connection signal="timeout" from="WanderTimer" to="." method="_toggle_wander"]
+[connection signal="interacted" from="Area2D" to="." method="_on_interactable_interacted"]

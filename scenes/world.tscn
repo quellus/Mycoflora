@@ -406,4 +406,4 @@ position = Vector2(1678, 141)
 
 [node name="Follower" parent="." instance=ExtResource("13_6euuk")]
 z_index = 1
-position = Vector2(-268, 267)
+position = Vector2(1111, -336)

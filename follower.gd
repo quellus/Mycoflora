@@ -6,29 +6,33 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $"Doggo-walking"
 @onready var wander_timer: Timer = $WanderTimer
 
+@onready var spawn_position = global_position
+var follow_player: bool = false
 var target_position: Vector2 = Vector2.ZERO
 var chillin = false
 var wander = false
 const SPEED: int = 50
 
 func _physics_process(_delta: float) -> void:
-	if game.player:
-
-		if global_position.distance_to(game.player.global_position) > 50:
-			nav_agent.target_position = game.player.global_position
+	if follow_player and game.player:
+		target_position = game.player.global_position
+	else:
+		target_position = spawn_position
+	if global_position.distance_to(target_position) > 50:
+		nav_agent.target_position = target_position
+		var next_pos = nav_agent.get_next_path_position()
+		chillin = false
+		velocity = velocity.lerp(global_position.direction_to(next_pos) * SPEED, 0.05)
+	else:
+		chillin = true
+		if wander:
+			if nav_agent.is_navigation_finished():
+				wander_pos()
 			var next_pos = nav_agent.get_next_path_position()
-			chillin = false
-			velocity = velocity.lerp(global_position.direction_to(next_pos) * SPEED, 0.05)
+			velocity = velocity.lerp(global_position.direction_to(next_pos) * SPEED * 0.5, 0.05)
 		else:
-			chillin = true
-			if wander:
-				if nav_agent.is_navigation_finished():
-					wander_pos()
-				var next_pos = nav_agent.get_next_path_position()
-				velocity = velocity.lerp(global_position.direction_to(next_pos) * SPEED * 0.5, 0.05)
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-				velocity.y = move_toward(velocity.y, 0, SPEED)
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.y = move_toward(velocity.y, 0, SPEED)
 		
 		if velocity == Vector2.ZERO:
 			sprite.play("default")
@@ -52,3 +56,8 @@ func _toggle_wander() -> void:
 	if wander and chillin:
 		wander_pos()
 	wander_timer.start(randf_range(0.5, 4))
+
+
+func _on_interactable_interacted() -> void:
+	follow_player = true
+	$Area2D.queue_free()
