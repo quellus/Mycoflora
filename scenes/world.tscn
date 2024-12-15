@@ -336,34 +336,6 @@ type = 1
 position = Vector2(1870, -13)
 type = 1
 
-[node name="TreasureChest7" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(141, 296)
-type = 1
-
-[node name="TreasureChest8" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(98, 262)
-
-[node name="TreasureChest9" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(154, 259)
-type = 1
-
-[node name="TreasureChest10" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(162, 313)
-type = 1
-
-[node name="TreasureChest11" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(105, 320)
-
-[node name="TreasureChest12" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(94, 293)
-
-[node name="TreasureChest13" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(134, 339)
-type = 1
-
-[node name="TreasureChest14" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
-position = Vector2(169, 285)
-
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(1678, 141)
 
