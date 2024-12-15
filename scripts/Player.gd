@@ -110,6 +110,7 @@ func _input(event):
 							has_weapon = true
 					elif area is TreasureChest:
 						if area.type == Interactable.ItemTypes.SWORD:
+							has_weapon = true
 							sword_level += 1
 						elif area.type == Interactable.ItemTypes.HEALTH:
 							max_health += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bulga36v3r3k6"]
+[gd_scene load_steps=17 format=4 uid="uid://bulga36v3r3k6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_m5d1x"]
 [ext_resource type="TileSet" uid="uid://bt6703lptgjof" path="res://resources/TileSet.tres" id="2_vx766"]
@@ -10,8 +10,7 @@
 [ext_resource type="Script" path="res://scripts/scythe.gd" id="8_75g8n"]
 [ext_resource type="Texture2D" uid="uid://dfodo0oopr6m0" path="res://assets/Scythe.png" id="9_a27l6"]
 [ext_resource type="PackedScene" uid="uid://1etaidk3cjh0" path="res://scenes/boss.tscn" id="9_w4bq7"]
-[ext_resource type="Script" path="res://scripts/treasure_chest.gd" id="11_4uaoe"]
-[ext_resource type="Texture2D" uid="uid://c0jq7n57kb3n4" path="res://assets/TreasureChest.png" id="11_viw4q"]
+[ext_resource type="PackedScene" uid="uid://d0ggpjjm76ij0" path="res://scenes/treasure_chest.tscn" id="11_fpdf0"]
 [ext_resource type="PackedScene" uid="uid://tyw0styb4sxb" path="res://scenes/follower.tscn" id="13_6euuk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_frc3o"]
@@ -27,9 +26,6 @@ size = Vector2(18, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bxto"]
 size = Vector2(6, 30)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pmsn7"]
-radius = 8.0
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("spawn_points", "nav_region")]
 process_mode = 1
@@ -320,86 +316,53 @@ position = Vector2(2082, 383)
 
 [node name="Loot" type="Node2D" parent="Forest"]
 
-[node name="TreasureChest" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(640, -191)
-script = ExtResource("11_4uaoe")
-sprite = NodePath("Sprite2D")
+[node name="TreasureChest" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest"]
-shape = SubResource("CircleShape2D_pmsn7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest"]
-z_index = 1
-texture = ExtResource("11_viw4q")
-
-[node name="TreasureChest2" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(-123, -169)
-script = ExtResource("11_4uaoe")
+[node name="TreasureChest2" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(-129, -156)
 type = 1
-sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest2"]
-shape = SubResource("CircleShape2D_pmsn7")
+[node name="TreasureChest3" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(884, 598)
 
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest2"]
-z_index = 1
-texture = ExtResource("11_viw4q")
+[node name="TreasureChest4" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(1385, 266)
 
-[node name="TreasureChest3" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(891, 605)
-script = ExtResource("11_4uaoe")
+[node name="TreasureChest5" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(2084, 342)
 type = 1
-sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest3"]
-shape = SubResource("CircleShape2D_pmsn7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest3"]
-z_index = 1
-texture = ExtResource("11_viw4q")
-
-[node name="TreasureChest4" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(1373, 272)
-script = ExtResource("11_4uaoe")
-sprite = NodePath("Sprite2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest4"]
-shape = SubResource("CircleShape2D_pmsn7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest4"]
-z_index = 1
-texture = ExtResource("11_viw4q")
-
-[node name="TreasureChest5" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(2080, 345)
-script = ExtResource("11_4uaoe")
-sprite = NodePath("Sprite2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest5"]
-shape = SubResource("CircleShape2D_pmsn7")
-
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest5"]
-z_index = 1
-texture = ExtResource("11_viw4q")
-
-[node name="TreasureChest6" type="Area2D" parent="Forest/Loot" node_paths=PackedStringArray("sprite")]
-z_index = 1
-position = Vector2(1865, -3)
-script = ExtResource("11_4uaoe")
+[node name="TreasureChest6" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(1870, -13)
 type = 1
-sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/Loot/TreasureChest6"]
-shape = SubResource("CircleShape2D_pmsn7")
+[node name="TreasureChest7" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(141, 296)
+type = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Forest/Loot/TreasureChest6"]
-z_index = 1
-texture = ExtResource("11_viw4q")
+[node name="TreasureChest8" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(98, 262)
+
+[node name="TreasureChest9" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(154, 259)
+type = 1
+
+[node name="TreasureChest10" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(162, 313)
+type = 1
+
+[node name="TreasureChest11" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(105, 320)
+
+[node name="TreasureChest12" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(94, 293)
+
+[node name="TreasureChest13" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(134, 339)
+type = 1
+
+[node name="TreasureChest14" parent="Forest/Loot" instance=ExtResource("11_fpdf0")]
+position = Vector2(169, 285)
 
 [node name="SpawnPoint2" type="Node2D" parent="."]
 position = Vector2(1678, 141)
