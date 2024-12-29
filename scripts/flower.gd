@@ -2,6 +2,8 @@ class_name Flower extends Interactable
 
 const TOTAL_FLOWERS: int = 15
 const FLOWER_COLUMNS: int = 3
+const ONESHOT_AUDIO_PLAYER = preload("res://scenes/oneshot_audio_player.tscn")
+const IENBA__GAME_PICK_UP_2 = preload("res://assets/sounds/ienba__game-pick-up2.wav")
 
 func _ready():
 	var column = 0
@@ -17,4 +19,7 @@ func _ready():
 
 
 func interact():
+	var audio_player = ONESHOT_AUDIO_PLAYER.instantiate()
+	audio_player.audio_stream = IENBA__GAME_PICK_UP_2
+	get_tree().root.add_child(audio_player)
 	queue_free()
