@@ -3,6 +3,7 @@ class_name TreasureChest extends Interactable
 const SWORD_ICON_16_BIT = preload("res://assets/SwordIcon16Bit.png")
 const HEART_SPRITE_SHEET = preload("res://assets/HeartSpriteSheet.png")
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @export var type = ItemTypes.SWORD
 
 func _ready():
@@ -18,4 +19,5 @@ func _ready():
 	$AnimationPlayer.play("RESET")
 
 func interact():
+	audio_stream_player.play()
 	$AnimationPlayer.play("open chest")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0ggpjjm76ij0"]
+[gd_scene load_steps=10 format=3 uid="uid://d0ggpjjm76ij0"]
 
 [ext_resource type="Script" path="res://scripts/treasure_chest.gd" id="1_et2t8"]
 [ext_resource type="Texture2D" uid="uid://c0jq7n57kb3n4" path="res://assets/TreasureChest.png" id="2_htt4e"]
 [ext_resource type="Texture2D" uid="uid://c13pxiw11ijw" path="res://assets/HeartSpriteSheet.png" id="3_r7cwn"]
+[ext_resource type="AudioStream" uid="uid://cnqau4h7ijeoo" path="res://assets/sounds/676426__leongameryt__open-chest.wav" id="4_4jmsh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmsn7"]
 radius = 8.0
@@ -179,3 +180,7 @@ offset = Vector2(0, -5)
 libraries = {
 "": SubResource("AnimationLibrary_8gd8s")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4jmsh")
+volume_db = 6.0

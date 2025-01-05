@@ -129,8 +129,6 @@ script = ExtResource("1_0nxi1")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_nrjdl")
 animation = &"walk"
-frame = 5
-frame_progress = 1.0
 offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -189,6 +187,9 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vyip1")
 
+[node name="InteractableTimer" type="Timer" parent="."]
+wait_time = 0.05
+
 [connection signal="sword_level_changed" from="." to="Weapon" method="_on_player_sword_level_changed"]
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]
 [connection signal="area_entered" from="HurtDetector" to="." method="_on_hurt_detector_area_entered"]
@@ -196,3 +197,4 @@ stream = ExtResource("7_vyip1")
 [connection signal="area_exited" from="InteractableDetector" to="." method="_on_interactable_detector_area_exited"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
 [connection signal="timeout" from="iFrameTimer" to="." method="_on_i_frame_timer_timeout"]
+[connection signal="timeout" from="InteractableTimer" to="." method="_process_interactable"]

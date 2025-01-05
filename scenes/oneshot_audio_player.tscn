@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpp3cimi170a4"]
+
+[ext_resource type="Script" path="res://scenes/oneshot_audio_player.gd" id="1_k6q6m"]
+
+[node name="OneshotAudioPlayer" type="AudioStreamPlayer"]
+volume_db = 3.0
+script = ExtResource("1_k6q6m")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

@@ -18,6 +18,8 @@ var max_health: int = 5
 var health: int = 5
 var knockback: bool = false
 
+var interact_queue: Array[Interactable] = []
+
 var killed_boss: bool:
 	get():
 		return SaveLoad.data["players"]["player1"]["killed_boss"]
@@ -61,13 +63,13 @@ func _physics_process(_delta):
 				sprite.flip_h = false
 			elif direction.x < 0:
 				sprite.flip_h = true
-			if !sprite.is_playing():
+			if !sprite.is_playing() or sprite.animation != "walk":
 				sprite.play("walk")
 		else:
 			camera_position = Vector2.ZERO
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
-			if !sprite.is_playing():
+			if !sprite.is_playing() or sprite.animation != "default":
 				sprite.play("default")
 	else:
 		camera_position = Vector2.ZERO
@@ -96,27 +98,10 @@ func _input(event):
 			weapon.cast_spell(direction)
 	if event.is_action_pressed("interact") and !in_dialog:
 		for area in %InteractableDetector.get_overlapping_areas():
-				if area is Interactable:
-					if area is Flower:
-						flowers += 1
-					elif area is Scythe:
-						has_weapon = true
-					elif area is Artefact:
-						killed_boss = true
-					elif area is DialogInteractable:
-						in_dialog = true
-						dialog_trigger.emit(area.char_name)
-						if area.char_name == "The Old Angy Guy The Real":
-							has_weapon = true
-					elif area is TreasureChest:
-						if area.type == Interactable.ItemTypes.SWORD:
-							has_weapon = true
-							sword_level += 1
-						elif area.type == Interactable.ItemTypes.HEALTH:
-							max_health += 1
-							heal()
-							health_changed.emit(max_health, health)
-					area.interact()
+			if area is Interactable:
+				interact_queue.append(area)
+				if $InteractableTimer.is_stopped():
+					$InteractableTimer.start(0.05)
 
 
 func take_damage(position_from: Vector2, damage: int):
@@ -163,3 +148,31 @@ func _on_interactable_detector_area_entered(area):
 func _on_interactable_detector_area_exited(area):
 	if area is Interactable:
 		area.highlight(false)
+
+
+func _process_interactable() -> void:
+	if interact_queue.size() > 0:
+		var curr_interactable = interact_queue.pop_front()
+		if curr_interactable:
+			if curr_interactable is Flower:
+				flowers += 1
+			elif curr_interactable is Scythe:
+				has_weapon = true
+			elif curr_interactable is Artefact:
+				killed_boss = true
+			elif curr_interactable is DialogInteractable:
+				in_dialog = true
+				dialog_trigger.emit(curr_interactable.char_name)
+				if curr_interactable.char_name == "The Old Angy Guy The Real":
+					has_weapon = true
+			elif curr_interactable is TreasureChest:
+				if curr_interactable.type == Interactable.ItemTypes.SWORD:
+					has_weapon = true
+					sword_level += 1
+				elif curr_interactable.type == Interactable.ItemTypes.HEALTH:
+					max_health += 1
+					heal()
+					health_changed.emit(max_health, health)
+			curr_interactable.interact()
+	else:
+		$InteractableTimer.stop()
