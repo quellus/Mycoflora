@@ -188,7 +188,7 @@ libraries = {
 stream = ExtResource("7_vyip1")
 
 [node name="InteractableTimer" type="Timer" parent="."]
-wait_time = 0.04
+wait_time = 0.05
 
 [connection signal="sword_level_changed" from="." to="Weapon" method="_on_player_sword_level_changed"]
 [connection signal="timeout" from="Weapon/SwingTimer" to="Weapon" method="_on_swing_timer_timeout"]

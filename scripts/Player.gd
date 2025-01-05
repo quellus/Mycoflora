@@ -101,7 +101,7 @@ func _input(event):
 			if area is Interactable:
 				interact_queue.append(area)
 				if $InteractableTimer.is_stopped():
-					$InteractableTimer.start(0.04)
+					$InteractableTimer.start(0.05)
 
 
 func take_damage(position_from: Vector2, damage: int):
