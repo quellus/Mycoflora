@@ -208,6 +208,7 @@ y_sort_enabled = true
 position = Vector2(1817, -18)
 
 [node name="Enemies" type="Node2D" parent="Forest"]
+y_sort_enabled = true
 
 [node name="Enemy" parent="Forest/Enemies" instance=ExtResource("5_nukpt")]
 position = Vector2(787, 237)
