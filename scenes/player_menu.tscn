@@ -1,0 +1,327 @@
+[gd_scene load_steps=13 format=3 uid="uid://ogfu028kavh5"]
+
+[ext_resource type="Script" path="res://scripts/player_menu.gd" id="1_15j3q"]
+[ext_resource type="Script" path="res://health_bar.gd" id="2_kfs6w"]
+[ext_resource type="Texture2D" uid="uid://c13pxiw11ijw" path="res://assets/HeartSpriteSheet.png" id="3_i2fd2"]
+[ext_resource type="StyleBox" uid="uid://dtli7ldhq8exr" path="res://resources/player_menu_panel.tres" id="4_nfudm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwtqm"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yponu"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ufe"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy3ep"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sm6h"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io2mn"]
+atlas = ExtResource("3_i2fd2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jo4rx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwtqm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yponu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ufe")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy3ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sm6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io2mn")
+}],
+"loop": false,
+"name": &"full",
+"speed": 6.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qtyp"]
+bg_color = Color(0.6, 0.6, 0.6, 0.501961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="PlayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_15j3q")
+
+[node name="HealthBar" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 283.0
+offset_bottom = 19.0
+script = ExtResource("2_kfs6w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(25, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+animation = &"empty"
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(42, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(59, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(76, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(93, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D7" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(110, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D8" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(127, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D9" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(144, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D10" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(161, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D11" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(178, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D12" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(195, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D13" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(212, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D14" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(229, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D15" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(246, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D16" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(263, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D17" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(280, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D18" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(297, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D19" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(314, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+autoplay = "default"
+
+[node name="AnimatedSprite2D20" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(331, 8)
+sprite_frames = SubResource("SpriteFrames_jo4rx")
+animation = &"full"
+autoplay = "default"
+
+[node name="FlowersLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 6.0
+offset_top = 17.0
+offset_right = 71.0
+offset_bottom = 40.0
+text = "Florids:"
+
+[node name="SwordLevel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 34.0
+offset_right = 48.0
+offset_bottom = 47.0
+text = "Sword level"
+
+[node name="Toggleable" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quest Panel" type="Control" parent="Toggleable"]
+custom_minimum_size = Vector2(140, 175)
+layout_mode = 2
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 24.0
+offset_right = 232.0
+offset_bottom = 232.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Toggleable/Quest Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_nfudm")
+
+[node name="MarginContainer" type="MarginContainer" parent="Toggleable/Quest Panel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quests!"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Investigate the weird happenings in the forest"
+autowrap_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Button" type="Button" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="Toggleable/Quest Panel/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Investigate the weird happenings in the forest"
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="Toggleable/Quest Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_nfudm")
+
+[node name="Panel" type="Panel" parent="Toggleable"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 42.0
+offset_right = 355.0
+offset_bottom = 217.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5qtyp")

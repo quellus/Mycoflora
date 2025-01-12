@@ -1,6 +1,9 @@
 extends Control
 
 signal exit_game()
+signal player_health_changed(max_health: int, health: int)
+signal flower_count_changed(value: int)
+signal sword_level_changed(value: int)
 
 const player_scene = preload("res://scenes/player.tscn")
 const levels = {
@@ -12,14 +15,17 @@ var player:Player = null
 var enemies_targeting_player: int = 0
 const PLAYER_HEAL_TIMEOUT: int = 3
 @onready var player_heal_timer: Timer = %PlayerHealTimer
-@onready var health_bar: HealthBar = %HealthBar
 
 func _ready():
 	load_level("world", 0)
 	AudioServer.set_bus_volume_db(0, linear_to_db(0.5))
 	
-	%SwordLevel.text = "Sword level: 0"
 	
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("select"):
+		%PlayerMenu.toggle_menu()
+		
 
 func load_level(level_name: String, spawn_index: int):
 	if level_name in levels:
@@ -53,16 +59,15 @@ func _spawn_player(spawn_position: Vector2):
 
 
 func _player_health_changed(max_health, health):
-	health_bar.max_value = max_health
-	health_bar.value = health
+	player_health_changed.emit(max_health, health)
 
 
 func _flower_count_changed(value):
-	%FlowersLabel.text = "Florids: " + str(value)
+	flower_count_changed.emit(value)
 
 
 func _sword_level_changed(value: int):
-	%SwordLevel.text = "Sword level: " + str(value)
+	sword_level_changed.emit(value)
 
 func _player_died():
 	exit_game.emit()

@@ -14,9 +14,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("start"):
-		if current_menu == "":
+		if current_menu == "" and get_tree().paused == false:
 			show_menu("main_pause")
-		else:
+		elif current_menu != "":
 			hide_menus()
 	elif event.is_action_pressed("ui_cancel"):
 		if current_menu == "main_pause":
