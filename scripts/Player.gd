@@ -104,6 +104,13 @@ func _input(event):
 					$InteractableTimer.start(0.05)
 
 
+func dialogue_signal(value):
+	if value == "get_start_sword":
+		has_weapon = true
+		if sword_level < 1:
+			sword_level = 1
+
+
 func take_damage(position_from: Vector2, damage: int):
 	$AnimationPlayer.play("camera_shake")
 	health -= damage
@@ -163,8 +170,6 @@ func _process_interactable() -> void:
 			elif curr_interactable is DialogInteractable:
 				in_dialog = true
 				dialog_trigger.emit(curr_interactable.char_name)
-				if curr_interactable.char_name == "The Old Angy Guy The Real":
-					has_weapon = true
 			elif curr_interactable is TreasureChest:
 				if curr_interactable.type == Interactable.ItemTypes.SWORD:
 					has_weapon = true

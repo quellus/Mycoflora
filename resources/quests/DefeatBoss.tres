@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3 uid="uid://dntf8rrayvk4y"]
+
+[ext_resource type="Script" path="res://resources/quest_resource.gd" id="1_a5hi6"]
+
+[resource]
+script = ExtResource("1_a5hi6")
+state = 0
+id = "defeat_boss"
+quest_name = "Defeat The Boss"
+long_description = "There is a boss in the forest. Go defeat that guy. Change his name from Boss, to John Defeated."

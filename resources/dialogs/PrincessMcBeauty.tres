@@ -14,7 +14,7 @@ nodes = {
 "start_id": "START"
 },
 "1_1": {
-"dialogue": "Look, I have no idea who you are. ",
+"dialogue": "I have heard about the weird things happening in the forest.",
 "offset": Vector2(-580, -300),
 "options": {
 0: {
@@ -27,7 +27,7 @@ nodes = {
 "speaker": "Princess McBeauty"
 },
 "1_2": {
-"dialogue": "Sending troops would put the kingdom in danger.",
+"dialogue": "A local thinks there's an tree monster in the forest causing these events.",
 "offset": Vector2(-220, -300),
 "options": {
 0: {
@@ -40,12 +40,12 @@ nodes = {
 "speaker": "Princess McBeauty"
 },
 "1_3": {
-"dialogue": "I will help if you bring me evidence that the forest is attacking.",
+"dialogue": "I don't believe the rumours, so I will do nothing until I have evidence.",
 "offset": Vector2(140, -300),
 "options": {
 0: {
 "condition": {},
-"link": "END",
+"link": &"3_1",
 "text": ""
 }
 },
@@ -90,6 +90,11 @@ nodes = {
 },
 "size": Vector2(300, 240),
 "speaker": "Princess McBeauty"
+},
+"3_1": {
+"link": "END",
+"offset": Vector2(520, -180),
+"signalValue": "investigate_forest_quest_start"
 },
 "5_1": {
 "false": &"1_1",

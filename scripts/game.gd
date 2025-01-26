@@ -100,3 +100,8 @@ func _on_enemy_target_state_changed(state: bool):
 func _on_player_heal_timer_timeout() -> void:
 	if enemies_targeting_player <= 0:
 		player.heal()
+
+
+func _on_dialogue_manager_dialogue_signal(value: String) -> void:
+	player.dialogue_signal(value)
+	QuestTracker.dialogue_signal(value)

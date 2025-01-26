@@ -1,6 +1,7 @@
 class_name Boss extends CharacterBody2D
 
 signal target_state_changed(bool)
+signal boss_died
 
 var health = 12
 var target: Player = null:
@@ -37,6 +38,7 @@ func take_damage(_position_from: Vector2, damage: int):
 	health -= damage
 	if health <= 0:
 		if $AnimationPlayer2.current_animation != "death":
+			boss_died.emit()
 			$AnimationPlayer2.play("death")
 			animtree.set("parameters/conditions/attacking", false)
 			state_machine.travel("default")

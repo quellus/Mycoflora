@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="QuestResource" load_steps=2 format=3 uid="uid://qoyreupjylh6"]
+
+[ext_resource type="Script" path="res://resources/quest_resource.gd" id="1_0fdb4"]
+
+[resource]
+script = ExtResource("1_0fdb4")
+state = 0
+id = "investigate_forest"
+quest_name = "Investigate The Forest"
+long_description = "There are weird things happening in the forest. Someone needs to go investigate what is happening."

@@ -1,5 +1,7 @@
 class_name DialogueManager extends Control
 
+signal dialogue_signal(value: String)
+
 @export var dialogue_trees: Dictionary = {}
 
 @onready var dialogue_box: DialogueBox = %DialogueBox
@@ -32,7 +34,7 @@ func _on_char_displayed(char_index: int):
 	if char_index % 2 == 0:
 		if !current_dialogue[char_index] in silent_characters:
 			audio_player.play()
-			audio_player.pitch_scale = 2 + randf_range(-0.1, 0.1)
+			audio_player.pitch_scale = 1.7 + randf_range(-0.1, 0.1)
 
 func _on_dialogue_processed(_speaker : Variant, dialogue : String, _options : Array[String]):
 	current_dialogue = dialogue
@@ -44,3 +46,7 @@ func _on_dialogue_box_dialogue_started(_id: String) -> void:
 
 func _on_dialogue_box_dialogue_ended() -> void:
 	nine_patch.visible = false
+
+
+func _on_dialogue_signal(value: String) -> void:
+	dialogue_signal.emit(value)
