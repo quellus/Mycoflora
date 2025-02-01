@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://c05l4ruwxisur" path="res://resources/dialogs/PrincessMcBeauty.tres" id="7_q5gsj"]
 [ext_resource type="Texture2D" uid="uid://0rkhpmk6rap2" path="res://assets/dialogueninepatch.png" id="8_sj0ku"]
 [ext_resource type="AudioStream" uid="uid://bhu3yl0bvasaa" path="res://assets/sounds/wah.wav" id="12_q2kph"]
-[ext_resource type="PackedScene" uid="uid://ogfu028kavh5" path="res://scenes/player_menu.tscn" id="16_d2b77"]
+[ext_resource type="PackedScene" uid="uid://c02awcn0m078j" path="res://scenes/player_menu.tscn" id="16_d2b77"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2klbr"]
 
